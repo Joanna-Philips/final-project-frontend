@@ -4,7 +4,6 @@ import { loader } from './loader'
 const initialState = {
   username: null,
   currentGameState: {},
-  playerHistory: []
 }
 
 export const gameStore = createSlice({
@@ -18,10 +17,6 @@ export const gameStore = createSlice({
 
     setcurrentGameState: (store, action) => {
       store.currentGameState = action.payload
-    },
-
-    setPlayerHistory: (store, action) => {
-      store.playerHistory = [...store.playerHistory, action.payload]
     },
 
     restart: (store) => {
