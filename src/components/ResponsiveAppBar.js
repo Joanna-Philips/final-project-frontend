@@ -1,51 +1,50 @@
-import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import user from "reducers/user";
-import thoughts from "reducers/thoughts";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import shopIMG from "../assets/coin.png";
-import homeIMG from "../assets/home.png";
-import questIMG from "../assets/questmap.png";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import barIMG from "../assets/GUI.png";
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import user from 'reducers/user';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import shopIMG from '../assets/images/UI/coin.png';
+import homeIMG from '../assets/images/UI/home.png';
+import questIMG from '../assets/images/UI/questmap.png';
+import barIMG from '../assets/images/UI/GUI.png';
 
 const pages = [
-  { name: "Shop", image: shopIMG },
-  { name: "Homestead", image: homeIMG },
-  { name: "Quests", image: questIMG },
+  { name: 'Shop', image: shopIMG },
+  { name: 'Homestead', image: homeIMG },
+  { name: 'Quests', image: questIMG }
 ];
 /* const settings = ['Account', 'Logout']; */
 
 const theme = createTheme({
   typography: {
-    fontFamily: ["VT323", "monospace"].join(","),
-    fontSize: 18,
+    fontFamily: ['VT323', 'monospace'].join(','),
+    fontSize: 18
   },
   status: {
-    danger: "#e53e3e",
+    danger: '#e53e3e'
   },
   palette: {
     primary: {
-      main: "#733214",
-      darker: "#5c270f",
+      main: '#733214',
+      darker: '#5c270f'
     },
     neutral: {
-      main: "#64748B",
-      contrastText: "#fff",
-    },
-  },
+      main: '#64748B',
+      contrastText: '#fff'
+    }
+  }
 });
 
 export const ResponsiveAppBar = () => {
@@ -75,7 +74,7 @@ export const ResponsiveAppBar = () => {
     dispatch(user.actions.setUsername(null));
     dispatch(user.actions.setUserId(null));
     dispatch(user.actions.setError(null));
-    dispatch(thoughts.actions.setItems([]));
+    dispatch(user.actions.setItems([]));
   };
 
   return (
@@ -84,14 +83,13 @@ export const ResponsiveAppBar = () => {
         position="static"
         sx={{
           backgroundImage: `url(${barIMG})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "150% 100%",
-          backgroundPosition: "center",
-        }}
-      >
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '150% 100%',
+          backgroundPosition: 'center'
+        }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
@@ -99,59 +97,55 @@ export const ResponsiveAppBar = () => {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: 'none', md: 'flex' },
                 fontWeight: 700,
-                fontSize: "1.5rem",
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
+                fontSize: '1.5rem',
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none'
+              }}>
               Gibberish Journeys
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
-              >
+                color="inherit">
                 <MenuIcon />
               </IconButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+                  vertical: 'bottom',
+                  horizontal: 'left'
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
+                  vertical: 'top',
+                  horizontal: 'left'
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
+                  display: { xs: 'block', md: 'none' }
+                }}>
                 {pages.map((page) => (
                   <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Typography textAlign="center">
                         <img
                           src={page.image}
                           alt={page.name}
                           style={{
-                            marginRight: "8px",
-                            height: "20px",
-                            width: "20px",
-                          }}
-                        />
+                            marginRight: '8px',
+                            height: '20px',
+                            width: '20px'
+                          }} />
                         {page.name}
                       </Typography>
                     </Box>
@@ -159,7 +153,7 @@ export const ResponsiveAppBar = () => {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
@@ -167,28 +161,25 @@ export const ResponsiveAppBar = () => {
               href=""
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
                 fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none'
+              }}>
               Welcome {username}
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
                   key={page.name}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "flex" }}
-                >
+                  sx={{ my: 2, color: 'white', display: 'flex' }}>
                   <img
                     src={page.image}
                     alt={page.name}
-                    style={{ marginRight: "0.8em", width: "35px" }}
-                  />
+                    style={{ marginRight: '0.8em', width: '35px' }} />
                   {page.name}
                 </Button>
               ))}
@@ -201,29 +192,27 @@ export const ResponsiveAppBar = () => {
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
+                sx={{ mt: '45px' }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right'
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right'
                 }}
                 open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
+                onClose={handleCloseUserMenu}>
                 <MenuItem>
-                  <Button sx={{ fontSize: "1.5rem" }}>Account</Button>
+                  <Button sx={{ fontSize: '1.5rem' }}>Account</Button>
                 </MenuItem>
                 <MenuItem>
                   <Button
                     onClick={onLogoutButtonClick}
-                    sx={{ fontSize: "1.5rem" }}
-                  >
+                    sx={{ fontSize: '1.5rem' }}>
                     Logout
                   </Button>
                 </MenuItem>

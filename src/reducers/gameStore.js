@@ -3,7 +3,7 @@ import { loader } from './loader'
 
 const initialState = {
   username: null,
-  currentGameState: {},
+  currentGameState: {}
 }
 
 export const gameStore = createSlice({
@@ -29,7 +29,7 @@ export const gameStore = createSlice({
 
 export const startGame = () => {
   return (dispatch, getState) => {
-    dispatch(loading.actions.setLoading(true))
+    dispatch(loader.actions.setLoading(true))
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
