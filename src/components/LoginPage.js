@@ -213,15 +213,10 @@ export const LoginPage = () => {
                     label="Register" />
                 )}
               </FormGroup>
-              {/* <Grid item>
-                  <Link href="#" variant="body3" onClick={GuestLogin}>
-                                Login as Guest
-                                    </Link>
-
-                </Grid> */}
             </Grid>
           </Box>
         </Box>
+        <img src="https://i.postimg.cc/Qx49VNWk/stones.jpg" width="200px" alt="test" />
       </Container>
     </ThemeProvider>
   );
