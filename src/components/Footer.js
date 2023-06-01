@@ -17,7 +17,7 @@ export const Footer = () => {
         backgroundSize: 'cover' */
         backgroundColor: '#edd99b',
         borderStyle: 'outset',
-        borderColor: '#9d8b59'
+        borderColor: '#3b241c'
       }}
       elevation={3}>
       <BottomNavigation
