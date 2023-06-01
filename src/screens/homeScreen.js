@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
+import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
 
 const defaultTheme = createTheme();
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -34,11 +35,12 @@ export const HomeScreen = () => {
                   align="center"
                   color="text.primary"
                   gutterBottom>
-                  This is the username: {username}
+                  Hi {username} 👾
                 </Typography>
                 <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Welcome to your home turf
+                  Welcome to your home turf
                 </Typography>
+                <PlayerAvatar />
               </Container>
             </Box>
           </Grid>

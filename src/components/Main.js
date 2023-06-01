@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // import user from 'reducers/user';
 import { HomeScreen } from 'screens/HomeScreen';
 import { ResponsiveAppBar } from './ResponsiveAppBar';
@@ -8,14 +8,14 @@ import { ResponsiveAppBar } from './ResponsiveAppBar';
 const Main = () => {
   // const thoughtItems = useSelector((store) => store.thoughts.items);
   // const dispatch = useDispatch();
-  // const accessToken = useSelector((store) => store.user.accessToken);
+  const accessToken = useSelector((store) => store.user.accessToken);
   // const username = useSelector((store) => store.user.username);
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!accessToken) {
-  //     navigate('/login');
-  //   }
-  // }, [accessToken]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!accessToken) {
+      navigate('/login');
+    }
+  }, [accessToken, navigate]);
 
   useEffect(() => {
     // const options = {
