@@ -9,44 +9,82 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
 import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
+import homeBackground from '../assets/images/home-background2.png';
 
-const defaultTheme = createTheme();
+// const defaultTheme = createTheme();
+const theme = createTheme({
+  typography: {
+    fontFamily: ['VT323', 'monospace'].join(','),
+    fontSize: 18
+  },
+  status: {
+    danger: '#e53e3e'
+  },
+  palette: {
+    primary: {
+      main: '#733214',
+      darker: '#5c270f'
+    },
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff'
+    }
+  }
+});
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const HomeScreen = () => {
   const username = useSelector((store) => store.user.username);
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <main>
+      <main
+        style={{
+          backgroundImage: `url(${homeBackground})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          minHeight: '100vh'
+        }}>
         <Grid container spacing={2}>
           <Grid item xs={7}>
             <Box
               sx={{
-                bgcolor: 'background.paper',
-                pt: 8,
+                bgcolor: 'transparent',
+                pt: 6,
                 pb: 6
               }}>
               <Container maxWidth="sm">
-                <Typography
-                  component="h1"
-                  variant="h4"
-                  align="center"
-                  color="text.primary"
-                  gutterBottom>
+                <Box
+                  sx={{
+                    bgcolor: 'rgba(237, 217, 155, 0.7)',
+                    pt: 2,
+                    pb: 2
+                  }}>
+                  <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    color="text.primary"
+                    gutterBottom>
                   Hi {username} 👾
-                </Typography>
-                <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                  Welcome to your home turf
-                </Typography>
-                <PlayerAvatar />
+                  </Typography>
+                  <Typography variant="h6" align="center" color="text.secondary" paragraph>
+                  Customize your avatar here
+                  </Typography>
+                  <PlayerAvatar />
+                </Box>
               </Container>
             </Box>
           </Grid>
 
           <Grid item xs={5}>
-            <Container sx={{ py: 8 }} maxWidth="md">
+
+            <Container sx={{ py: 2 }} maxWidth="md">
+              <Typography variant="h6" align="center" color="text.secondary" paragraph>
+                Inventory
+              </Typography>
               <Grid container spacing={4}>
                 {cards.map((card) => (
                   <Grid item key={card} xs={12} sm={6} md={4}>
@@ -56,7 +94,6 @@ export const HomeScreen = () => {
               </Grid>
             </Container>
           </Grid>
-
         </Grid>
       </main>
     </ThemeProvider>

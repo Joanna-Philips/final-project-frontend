@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import axe from 'assets/images/UI/equipment/axe-equipment.png';
 
 export const PlayerEquipmentCard = () => {
   return (
@@ -13,16 +14,21 @@ export const PlayerEquipmentCard = () => {
       <CardMedia
         component="div"
         sx={{
-        // 16:9
-          pt: '56.25%'
-        }}
-        image="https://source.unsplash.com/random?wallpapers" />
+          // Specify the desired height and width for the image
+          height: 0,
+          paddingTop: '75%', // 4:3 aspect ratio (change as needed)
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundImage: `url(${axe})`,
+          bgcolor: '#edd99b'
+        }} />
       <CardContent sx={{ flexGrow: 1 }}>
-        <Typography gutterBottom variant="h5" component="h2">
-        Equipment
+        <Typography gutterBottom variant="h6" component="h2">
+        The Old Axe
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: 'center' }}>
         <Button size="small" variant="contained">Equip</Button>
       </CardActions>
     </Card>
