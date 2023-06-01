@@ -1,16 +1,41 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import { API_URL } from 'utils/urls';
+import { useSelector } from 'react-redux';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  createTheme,
+  ThemeProvider
+} from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
 import goldIconIMG from '../assets/images/UI/coin.png'
 import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png'
 
 export const ShopScreen = () => {
+  const [equipmentList, setEquipmentList] = useState([]);
+  const [loading, setLoading] = useState([])
+  const accessToken = useSelector((store) => store.user.accessToken);
+
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      }
+    }
+    fetch(API_URL('equipments'), options)
+      .then((response) => response.json())
+      .then((data) => { setEquipmentList(data.response) })
+      .catch((error) => console.log(error))
+      .finally(() => { setLoading(false) })
+  }, [setLoading]);
+
   const onBuyClick = () => {
 
   }
@@ -21,134 +46,80 @@ export const ShopScreen = () => {
     }
   });
 
-  return (
-    <ThemeProvider theme={theme}>
-      <ShopWrapper>
-        <ShopTopDiv>
-          <ShopImage src="https://art.ngfiles.com/images/3060000/3060538_steelsoldier_copper-weapon-merchant.gif?f1677009972" alt="shopkeeper" />
-        </ShopTopDiv>
-        <ShopBotDiv>
-          <WaresWrapper>
-            <Card sx={{ maxWidth: 175,
-              backgroundColor: '#edd99b',
-              borderStyle: 'solid',
-              borderColor: '#3b241c',
-              scrollSnapAlign: 'start' }}>
-              <CardMedia
-                sx={{ height: 125 }}
-                image="https://i.pinimg.com/564x/61/ac/19/61ac19b44980dba2348e06197c3b20f7.jpg"
-                title="weapon name" />
-              <CardContent sx={{ padding: 1 }}>
-                <Typography gutterBottom variant="h5" component="div">
-          WEAPON NAME
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
-          WEAPON DESCRIPTION, a bit longer, something like this
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Typography>
-                PRICE HERE
-                </Typography>
-                <Button
-                  sx={{
-                    backgroundImage: `url(${buttonbackgroundIMG})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    color: 'white',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                    display: 'flex',
-                    justifyContent: 'space-between'
-                  }}
-                  size="small"
-                  onClick={onBuyClick}>
-                  <img src={`${goldIconIMG}`} alt="gold display icon" />
-                Buy
-                </Button>
-              </CardActions>
-            </Card>
-            <Card sx={{ maxWidth: 175,
-              backgroundColor: '#edd99b',
-              borderStyle: 'solid',
-              borderColor: '#3b241c',
-              scrollSnapAlign: 'start' }}>
-              <CardMedia
-                sx={{ height: 125 }}
-                image="https://i.pinimg.com/236x/c7/52/7a/c7527a61b7b952a4e4ffa7d07fa6c645.jpg"
-                title="weapon name" />
-              <CardContent sx={{ padding: 1 }}>
-                <Typography gutterBottom variant="h5" component="div">
-          WEAPON NAME
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
-          WEAPON DESCRIPTION, a bit longer, something like this
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Typography>
-                PRICE HERE
-                </Typography>
-                <Button
-                  sx={{
-                    backgroundImage: `url(${buttonbackgroundIMG})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    color: 'white',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                    display: 'flex',
-                    justifyContent: 'space-between'
-                  }}
-                  size="small"
-                  onClick={onBuyClick}>
-                  <img src={`${goldIconIMG}`} alt="gold display icon" />
-                Buy
-                </Button>
-              </CardActions>
-            </Card>
-            <Card sx={{ maxWidth: 175,
-              backgroundColor: '#edd99b',
-              borderStyle: 'solid',
-              borderColor: '#3b241c',
-              scrollSnapAlign: 'start' }}>
-              <CardMedia
-                sx={{ height: 125 }}
-                image="https://i.pinimg.com/564x/61/ac/19/61ac19b44980dba2348e06197c3b20f7.jpg"
-                title="weapon name" />
-              <CardContent sx={{ padding: 1 }}>
-                <Typography gutterBottom variant="h5" component="div">
-          WEAPON NAME
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
-          WEAPON DESCRIPTION, a bit longer, something like this
-                </Typography>
-              </CardContent>
-              <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Typography>
-                PRICE HERE
-                </Typography>
-                <Button
-                  sx={{
-                    backgroundImage: `url(${buttonbackgroundIMG})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    color: 'white',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                    display: 'flex',
-                    justifyContent: 'space-between'
-                  }}
-                  size="small"
-                  onClick={onBuyClick}>
-                  <img src={`${goldIconIMG}`} alt="gold display icon" />
-                Buy
-                </Button>
-              </CardActions>
-            </Card>
-          </WaresWrapper>
-        </ShopBotDiv>
-      </ShopWrapper>
-    </ThemeProvider>
-  );
+  if (loading) {
+    return (
+      <h1>Loading...</h1>
+    )
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <ShopWrapper>
+          <ShopTopDiv>
+            <ShopImage src="https://art3b.pixilart.com/sizes/sr282a958635e84_350.png?v=1.2" alt="shopkeeper" />
+          </ShopTopDiv>
+          <ShopBotDiv>
+            <WaresWrapper>
+              {equipmentList.map((singleWeapon) => {
+                return (
+                  <Card
+                    key={singleWeapon.id}
+                    sx={{ width: '25vw',
+                      maxWidth: 175,
+                      height: '97%',
+                      backgroundColor: '#edd99b',
+                      borderStyle: 'solid',
+                      borderColor: '#3b241c',
+                      scrollSnapAlign: 'start',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between' }}>
+                    <CardMedia
+                      sx={{ height: 85, backgroundSize: '55px' }}
+                      image={singleWeapon.img_src}
+                      title="weapon name" />
+                    <CardContent sx={{ padding: 1 }}>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        sx={{ fontWeight: 900,
+                          fontSize: '1.2rem',
+                          lineHeight: 1 }}>
+                        {singleWeapon.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
+                        Damage: {singleWeapon.damage}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+                        {singleWeapon.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions sx={{ justifyContent: 'space-between' }}>
+                      <Typography sx={{ fontSize: '0.7rem', display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '55%' }}>
+                        {singleWeapon.cost}
+                        <img src={`${goldIconIMG}`} alt="gold display icon" />
+                      </Typography>
+                      <Button
+                        sx={{
+                          backgroundImage: `url(${buttonbackgroundIMG})`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: 'cover',
+                          color: 'white',
+                          fontWeight: 700,
+                          textDecoration: 'none'
+                        }}
+                        size="small"
+                        onClick={onBuyClick}>
+                        Buy
+                      </Button>
+                    </CardActions>
+                  </Card>
+                )
+              })}
+            </WaresWrapper>
+          </ShopBotDiv>
+        </ShopWrapper>
+      </ThemeProvider>
+    );
+  }
 }
