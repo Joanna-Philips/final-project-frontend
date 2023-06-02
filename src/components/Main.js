@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import user from 'reducers/user';
+import { HomeScreen } from 'screens/HomeScreen';
 import { ShopScreen } from 'screens/ShopScreen';
 import { ResponsiveAppBar } from './ResponsiveAppBar';
 
@@ -13,9 +14,9 @@ const Main = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!accessToken) {
-      navigate('/login')
+      navigate('/login');
     }
-  }, [accessToken]);
+  }, [accessToken, navigate]);
 
   useEffect(() => {
     // const options = {
@@ -36,21 +37,15 @@ const Main = () => {
     //             dispatch(thoughts.actions.setItems([]));
     //         }
     //     });
-  })
+  });
 
-  //   const onLogoutButtonClick = () => {
-  //     dispatch(user.actions.setAccessToken(null));
-  //     dispatch(user.actions.setUsername(null));
-  //     dispatch(user.actions.setUserId(null));
-  //     dispatch(user.actions.setError(null));
-  //     dispatch(thoughts.actions.setItems([]));
-  //   }
   return (
     <>
       <ResponsiveAppBar />
+      <HomeScreen />
       <ShopScreen />
     </>
   );
-}
+};
 
 export default Main;

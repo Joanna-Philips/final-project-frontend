@@ -75,7 +75,7 @@ export const ResponsiveAppBar = () => {
     dispatch(user.actions.setUsername(null));
     dispatch(user.actions.setUserId(null));
     dispatch(user.actions.setError(null));
-    dispatch(user.actions.setItems([]));
+    // dispatch(user.actions.setItems([]));
   };
 
   return (
