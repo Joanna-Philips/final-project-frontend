@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import user from 'reducers/user';
+import { ShopScreen } from 'screens/ShopScreen';
 import { ResponsiveAppBar } from './ResponsiveAppBar';
 
 const Main = () => {
@@ -45,7 +46,10 @@ const Main = () => {
   //     dispatch(thoughts.actions.setItems([]));
   //   }
   return (
-    <ResponsiveAppBar />
+    <>
+      <ResponsiveAppBar />
+      <ShopScreen />
+    </>
   );
 }
 

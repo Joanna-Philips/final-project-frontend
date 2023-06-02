@@ -10,7 +10,7 @@ const NotFound = () => {
       <p>
         <Link to="/">GO TO MAIN</Link>
       </p>
-      <p>Sorry, nothing here...</p>
+      <img src="https://art.pixilart.com/sr274b752bfbece.png" alt="404 not found" />
     </>
   );
 }

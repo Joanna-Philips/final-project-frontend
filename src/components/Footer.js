@@ -1,6 +1,6 @@
 import React from 'react';
 import { BottomNavigation, Typography, Link, Paper } from '@mui/material';
-import footerIMG from '../assets/images/UI/footerbkgrnd.png'
+/* import footerIMG from '../assets/images/UI/footerbkgrnd.png' */
 
 export const Footer = () => {
   return (
@@ -12,9 +12,12 @@ export const Footer = () => {
         right: 0,
         color: 'black',
         height: 0.07,
-        backgroundImage: `url(${footerIMG})`,
+        /* backgroundImage: `url(${footerIMG})`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
+        backgroundSize: 'cover' */
+        backgroundColor: '#edd99b',
+        borderStyle: 'outset',
+        borderColor: '#3b241c'
       }}
       elevation={3}>
       <BottomNavigation

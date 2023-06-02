@@ -44,7 +44,6 @@ export const LoginPage = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          console.log(data);
           dispatch(user.actions.setAccessToken(data.response.accessToken));
           dispatch(user.actions.setUsername(data.response.username));
           dispatch(user.actions.setUserId(data.response.id));
