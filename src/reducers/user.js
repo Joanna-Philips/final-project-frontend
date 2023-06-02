@@ -6,6 +6,9 @@ const user = createSlice({
     username: null,
     userId: null,
     accessToken: null,
+    userCoins: null,
+    userWeapons: null,
+    userAvatar: null,
     error: null
   },
   reducers: {
@@ -17,6 +20,15 @@ const user = createSlice({
     },
     setAccessToken: (store, action) => {
       store.accessToken = action.payload
+    },
+    setUserCoins: (store, action) => {
+      store.userCoins = action.payload
+    },
+    setUserWeapons: (store, action) => {
+      store.userWeapons = action.payload
+    },
+    setUserAvatar: (store, action) => {
+      store.userAvatar = action.payload
     },
     setError: (store, action) => {
       store.error = action.payload

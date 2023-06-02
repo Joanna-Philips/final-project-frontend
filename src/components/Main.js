@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // import user from 'reducers/user';
 import { HomeScreen } from 'screens/HomeScreen';
 import { ShopScreen } from 'screens/ShopScreen';
-import { ResponsiveAppBar } from './ResponsiveAppBar';
+import { TopBar } from './TopBar';
 
 const Main = () => {
   // const thoughtItems = useSelector((store) => store.thoughts.items);
@@ -41,7 +41,7 @@ const Main = () => {
 
   return (
     <>
-      <ResponsiveAppBar />
+      <TopBar />
       <HomeScreen />
       <ShopScreen />
     </>

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { API_URL } from 'utils/urls';
+import user from 'reducers/user';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -9,13 +11,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
 import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
-import homeBackground from '../assets/images/home-background2.png';
+import homeBackground from '../assets/images/homestead.jpg';
 
 // const defaultTheme = createTheme();
 const theme = createTheme({
   typography: {
     fontFamily: ['VT323', 'monospace'].join(','),
-    fontSize: 18
+    fontSize: 20
   },
   status: {
     danger: '#e53e3e'
@@ -34,7 +36,28 @@ const theme = createTheme({
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const HomeScreen = () => {
+  const dispatch = useDispatch();
+  const accessToken = useSelector((store) => store.user.accessToken);
   const username = useSelector((store) => store.user.username);
+
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      }
+    }
+    fetch(API_URL('user'), options)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(user.actions.setUserCoins(data.response.userCoins));
+        dispatch(user.actions.setUserWeapons(data.response.UserWeapons));
+        dispatch(user.actions.setUserAvatar(data.response.userAvatar));
+      })
+      .catch((error) => console.log(error))
+      .finally(() => { /* setLoading(false) */ })
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

@@ -16,10 +16,11 @@ import MenuItem from '@mui/material/MenuItem';
 /* import AdbIcon from '@mui/icons-material/Adb'; */
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import shopIMG from '../assets/images/UI/coin.png';
+import shopIMG from '../assets/images/UI/shopIMG.png';
 import homeIMG from '../assets/images/UI/home.png';
 import questIMG from '../assets/images/UI/questmap.png';
 import barIMG from '../assets/images/UI/GUI.png';
+import coinIMG from '../assets/images/UI/coin.png'
 
 const pages = [
   { name: 'Shop', image: shopIMG },
@@ -31,7 +32,7 @@ const pages = [
 const theme = createTheme({
   typography: {
     fontFamily: ['VT323', 'monospace'].join(','),
-    fontSize: 18
+    fontSize: 20
   },
   status: {
     danger: '#e53e3e'
@@ -48,12 +49,12 @@ const theme = createTheme({
   }
 });
 
-export const ResponsiveAppBar = () => {
+export const TopBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
 
-  const username = useSelector((store) => store.user.username);
+  const currentUser = useSelector((store) => store.user);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -74,6 +75,9 @@ export const ResponsiveAppBar = () => {
     dispatch(user.actions.setAccessToken(null));
     dispatch(user.actions.setUsername(null));
     dispatch(user.actions.setUserId(null));
+    dispatch(user.actions.setUserWeapons(null));
+    dispatch(user.actions.setUserCoins(null));
+    dispatch(user.actions.setUserAvatar(null));
     dispatch(user.actions.setError(null));
     // dispatch(user.actions.setItems([]));
   };
@@ -161,7 +165,7 @@ export const ResponsiveAppBar = () => {
             </Box>
             {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
             <Typography
-              variant="h5"
+              variant="h7"
               noWrap
               component="a"
               href=""
@@ -172,9 +176,11 @@ export const ResponsiveAppBar = () => {
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                flexDirection: 'row-reverse'
               }}>
-              Welcome {username}
+              <img src={coinIMG} alt="user coins" />
+              {currentUser.userCoins}
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (

@@ -1,18 +1,15 @@
+/* eslint-disable max-len */
 import * as React from 'react';
-import Box from '@mui/material/Box';
-
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { API_URL } from 'utils/urls';
+import { Box, Button, Grid, Container, createTheme, ThemeProvider, Stack, Typography } from '@mui/material';
 import playerAvatar from 'assets/images/player.png';
 
 const theme = createTheme({
   typography: {
     fontFamily: ['VT323', 'monospace'].join(','),
-    fontSize: 18
+    fontSize: 20
   },
   status: {
     danger: '#e53e3e'
@@ -30,6 +27,50 @@ const theme = createTheme({
 });
 
 export const PlayerAvatar = () => {
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const [avatarList, setAvatarList] = useState([]);
+  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0);
+
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      }
+    }
+    fetch(API_URL('avatars'), options)
+      .then((response) => response.json())
+      .then((data) => { setAvatarList(data.response) })
+      .catch((error) => console.log(error))
+      .finally(() => { })
+  }, []);
+
+  const avatarChoices = avatarList.map((singleAvatar) => ({
+    name: singleAvatar.style,
+    image: singleAvatar.img_src
+  }));
+
+  const handlePreviousAvatar = () => {
+    setSelectedAvatarIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        return avatarChoices.length - 1;
+      } else {
+        return prevIndex - 1;
+      }
+    });
+  };
+
+  const handleNextAvatar = () => {
+    setSelectedAvatarIndex((prevIndex) => {
+      if (prevIndex === avatarChoices.length - 1) {
+        return 0;
+      } else {
+        return prevIndex + 1;
+      }
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -44,18 +85,18 @@ export const PlayerAvatar = () => {
                 maxWidth: { xs: 200, md: 300 }
               }}
               alt="Player avatar"
-              src={playerAvatar} />
+              src={avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].image : playerAvatar} />
             <Typography
               sx={{ textAlign: 'center' }}>
-              Avatar here
+              {avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].name : 'Avatar here'}
             </Typography>
             <Stack direction="row" spacing={2} justifyContent="center">
-              <Button size="small" variant="contained"> ◄ </Button>
-              <Button size="small" variant="contained"> ► </Button>
+              <Button size="small" variant="contained" onClick={handlePreviousAvatar}> ◄ </Button>
+              <Button size="small" variant="contained" onClick={handleNextAvatar}> ► </Button>
             </Stack>
           </Grid>
         </Grid>
       </Container>
     </ThemeProvider>
-  )
-}
+  );
+};

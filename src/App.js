@@ -7,6 +7,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
+import { ShopScreen } from 'screens/ShopScreen';
 
 export const App = () => {
   const reducer = combineReducers({
@@ -21,6 +22,7 @@ export const App = () => {
         <Routes>
           <Route path="/login" element={<LoginPage />}> </Route>
           <Route path="/" element={<Main />}> </Route>
+          <Route path="/shop" element={<ShopScreen />}> </Route>
           <Route path="*" element={<NotFound />}> </Route>
         </Routes>
       </BrowserRouter>
