@@ -55,7 +55,7 @@ export const ShopScreen = () => {
       <ThemeProvider theme={theme}>
         <ShopWrapper>
           <ShopTopDiv>
-            <ShopImage src="https://art3b.pixilart.com/sizes/sr282a958635e84_350.png?v=1.2" alt="shopkeeper" />
+            <ShopImage src="https://i.pinimg.com/564x/f0/05/28/f00528a9404e2959c3c5e5e440f1761a.jpg" alt="shopkeeper" />
           </ShopTopDiv>
           <ShopBotDiv>
             <WaresWrapper>
@@ -65,6 +65,7 @@ export const ShopScreen = () => {
                     key={singleWeapon.id}
                     sx={{ width: '25vw',
                       maxWidth: 175,
+                      minWidth: '145px',
                       height: '97%',
                       backgroundColor: '#edd99b',
                       borderStyle: 'solid',

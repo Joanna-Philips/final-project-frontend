@@ -4,7 +4,7 @@ export const ShopTopDiv = styled.div`
    /*  background-image: url('https://art.pixilart.com/df73a414bd80889.png');
     background-size: cover;
     background-repeat: no-repeat; */
-    background-color: #3b241c;
+    background-color: rgb(34 33 33);
     display: flex;
     justify-content: center;
     height: 35dvh;
