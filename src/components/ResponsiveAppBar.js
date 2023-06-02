@@ -13,7 +13,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+/* import AdbIcon from '@mui/icons-material/Adb'; */
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import shopIMG from '../assets/images/UI/coin.png';
 import homeIMG from '../assets/images/UI/home.png';
@@ -89,7 +90,7 @@ export const ResponsiveAppBar = () => {
         }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Typography
               variant="h6"
               noWrap
@@ -104,7 +105,7 @@ export const ResponsiveAppBar = () => {
                 color: 'inherit',
                 textDecoration: 'none'
               }}>
-              Gibberish Journeys
+              Adventure Game
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -132,7 +133,12 @@ export const ResponsiveAppBar = () => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: 'block', md: 'none' }
+                  display: { xs: 'block', md: 'none' },
+                  '& .MuiMenu-paper': {
+                    backgroundColor: '#edd99b',
+                    borderStyle: 'outset',
+                    borderColor: '#3b241c'
+                  }
                 }}>
                 {pages.map((page) => (
                   <MenuItem key={page.name} onClick={handleCloseNavMenu}>
@@ -153,7 +159,7 @@ export const ResponsiveAppBar = () => {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
             <Typography
               variant="h5"
               noWrap
@@ -188,11 +194,20 @@ export const ResponsiveAppBar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar sx={{ backgroundColor: 'transparent' }}>
+                    <SettingsOutlinedIcon />
+                  </Avatar>
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: '45px' }}
+                sx={{
+                  mt: '45px',
+                  '& .MuiMenu-paper': {
+                    backgroundColor: '#edd99b',
+                    borderStyle: 'outset',
+                    borderColor: '#3b241c'
+                  }
+                }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
@@ -207,12 +222,14 @@ export const ResponsiveAppBar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}>
                 <MenuItem>
-                  <Button sx={{ fontSize: '1.5rem' }}>Account</Button>
+                  <Button sx={{ fontSize: '1.5rem', fontWeight: '700', color: 'black' }}>
+                    Account
+                  </Button>
                 </MenuItem>
                 <MenuItem>
                   <Button
                     onClick={onLogoutButtonClick}
-                    sx={{ fontSize: '1.5rem' }}>
+                    sx={{ fontSize: '1.5rem', fontWeight: '700', color: 'black' }}>
                     Logout
                   </Button>
                 </MenuItem>

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import user from 'reducers/user';
 import { HomeScreen } from 'screens/HomeScreen';
+import { ShopScreen } from 'screens/ShopScreen';
 import { ResponsiveAppBar } from './ResponsiveAppBar';
 
 const Main = () => {
@@ -42,6 +43,7 @@ const Main = () => {
     <>
       <ResponsiveAppBar />
       <HomeScreen />
+      <ShopScreen />
     </>
   );
 };
