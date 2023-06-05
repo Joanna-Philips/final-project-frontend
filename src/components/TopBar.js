@@ -79,7 +79,6 @@ export const TopBar = () => {
     dispatch(user.actions.setUserCoins(null));
     dispatch(user.actions.setUserAvatar(null));
     dispatch(user.actions.setError(null));
-    // dispatch(user.actions.setItems([]));
   };
 
   return (
@@ -94,7 +93,6 @@ export const TopBar = () => {
         }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Typography
               variant="h6"
               noWrap
@@ -163,7 +161,6 @@ export const TopBar = () => {
                 ))}
               </Menu>
             </Box>
-            {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
             <Typography
               variant="h7"
               noWrap

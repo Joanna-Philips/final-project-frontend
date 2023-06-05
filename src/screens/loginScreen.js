@@ -5,16 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import user from 'reducers/user';
 import { API_URL } from 'utils/urls';
-import { Button, FormControlLabel, FormGroup } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Switch from '@mui/material/Switch';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Checkbox, Grid, Box, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { LoginWrapper } from 'components/CSScomponents/LoginScreenCSS';
 import { generatePassword, generateRandomName } from '../components/loginScreen/GuestLoginUtils';
 
 export const LoginScreen = () => {
@@ -83,6 +76,11 @@ export const LoginScreen = () => {
   const defaultTheme = createTheme({
     typography: {
       fontFamily: ['VT323', 'monospace'].join(',')
+    },
+    palette: {
+      primary: {
+        main: '#3d4362'
+      }
     }
   });
 
@@ -96,125 +94,127 @@ export const LoginScreen = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-          <Typography component="h1" variant="h5">
-              Welcome, please {mode === 'login' ? 'login' : 'register'}
-          </Typography>
+      <LoginWrapper>
+        <Container component="main" maxWidth="xs" sx={{ backgroundColor: 'rgba(237, 217, 155, 0.65)', height: '68%' }}>
+          <CssBaseline />
           <Box
-            component="form"
-            onSubmit={onFormSubmit}
-            noValidate
-            sx={{ mt: 1 }}>
-            <TextField
-              type="text"
-              margin="normal"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              fullWidth
-              id="username"
-              label="Name"
-              name="username"
-              autoFocus
-              error={loginError}
-              helperText={
-                loginError
-                  ? (() => {
-                    if (mode === 'register') {
-                      if (
-                        loginErrorMessage
+            sx={{
+              marginTop: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}>
+            <Typography component="h1" variant="h5">
+              Welcome, please {mode === 'login' ? 'login' : 'register'}
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={onFormSubmit}
+              noValidate
+              sx={{ mt: 1 }}>
+              <TextField
+                type="text"
+                margin="normal"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                fullWidth
+                id="username"
+                label="Name"
+                name="username"
+                autoFocus
+                error={loginError}
+                helperText={
+                  loginError
+                    ? (() => {
+                      if (mode === 'register') {
+                        if (
+                          loginErrorMessage
                             === 'Username taken, try another one'
-                      ) {
-                        return 'Username is already taken, please choose another one';
-                      } else if (
-                        loginErrorMessage
+                        ) {
+                          return 'Username is already taken, please choose another one';
+                        } else if (
+                          loginErrorMessage
                             === 'Username cannot contain special characters or spaces'
-                      ) {
-                        return 'Username cannot contain special characters or spaces';
+                        ) {
+                          return 'Username cannot contain special characters or spaces';
+                        } else {
+                          return '';
+                        }
+                      } else if (mode === 'login') {
+                        return 'Credentials do not match';
                       } else {
                         return '';
                       }
-                    } else if (mode === 'login') {
-                      return 'Credentials do not match';
-                    } else {
-                      return '';
-                    }
-                  })()
-                  : ''
-              } />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-              error={loginError}
-              helperText={
-                loginError
-                  ? mode === 'login'
-                    ? 'Credentials do not match'
+                    })()
                     : ''
-                  : ''
-              } />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me" />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}>
-              {mode === 'login' ? 'Login' : 'Register'}
-            </Button>
-            <Button
-              type="button"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={GuestLogin}>
+                } />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                error={loginError}
+                helperText={
+                  loginError
+                    ? mode === 'login'
+                      ? 'Credentials do not match'
+                      : ''
+                    : ''
+                } />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me" />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2, fontSize: '1.2rem' }}>
+                {mode === 'login' ? 'Login' : 'Register'}
+              </Button>
+              <Button
+                type="button"
+                fullWidth
+                variant="outlined"
+                sx={{ mt: 3, mb: 2, fontSize: '1.2rem' }}
+                onClick={GuestLogin}>
                 Login as Guest
-            </Button>
-            <Grid container>
-              <FormGroup>
-                {mode === 'login'
-                  ? "Don't have an account? →"
-                  : 'Already have an account? →'}
-                {mode === 'login' ? (
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        onChange={handleModeChange}
-                        inputProps={{ 'aria-label': 'controlled' }} />
-                    }
-                    label="Login" />
-                ) : (
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        onChange={handleModeChange}
-                        inputProps={{ 'aria-label': 'controlled' }} />
-                    }
-                    label="Register" />
-                )}
-              </FormGroup>
-            </Grid>
+              </Button>
+              <Grid container>
+                <FormGroup>
+                  {mode === 'login'
+                    ? "Don't have an account? →"
+                    : 'Already have an account? →'}
+                  {mode === 'login' ? (
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          onChange={handleModeChange}
+                          inputProps={{ 'aria-label': 'controlled' }} />
+                      }
+                      label="Login" />
+                  ) : (
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          onChange={handleModeChange}
+                          inputProps={{ 'aria-label': 'controlled' }} />
+                      }
+                      label="Register" />
+                  )}
+                </FormGroup>
+              </Grid>
+            </Box>
           </Box>
-        </Box>
-        <img src="https://i.postimg.cc/Qx49VNWk/stones.jpg" width="200px" alt="test" />
-      </Container>
+        </Container>
+      </LoginWrapper>
     </ThemeProvider>
+
   );
 };

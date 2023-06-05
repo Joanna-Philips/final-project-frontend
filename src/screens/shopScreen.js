@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
 import goldIconIMG from '../assets/images/UI/coin.png'
-import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png'
+/* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */
 
 export const ShopScreen = () => {
   const [equipmentList, setEquipmentList] = useState([]);
@@ -40,9 +40,14 @@ export const ShopScreen = () => {
 
   }
 
-  const theme = createTheme({
+  const defaultTheme = createTheme({
     typography: {
       fontFamily: ['VT323', 'monospace'].join(',')
+    },
+    palette: {
+      primary: {
+        main: '#3d4362'
+      }
     }
   });
 
@@ -52,7 +57,7 @@ export const ShopScreen = () => {
     )
   } else {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={defaultTheme}>
         <ShopWrapper>
           <ShopTopDiv>
             <ShopImage src="https://i.pinimg.com/564x/f0/05/28/f00528a9404e2959c3c5e5e440f1761a.jpg" alt="shopkeeper" />
@@ -102,12 +107,17 @@ export const ShopScreen = () => {
                       </Typography>
                       <Button
                         sx={{
-                          backgroundImage: `url(${buttonbackgroundIMG})`,
+                          /* backgroundImage: `url(${buttonbackgroundIMG})`,
                           backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'cover',
+                          backgroundSize: 'cover', */
                           color: 'white',
                           fontWeight: 700,
-                          textDecoration: 'none'
+                          textDecoration: 'none',
+                          mt: 3,
+                          mb: 2,
+                          fontSize: '1.2rem',
+                          backgroundColor: '#3d4362',
+                          borderRadius: '14%'
                         }}
                         size="small"
                         onClick={onBuyClick}>
