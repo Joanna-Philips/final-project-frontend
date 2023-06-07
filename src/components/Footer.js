@@ -11,7 +11,7 @@ export const Footer = () => {
         left: 0,
         right: 0,
         color: 'black',
-        height: 0.07,
+        height: 0.05,
         /* backgroundImage: `url(${footerIMG})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover' */

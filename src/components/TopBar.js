@@ -178,6 +178,7 @@ export const TopBar = () => {
               <img src={coinIMG} alt="user coins" />
               {currentUser.userCoins}
             </Typography>
+
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
@@ -188,7 +189,7 @@ export const TopBar = () => {
                     src={page.image}
                     alt={page.name}
                     style={{ marginRight: '0.8em', width: '35px' }} />
-                  {page.name}
+                  <NavLink to={page.navLink}>{page.name}</NavLink>
                 </Button>
               ))}
             </Box>
