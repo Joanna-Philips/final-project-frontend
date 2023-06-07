@@ -27,7 +27,6 @@ const pages = [
   { name: 'Homestead', image: homeIMG },
   { name: 'Quests', image: questIMG }
 ];
-/* const settings = ['Account', 'Logout']; */
 
 const theme = createTheme({
   typography: {
