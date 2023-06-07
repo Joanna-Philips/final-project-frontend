@@ -33,7 +33,7 @@ export const ShopScreen = () => {
         Authorization: accessToken
       }
     }
-    fetch(API_URL('equipments'), options)
+    fetch(API_URL('equipments/all'), options)
       .then((response) => response.json())
       .then((data) => { setEquipmentList(data.response) })
       .catch((error) => console.log(error))

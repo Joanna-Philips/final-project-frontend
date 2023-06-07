@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import user from 'reducers/user';
-import { HomeScreen } from 'screens/HomeScreen';
-import { ShopScreen } from 'screens/ShopScreen';
+import { HomeScreen } from 'screens/homeScreen';
+import { ShopScreen } from 'screens/shopScreen';
 import { TopBar } from './TopBar';
 
 const Main = () => {

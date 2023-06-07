@@ -6,8 +6,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
-import { ShopScreen } from 'screens/ShopScreen';
-import { LoginScreen } from './screens/LoginScreen';
+import { ShopScreen } from './screens/shopScreen';
+import { LoginScreen } from './screens/loginScreen';
 
 export const App = () => {
   const reducer = combineReducers({

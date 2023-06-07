@@ -34,7 +34,7 @@ export const LoginScreen = () => {
       },
       body: JSON.stringify({ username, password })
     };
-    fetch(API_URL(mode), options)
+    fetch(API_URL(`users/${mode}`), options)
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {

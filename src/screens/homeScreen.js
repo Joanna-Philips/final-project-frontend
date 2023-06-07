@@ -48,7 +48,7 @@ export const HomeScreen = () => {
         Authorization: accessToken
       }
     }
-    fetch(API_URL('user'), options)
+    fetch(API_URL('users/profile'), options)
       .then((response) => response.json())
       .then((data) => {
         dispatch(user.actions.setUserCoins(data.response.userCoins));
