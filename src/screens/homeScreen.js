@@ -68,7 +68,7 @@ export const HomeScreen = () => {
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
-          minHeight: '100vh'
+          minHeight: '90vh'
         }}>
         <Grid container spacing={2} marginTop={0}>
           <Grid item xs={7}>
@@ -76,7 +76,8 @@ export const HomeScreen = () => {
               sx={{
                 bgcolor: 'transparent',
                 pt: 6,
-                pb: 6
+                pb: 6,
+                padding: 0
               }}>
               <Container maxWidth="sm">
                 <Box
@@ -90,12 +91,13 @@ export const HomeScreen = () => {
                     variant="h5"
                     align="center"
                     color="text.primary"
+                    sx={{ margin: 0 }}
                     gutterBottom>
                   Hi {username} 👾
                   </Typography>
-                  <Typography variant="h6" align="center" color="text.secondary" paragraph>
+                  {/* <Typography variant="h6" align="center" color="text.secondary" paragraph>
                   Customize your avatar here
-                  </Typography>
+                  </Typography> */}
                   <PlayerAvatar />
                 </Box>
               </Container>

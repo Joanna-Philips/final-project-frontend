@@ -1,10 +1,28 @@
 /* eslint-disable max-len */
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { API_URL } from 'utils/urls';
+import { useState } from 'react';
+/* import { useSelector } from 'react-redux';
+import { API_URL } from 'utils/urls'; */
 import { Box, Button, Grid, Container, createTheme, ThemeProvider, Stack, Typography } from '@mui/material';
-import playerAvatar from 'assets/images/player.png';
+
+const playerAvatar = 'https://cdna.artstation.com/p/assets/images/images/051/793/398/original/guilherme-meireles-shyguy.gif?1658202660'
+
+const AvatarStyles = [
+  {
+    style: 1,
+    img_src: 'https://cdna.artstation.com/p/assets/images/images/009/882/016/original/molly-heady-carroll-schveretpteacherdancetransparent.gif?1521396516'
+  },
+  {
+    style: 2,
+    img_src: 'https://cdna.artstation.com/p/assets/images/images/009/881/990/original/molly-heady-carroll-fero-feona-dance-xl.gif?1521396433'
+  },
+  {
+    style: 3,
+    img_src: 'https://cdna.artstation.com/p/assets/images/images/009/881/992/original/molly-heady-carroll-frenchbulldog-run-postable-8colours.gif?1521396443'
+  },
+  { style: 4,
+    img_src: 'https://cdnb.artstation.com/p/assets/images/images/009/881/985/original/molly-heady-carroll-doctorspecialmove.gif?1521396421' }
+]
 
 const theme = createTheme({
   typography: {
@@ -27,11 +45,11 @@ const theme = createTheme({
 });
 
 export const PlayerAvatar = () => {
-  const accessToken = useSelector((store) => store.user.accessToken);
-  const [avatarList, setAvatarList] = useState([]);
+  /* const accessToken = useSelector((store) => store.user.accessToken);
+  const [avatarList, setAvatarList] = useState([]); */
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const options = {
       method: 'GET',
       headers: {
@@ -44,11 +62,11 @@ export const PlayerAvatar = () => {
       .then((data) => { setAvatarList(data.response) })
       .catch((error) => console.log(error))
       .finally(() => { })
-  }, []);
+  }, []); */
 
-  const avatarChoices = avatarList.map((singleAvatar) => ({
-    name: singleAvatar.style,
-    image: singleAvatar.img_src
+  const avatarChoices = AvatarStyles.map((singleAvatar) => ({
+    style: singleAvatar.style,
+    img_src: singleAvatar.img_src
   }));
 
   const handlePreviousAvatar = () => {
@@ -73,19 +91,26 @@ export const PlayerAvatar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
+      <Container sx={{ padding: 0 }}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item>
             <Box
-              component="img"
+              component="div"
               sx={{
                 height: 500,
                 width: 300,
                 maxHeight: { xs: 230, md: 500 },
-                maxWidth: { xs: 200, md: 300 }
-              }}
-              alt="Player avatar"
-              src={avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].image : playerAvatar} />
+                maxWidth: { xs: 200, md: 300 },
+                backgroundImage: `url(${avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].img_src : playerAvatar})`,
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                '@media (min-width: 600px)': {
+                  transform: 'scale(1.8)'
+                },
+                '@media (min-width: 900px)': {
+                  transform: 'scale(2.5)'
+                }
+              }} />
             <Typography
               sx={{ textAlign: 'center' }}>
               {avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].name : 'Avatar here'}
