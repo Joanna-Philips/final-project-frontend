@@ -5,9 +5,8 @@ import Main from 'components/Main';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import { Provider } from 'react-redux';
-// import { Footer } from 'components/Footer';
+import { Footer } from 'components/Footer';
 import { HomeScreen } from 'screens/homeScreen';
-// import { TopBar } from 'components/TopBar';
 import { Layout } from 'components/Layout';
 import { ShopScreen } from './screens/shopScreen';
 import { LoginScreen } from './screens/loginScreen';
@@ -33,6 +32,7 @@ export const App = () => {
           <Route path="*" element={<NotFound />}> </Route>
         </Routes>
       </BrowserRouter>
+      <Footer />
     </Provider>
 
   );
