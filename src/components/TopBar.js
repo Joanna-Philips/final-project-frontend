@@ -25,7 +25,7 @@ import coinIMG from '../assets/images/UI/coin.png'
 const pages = [
   { name: 'Shop', image: shopIMG, navLink: '/shop' },
   { name: 'Homestead', image: homeIMG, navLink: '/home' },
-  { name: 'Quests', image: questIMG, navLink: '/shop' }
+  { name: 'Quests', image: questIMG, navLink: '/quests' }
 ];
 
 const theme = createTheme({

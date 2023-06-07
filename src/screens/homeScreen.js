@@ -76,8 +76,8 @@ export const HomeScreen = () => {
               sx={{
                 bgcolor: 'transparent',
                 pt: 6,
-                pb: 6,
-                padding: 0
+                pb: 6
+                // padding: 0
               }}>
               <Container maxWidth="sm">
                 <Box

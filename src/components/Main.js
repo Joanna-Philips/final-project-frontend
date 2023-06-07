@@ -9,8 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';
 
-
-
 const Main = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
@@ -23,9 +21,7 @@ const Main = () => {
   }, [accessToken, navigate]);
 
   return (
-    <>
-      <AdventureBoardScreen />
-    </>
+    <AdventureBoardScreen />
   );
 };
 export default Main;

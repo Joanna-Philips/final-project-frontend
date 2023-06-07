@@ -25,13 +25,13 @@ export const App = () => {
         <Routes>
           <Route path="/login" element={<LoginScreen />}> </Route>
           <Route path="/" element={<Main />}> </Route>
-
           <Route path="/home" element={<Layout><HomeScreen /></Layout>}> </Route>
           <Route path="/shop" element={<Layout><ShopScreen /></Layout>}> </Route>
-          <Route path="/quests"
-           element={<Layout><AdventureBoardScreen /></Layout>}> </Route> 
+          <Route
+            path="/quests"
+            element={<Layout><AdventureBoardScreen /></Layout>} />
           {/* <Route path="/game"
-           element={<Layout><AdventureGameScreen /></Layout>}> </Route> */}          
+           element={<Layout><AdventureGameScreen /></Layout>}> </Route> */}
           <Route path="*" element={<NotFound />}> </Route>
         </Routes>
       </BrowserRouter>

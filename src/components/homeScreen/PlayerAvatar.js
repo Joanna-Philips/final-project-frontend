@@ -108,7 +108,7 @@ export const PlayerAvatar = () => {
                   transform: 'scale(1.8)'
                 },
                 '@media (min-width: 900px)': {
-                  transform: 'scale(2.5)'
+                  transform: 'scale(1.5)' // reduced it from 2.5 as it was covering the navbar links. Need to look into it.
                 }
               }} />
             <Typography
