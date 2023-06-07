@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NotFound from 'components/NotFound';
 import Main from 'components/Main';
-import { LoginPage } from 'components/LoginPage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
 import { ShopScreen } from 'screens/ShopScreen';
+import { LoginScreen } from './screens/LoginScreen';
 
 export const App = () => {
   const reducer = combineReducers({
@@ -20,7 +20,7 @@ export const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />}> </Route>
+          <Route path="/login" element={<LoginScreen />}> </Route>
           <Route path="/" element={<Main />}> </Route>
           <Route path="/shop" element={<ShopScreen />}> </Route>
           <Route path="*" element={<NotFound />}> </Route>

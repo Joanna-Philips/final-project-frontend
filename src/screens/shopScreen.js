@@ -1,7 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { API_URL } from 'utils/urls';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Card,
   CardActions,
@@ -13,11 +14,14 @@ import {
   ThemeProvider
 } from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
+import user from '../reducers/user'
 import goldIconIMG from '../assets/images/UI/coin.png'
-import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png'
+/* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */
 
 export const ShopScreen = () => {
+  const dispatch = useDispatch();
   const [equipmentList, setEquipmentList] = useState([]);
+  /*   const [userWeapons, setUserWeapons] = useState([]); */
   const [loading, setLoading] = useState([])
   const accessToken = useSelector((store) => store.user.accessToken);
 
@@ -36,13 +40,41 @@ export const ShopScreen = () => {
       .finally(() => { setLoading(false) })
   }, [setLoading]);
 
-  const onBuyClick = () => {
+  const onBuyClick = (equipmentId) => {
+    console.log(equipmentId)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      },
+      body: JSON.stringify({ equipmentId })
+    };
 
+    fetch(API_URL('purchases/buy'), options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log(data); // Log the response data
+        dispatch(user.actions.setUserWeapons(data.purchasedEquipment._id));
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {});
   }
 
-  const theme = createTheme({
+  const defaultTheme = createTheme({
     typography: {
       fontFamily: ['VT323', 'monospace'].join(',')
+    },
+    palette: {
+      primary: {
+        main: '#3d4362'
+      }
     }
   });
 
@@ -52,14 +84,14 @@ export const ShopScreen = () => {
     )
   } else {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={defaultTheme}>
         <ShopWrapper>
           <ShopTopDiv>
             <ShopImage src="https://i.pinimg.com/564x/f0/05/28/f00528a9404e2959c3c5e5e440f1761a.jpg" alt="shopkeeper" />
           </ShopTopDiv>
           <ShopBotDiv>
             <WaresWrapper>
-              {equipmentList.map((singleWeapon) => {
+              {equipmentList.slice(1).map((singleWeapon) => {
                 return (
                   <Card
                     key={singleWeapon.id}
@@ -102,15 +134,20 @@ export const ShopScreen = () => {
                       </Typography>
                       <Button
                         sx={{
-                          backgroundImage: `url(${buttonbackgroundIMG})`,
+                          /* backgroundImage: `url(${buttonbackgroundIMG})`,
                           backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'cover',
+                          backgroundSize: 'cover', */
                           color: 'white',
                           fontWeight: 700,
-                          textDecoration: 'none'
+                          textDecoration: 'none',
+                          mt: 3,
+                          mb: 2,
+                          fontSize: '1.2rem',
+                          backgroundColor: '#3d4362',
+                          borderRadius: '14%'
                         }}
                         size="small"
-                        onClick={onBuyClick}>
+                        onClick={() => onBuyClick(singleWeapon._id)}>
                         Buy
                       </Button>
                     </CardActions>
