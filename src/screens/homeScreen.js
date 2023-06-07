@@ -70,7 +70,7 @@ export const HomeScreen = () => {
           backgroundPosition: 'center',
           minHeight: '100vh'
         }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} marginTop={0}>
           <Grid item xs={7}>
             <Box
               sx={{
