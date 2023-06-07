@@ -1,7 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { API_URL } from 'utils/urls';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Card,
   CardActions,
@@ -13,11 +14,14 @@ import {
   ThemeProvider
 } from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
+import user from '../reducers/user'
 import goldIconIMG from '../assets/images/UI/coin.png'
 /* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */
 
 export const ShopScreen = () => {
+  const dispatch = useDispatch();
   const [equipmentList, setEquipmentList] = useState([]);
+  /*   const [userWeapons, setUserWeapons] = useState([]); */
   const [loading, setLoading] = useState([])
   const accessToken = useSelector((store) => store.user.accessToken);
 
@@ -36,8 +40,31 @@ export const ShopScreen = () => {
       .finally(() => { setLoading(false) })
   }, [setLoading]);
 
-  const onBuyClick = () => {
+  const onBuyClick = (equipmentId) => {
+    console.log(equipmentId)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      },
+      body: JSON.stringify({ equipmentId })
+    };
 
+    fetch(API_URL('purchases/buy'), options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log(data); // Log the response data
+        dispatch(user.actions.setUserWeapons(data.purchasedEquipment._id));
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {});
   }
 
   const defaultTheme = createTheme({
@@ -64,7 +91,7 @@ export const ShopScreen = () => {
           </ShopTopDiv>
           <ShopBotDiv>
             <WaresWrapper>
-              {equipmentList.map((singleWeapon) => {
+              {equipmentList.slice(1).map((singleWeapon) => {
                 return (
                   <Card
                     key={singleWeapon.id}
@@ -120,7 +147,7 @@ export const ShopScreen = () => {
                           borderRadius: '14%'
                         }}
                         size="small"
-                        onClick={onBuyClick}>
+                        onClick={() => onBuyClick(singleWeapon._id)}>
                         Buy
                       </Button>
                     </CardActions>

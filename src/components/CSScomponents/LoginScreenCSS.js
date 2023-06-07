@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 export const LoginWrapper = styled.div`
     background-image: url(https://cdnb.artstation.com/p/assets/images/images/037/263/051/original/karina-formanova-rainforest-animation.gif?1619929364);
     background-size: cover;
-    height: 100lvh;
+    height: 94lvh;
     display: flex;
     align-items: center;
     `
