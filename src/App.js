@@ -28,7 +28,7 @@ export const App = () => {
           <Route path="/shop" element={<Layout><ShopScreen /></Layout>}> </Route>
           {/* <Route path="/quests"
            element={<Layout><AdventureBoardScreen /></Layout>}> </Route> */}
-           {/* <Route path="/game"
+          {/* <Route path="/game"
            element={<Layout><AdventureGameScreen /></Layout>}> </Route> */}
           <Route path="*" element={<NotFound />}> </Route>
         </Routes>
@@ -36,7 +36,7 @@ export const App = () => {
     </Provider>
 
   );
-}s
+}
 
 /// npm i react-redux
 /// npm i @reduxjs/toolkit
