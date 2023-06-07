@@ -6,6 +6,9 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
+
+import { HomeScreen } from 'screens/homeScreen';
+import { Layout } from 'components/Layout';
 import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';
 import { ShopScreen } from './screens/shopScreen';
 import { LoginScreen } from './screens/loginScreen';
@@ -13,7 +16,6 @@ import { LoginScreen } from './screens/loginScreen';
 export const App = () => {
   const reducer = combineReducers({
     user: user.reducer
-    // thoughts: thoughts.reducer
   });
   const store = configureStore({ reducer })
 
@@ -23,13 +25,19 @@ export const App = () => {
         <Routes>
           <Route path="/login" element={<LoginScreen />}> </Route>
           <Route path="/" element={<Main />}> </Route>
-          <Route path="/shop" element={<ShopScreen />}> </Route>
-          <Route path="/quests" element={<AdventureBoardScreen />}> </Route>
+
+          <Route path="/home" element={<Layout><HomeScreen /></Layout>}> </Route>
+          <Route path="/shop" element={<Layout><ShopScreen /></Layout>}> </Route>
+          <Route path="/quests"
+           element={<Layout><AdventureBoardScreen /></Layout>}> </Route> 
+          {/* <Route path="/game"
+           element={<Layout><AdventureGameScreen /></Layout>}> </Route> */}          
           <Route path="*" element={<NotFound />}> </Route>
         </Routes>
       </BrowserRouter>
       <Footer />
     </Provider>
+
   );
 }
 
