@@ -6,6 +6,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
+import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';
 import { ShopScreen } from './screens/shopScreen';
 import { LoginScreen } from './screens/loginScreen';
 
@@ -23,6 +24,7 @@ export const App = () => {
           <Route path="/login" element={<LoginScreen />}> </Route>
           <Route path="/" element={<Main />}> </Route>
           <Route path="/shop" element={<ShopScreen />}> </Route>
+          <Route path="/quests" element={<AdventureBoardScreen />}> </Route>
           <Route path="*" element={<NotFound />}> </Route>
         </Routes>
       </BrowserRouter>

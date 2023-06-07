@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // import user from 'reducers/user';
 import { HomeScreen } from 'screens/homeScreen';
 import { ShopScreen } from 'screens/shopScreen';
+import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';
 import { TopBar } from './TopBar';
 
 const Main = () => {
@@ -44,6 +45,7 @@ const Main = () => {
       <TopBar />
       <HomeScreen />
       <ShopScreen />
+      <AdventureBoardScreen />
     </>
   );
 };
