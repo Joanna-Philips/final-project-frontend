@@ -3,7 +3,7 @@ import * as React from 'react';
 import { API_URL } from 'utils/urls';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardActions, CardContent, CardMedia, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
-import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
+import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/shop/ShopScreenCSS';
 import user from '../reducers/user';
 import goldIconIMG from '../assets/images/UI/coin.png'
 /* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */

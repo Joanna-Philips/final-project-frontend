@@ -8,13 +8,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
-import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
-import { EquipmentCard } from 'components/EquipmentCard';
-import { HomeImg } from 'components/CSScomponents/HomeScreenCSS';
+import { PlayerAvatar } from 'components/home/PlayerAvatar';
+import { HomeImg } from 'components/home/HomeScreenCSS';
 import { fetchEquipmentData } from 'reducers/equipment';
 import { fetchUserProfile } from 'reducers/user';
+import { PlayerInventory } from 'components/inventory/PlayerInventory';
 import homeBackground from '../assets/images/homestead.jpg';
+import { LoadingScreen } from './LoadingScreen';
 
 const theme = createTheme({
   typography: {
@@ -39,12 +39,8 @@ const theme = createTheme({
 export const HomeScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
-  // const username = useSelector((store) => store.user.username);
-  // const userWeapons = useSelector((store) => store.user.UserWeapons);
-  // const userCoins = useSelector((store) => store.user.userCoins)
   const currentUser = useSelector((store) => store.user)
   const isLoading = useSelector((state) => state.equipment.isLoading);
-
   /* const equipmentData = useSelector((state) => state.equipment.equipmentData); */
 
   useEffect(() => {
@@ -56,7 +52,7 @@ export const HomeScreen = () => {
   }, [accessToken, dispatch]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen />;
   }
 
   // useEffect(() => {
@@ -133,7 +129,7 @@ export const HomeScreen = () => {
                 Inventory
               </Typography>
               <Grid container spacing={4}>
-                <EquipmentCard />
+                <PlayerInventory />
               </Grid>
             </Container>
           </Grid>

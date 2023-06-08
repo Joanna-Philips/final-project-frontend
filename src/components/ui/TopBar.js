@@ -16,11 +16,11 @@ import MenuItem from '@mui/material/MenuItem';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom';
-import shopIMG from '../assets/images/UI/shopIMG.png';
-import homeIMG from '../assets/images/UI/home.png';
-import questIMG from '../assets/images/UI/questmap.png';
-import barIMG from '../assets/images/UI/GUI.png';
-import coinIMG from '../assets/images/UI/coin.png'
+import shopIMG from '../../assets/images/UI/shopIMG.png';
+import homeIMG from '../../assets/images/UI/home.png';
+import questIMG from '../../assets/images/UI/questmap.png';
+import barIMG from '../../assets/images/UI/GUI.png';
+import coinIMG from '../../assets/images/UI/coin.png'
 
 const pages = [
   { name: 'Shop', image: shopIMG, navLink: '/shop' },

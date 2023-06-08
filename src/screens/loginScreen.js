@@ -7,8 +7,8 @@ import user from 'reducers/user';
 import { API_URL } from 'utils/urls';
 import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Checkbox, Grid, Box, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { LoginWrapper } from 'components/CSScomponents/LoginScreenCSS';
-import { generatePassword, generateRandomName } from '../components/loginScreen/GuestLoginUtils';
+import { LoginWrapper } from 'components/login/LoginScreenCSS';
+import { generatePassword, generateRandomName } from '../components/login/GuestLoginUtils';
 
 export const LoginScreen = () => {
   const [username, setUsername] = useState('');
