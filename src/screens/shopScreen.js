@@ -1,31 +1,21 @@
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
-/* import { useState } from 'react'; */
+import { useEffect } from 'react';
 import { API_URL } from 'utils/urls';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-  Button,
-  createTheme,
-  ThemeProvider
-} from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
-import user from '../reducers/user'
+import { fetchEquipmentData } from 'reducers/equipment';
+import user from '../reducers/user';
+
 import goldIconIMG from '../assets/images/UI/coin.png'
 /* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */
 
 export const ShopScreen = () => {
   const dispatch = useDispatch();
-  // const [equipmentList, setEquipmentList] = useState([]);
-  /*   const [userWeapons, setUserWeapons] = useState([]); */
-  // const [loading, setLoading] = useState([])
   const accessToken = useSelector((store) => store.user.accessToken);
   const equipmentData = useSelector((store) => store.equipment.equipmentData)
-
+  const isLoading = useSelector((state) => state.equipment.isLoading);
   /*   useEffect(() => {
     const options = {
       method: 'GET',
@@ -40,6 +30,14 @@ export const ShopScreen = () => {
       .catch((error) => console.log(error))
       .finally(() => { setLoading(false) })
   }, [setLoading]); */
+
+  useEffect(() => {
+    dispatch(fetchEquipmentData(accessToken));
+  }, [accessToken, dispatch]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   const onBuyClick = (equipmentId) => {
     console.log(equipmentId)

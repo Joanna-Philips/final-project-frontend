@@ -25,7 +25,6 @@ const user = createSlice({
       state.userCoins = action.payload;
     },
     setUserWeapons: (state, action) => {
-      // console.log(action.payload)
       state.userWeapons = action.payload;
     },
     setUserAvatar: (state, action) => {
