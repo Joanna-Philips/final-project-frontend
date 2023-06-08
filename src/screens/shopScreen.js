@@ -1,13 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
-import { useEffect } from 'react';
 import { API_URL } from 'utils/urls';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardActions, CardContent, CardMedia, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
-import { fetchEquipmentData } from 'reducers/equipment';
 import user from '../reducers/user';
-
 import goldIconIMG from '../assets/images/UI/coin.png'
 /* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */
 
@@ -15,29 +12,6 @@ export const ShopScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const equipmentData = useSelector((store) => store.equipment.equipmentData)
-  const isLoading = useSelector((state) => state.equipment.isLoading);
-  /*   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: accessToken
-      }
-    }
-    fetch(API_URL('equipments/all'), options)
-      .then((response) => response.json())
-      .then((data) => { setEquipmentList(data.response) })
-      .catch((error) => console.log(error))
-      .finally(() => { setLoading(false) })
-  }, [setLoading]); */
-
-  useEffect(() => {
-    dispatch(fetchEquipmentData(accessToken));
-  }, [accessToken, dispatch]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   const onBuyClick = (equipmentId) => {
     console.log(equipmentId)
@@ -60,11 +34,11 @@ export const ShopScreen = () => {
         }
       })
       .then((data) => {
-        console.log(data); // Log the response data
+        console.log(data);
         dispatch(user.actions.setUserWeapons(data.purchasedEquipment._id));
       })
       .catch((error) => console.log(error))
-      .finally(() => {});
+      .finally(() => { });
   }
 
   const defaultTheme = createTheme({
@@ -89,7 +63,8 @@ export const ShopScreen = () => {
               return (
                 <Card
                   key={singleWeapon._id}
-                  sx={{ width: '25vw',
+                  sx={{
+                    width: '25vw',
                     maxWidth: 175,
                     minWidth: '145px',
                     height: '97%',
@@ -99,7 +74,8 @@ export const ShopScreen = () => {
                     scrollSnapAlign: 'start',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'space-between' }}>
+                    justifyContent: 'space-between'
+                  }}>
                   <CardMedia
                     sx={{ height: 85, backgroundSize: '55px' }}
                     image={singleWeapon.img_src}
@@ -109,13 +85,15 @@ export const ShopScreen = () => {
                       gutterBottom
                       variant="h5"
                       component="div"
-                      sx={{ fontWeight: 900,
+                      sx={{
+                        fontWeight: 900,
                         fontSize: '1.2rem',
-                        lineHeight: 1 }}>
+                        lineHeight: 1
+                      }}>
                       {singleWeapon.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
-                        Damage: {singleWeapon.damage}
+                      Damage: {singleWeapon.damage}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
                       {singleWeapon.description}
@@ -142,7 +120,7 @@ export const ShopScreen = () => {
                       }}
                       size="small"
                       onClick={() => onBuyClick(singleWeapon._id)}>
-                        Buy
+                      Buy
                     </Button>
                   </CardActions>
                 </Card>

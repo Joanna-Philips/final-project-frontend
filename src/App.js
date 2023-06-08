@@ -8,11 +8,11 @@ import equipment from 'reducers/equipment';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
 
-import { HomeScreen } from 'screens/homeScreen';
+import { HomeScreen } from 'screens/HomeScreen';
 import { Layout } from 'components/Layout';
 import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';
-import { ShopScreen } from './screens/shopScreen';
-import { LoginScreen } from './screens/loginScreen';
+import { ShopScreen } from './screens/ShopScreen';
+import { LoginScreen } from './screens/LoginScreen';
 
 export const App = () => {
   const reducer = combineReducers({

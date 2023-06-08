@@ -2,9 +2,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { API_URL } from 'utils/urls';
-import { loader } from 'reducers/loader';
-import user from 'reducers/user';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -15,9 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
 import { EquipmentCard } from 'components/EquipmentCard';
 import { HomeImg } from 'components/CSScomponents/HomeScreenCSS';
+import { fetchEquipmentData } from 'reducers/equipment';
 import homeBackground from '../assets/images/homestead.jpg';
 
-// const defaultTheme = createTheme();
 const theme = createTheme({
   typography: {
     fontFamily: ['VT323', 'monospace'].join(','),
@@ -45,30 +42,40 @@ export const HomeScreen = () => {
   // const userWeapons = useSelector((store) => store.user.UserWeapons);
   // const userCoins = useSelector((store) => store.user.userCoins)
   const currentUser = useSelector((store) => store.user)
+  const isLoading = useSelector((state) => state.equipment.isLoading);
+
   /* const equipmentData = useSelector((state) => state.equipment.equipmentData); */
 
   useEffect(() => {
-    dispatch(loader.actions.setLoading(true));
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: accessToken
-      }
-    }
-    fetch(API_URL('users/profile'), options)
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data.response.userWeapons);
-        dispatch(user.actions.setUserCoins(data.response.userCoins));
-        dispatch(user.actions.setUserWeapons(data.response.userWeapons));
-        dispatch(user.actions.setUserAvatar(data.response.userAvatar));
-        dispatch(loader.actions.setLoading(false));
-        // console.log('data:', data.response.userWeapons);
-      })
-      .catch((error) => console.log(error))
-      // .finally(() => { console.log('finally', currentUser.userWeapons) })
-  }, []);
+    dispatch(fetchEquipmentData(accessToken));
+  }, [accessToken, dispatch]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // useEffect(() => {
+  //   dispatch(loader.actions.setLoading(true));
+  //   const options = {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: accessToken
+  //     }
+  //   }
+  //   fetch(API_URL('users/profile'), options)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // console.log(data.response.userWeapons);
+  //       dispatch(user.actions.setUserCoins(data.response.userCoins));
+  //       dispatch(user.actions.setUserWeapons(data.response.userWeapons));
+  //       dispatch(user.actions.setUserAvatar(data.response.userAvatar));
+  //       dispatch(loader.actions.setLoading(false));
+  //       // console.log('data:', data.response.userWeapons);
+  //     })
+  //     .catch((error) => console.log(error))
+  //     // .finally(() => { console.log('finally', currentUser.userWeapons) })
+  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
