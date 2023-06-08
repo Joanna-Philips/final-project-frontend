@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
 import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
 import { EquipmentCard } from 'components/EquipmentCard';
+import { HomeImg } from 'components/CSScomponents/HomeScreenCSS';
 import homeBackground from '../assets/images/homestead.jpg';
 
 // const defaultTheme = createTheme();
@@ -74,10 +75,7 @@ export const HomeScreen = () => {
       <CssBaseline />
       <main
         style={{
-          backgroundImage: `url(${homeBackground})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundColor: '#3b241c',
           minHeight: '90vh'
         }}>
         <Grid container spacing={2} marginTop={0}>
@@ -86,7 +84,8 @@ export const HomeScreen = () => {
               sx={{
                 bgcolor: 'transparent',
                 pt: 6,
-                pb: 6
+                pb: 6,
+                paddingTop: 0
               }}>
               <Container maxWidth="sm">
                 <Box
@@ -110,14 +109,15 @@ export const HomeScreen = () => {
                   </Typography> */}
                   <PlayerAvatar />
                 </Box>
+                <HomeImg alt="home" src={homeBackground} />
               </Container>
             </Box>
           </Grid>
 
           <Grid item xs={5}>
 
-            <Container sx={{ py: 2 }} maxWidth="md">
-              <Typography variant="h6" align="center" color="text.secondary" paragraph>
+            <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
+              <Typography variant="h6" align="center" color="white" paragraph>
                 Inventory
               </Typography>
               <Grid container spacing={4}>

@@ -10,7 +10,7 @@ import {
   createTheme,
   ThemeProvider
 } from '@mui/material';
-import { InventoryWrapper } from 'components/CSScomponents/ShopScreenCSS';
+import { InventoryWrapper } from 'components/CSScomponents/HomeScreenCSS';
 
 const defaultTheme = createTheme({
   typography: {
@@ -36,7 +36,7 @@ export const EquipmentCard = () => {
               sx={{ width: '25vw',
                 maxWidth: 175,
                 minWidth: '145px',
-                backgroundColor: '#edd99b',
+                backgroundColor: 'rgba(237, 217, 155, 0.7)',
                 borderStyle: 'solid',
                 borderColor: '#3b241c',
                 scrollSnapAlign: 'start',
