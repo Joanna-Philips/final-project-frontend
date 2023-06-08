@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
 import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
+import { EquipmentCard } from 'components/EquipmentCard';
 import homeBackground from '../assets/images/homestead.jpg';
 
 // const defaultTheme = createTheme();
@@ -83,7 +84,6 @@ export const HomeScreen = () => {
                 bgcolor: 'transparent',
                 pt: 6,
                 pb: 6
-                // padding: 0
               }}>
               <Container maxWidth="sm">
                 <Box
@@ -117,14 +117,7 @@ export const HomeScreen = () => {
                 Inventory
               </Typography>
               <Grid container spacing={4}>
-                {/* {userInventory.map((inventory) => (
-                  <Grid item key={inventory} xs={12} sm={6} md={4}>
-                    <PlayerEquipmentCard
-                      id={inventory._id}
-                      img_src={inventory.img_src}
-                      name={inventory.name} />
-                  </Grid>
-                ))} */}
+                <EquipmentCard />
               </Grid>
             </Container>
           </Grid>

@@ -7,7 +7,6 @@ import equipment from 'reducers/equipment';
 const Main = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
-  const equipmentInStore = useSelector((store) => store.equipment.equipmentData);
   const navigate = useNavigate();
   useEffect(() => {
     if (!accessToken) {
@@ -33,7 +32,6 @@ const Main = () => {
         console.log('equipment data', data.response)
       })
       .catch((error) => console.log(error))
-      .finally(() => { console.log(equipmentInStore) })
-  }, [accessToken]);
+  }, [accessToken, dispatch]);
 };
 export default Main;

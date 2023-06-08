@@ -19,7 +19,7 @@ export const ShopImage = styled.img`
 
 export const ShopWrapper = styled.div`
     display: flex;
-    height: 94dvh;
+    height: 90dvh;
     background-image: url(https://i.pinimg.com/originals/cf/c5/c7/cfc5c7a445516540bcbe7d72d246a881.png);
     flex-direction: column;
     align-items: stretch;`
