@@ -13,7 +13,7 @@ import { HomeImg } from 'components/home/HomeScreenCSS';
 import { fetchEquipmentData } from 'reducers/equipment';
 import { fetchUserProfile } from 'reducers/user';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
-import homeBackground from '../assets/images/homestead.jpg';
+import homeBackground from '../../assets/images/homestead.jpg';
 import { LoadingScreen } from '../loading/LoadingScreen';
 
 const theme = createTheme({
@@ -40,8 +40,7 @@ export const HomeScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const currentUser = useSelector((store) => store.user)
-  const isLoading = useSelector((state) => state.equipment.isLoading);
-  /* const equipmentData = useSelector((state) => state.equipment.equipmentData); */
+  const isLoading = useSelector((store) => store.loader.isLoading);
 
   useEffect(() => {
     dispatch(fetchEquipmentData(accessToken));
@@ -54,29 +53,6 @@ export const HomeScreen = () => {
   if (isLoading) {
     return <LoadingScreen />;
   }
-
-  // useEffect(() => {
-  //   dispatch(loader.actions.setLoading(true));
-  //   const options = {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: accessToken
-  //     }
-  //   }
-  //   fetch(API_URL('users/profile'), options)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // console.log(data.response.userWeapons);
-  //       dispatch(user.actions.setUserCoins(data.response.userCoins));
-  //       dispatch(user.actions.setUserWeapons(data.response.userWeapons));
-  //       dispatch(user.actions.setUserAvatar(data.response.userAvatar));
-  //       dispatch(loader.actions.setLoading(false));
-  //       // console.log('data:', data.response.userWeapons);
-  //     })
-  //     .catch((error) => console.log(error))
-  //     // .finally(() => { console.log('finally', currentUser.userWeapons) })
-  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -121,9 +97,7 @@ export const HomeScreen = () => {
               </Container>
             </Box>
           </Grid>
-
           <Grid item xs={5}>
-
             <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
               <Typography variant="h6" align="center" color="white" paragraph>
                 Inventory

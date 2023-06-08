@@ -1,24 +1,13 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components/macro'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components/macro';
 
 export const LoadingScreen = () => {
-  const [loadingDot, setLoadingDot] = useState('');
   const isLoading = useSelector((store) => store.loader.isLoading);
-
-  // Creates a movement in the dots after loading
-  const loadingAnimation = () => {
-    if (loadingDot === '...') {
-      setLoadingDot('');
-    } else {
-      setTimeout(() => setLoadingDot(`${loadingDot}.`), 10000);
-    }
-  };
 
   return (
     <div>
-      {isLoading && <LoadingText>loading{loadingAnimation()}
-        {loadingDot}</LoadingText>}
+      {isLoading && <LoadingText>Loading...</LoadingText>}
     </div>
   )
 }

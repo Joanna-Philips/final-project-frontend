@@ -6,8 +6,7 @@ import { Card, CardActions, Typography, Button, createTheme, ThemeProvider } fro
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/shop/ShopScreenCSS';
 import { EquipmentCard } from 'components/equipments/EquipmentCard';
 import user from '../../reducers/user';
-import goldIconIMG from '../assets/images/UI/coin.png'
-/* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */
+import goldIconIMG from '../../assets/images/UI/coin.png'
 
 export const ShopScreen = () => {
   const dispatch = useDispatch();

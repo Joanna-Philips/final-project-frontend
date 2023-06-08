@@ -38,3 +38,21 @@ export const fetchEquipmentData = (accessToken) => async (dispatch) => {
     console.log(error);
   }
 };
+
+//   useEffect(() => {
+//     const options = {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: accessToken
+//       }
+//     }
+//     fetch(API_URL('equipments/all'), options)
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log('data:', data);
+//         dispatch(equipment.actions.setEquipmentData(data.response));
+//         console.log('equipment data', data.response)
+//       })
+//       .catch((error) => console.log(error))
+//   }, [accessToken, dispatch]);
