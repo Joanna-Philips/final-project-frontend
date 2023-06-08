@@ -4,15 +4,13 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import {
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Typography,
   createTheme,
   ThemeProvider
 } from '@mui/material';
-import { WaresWrapper } from 'components/CSScomponents/ShopScreenCSS';
-import goldIconIMG from '../assets/images/UI/coin.png'
+import { InventoryWrapper } from 'components/CSScomponents/ShopScreenCSS';
 
 const defaultTheme = createTheme({
   typography: {
@@ -27,17 +25,17 @@ const defaultTheme = createTheme({
 
 export const EquipmentCard = () => {
   const equipmentData = useSelector((store) => store.equipment.equipmentData)
+  const equipmentArray = Object.values(equipmentData);
   return (
     <ThemeProvider theme={defaultTheme}>
-      <WaresWrapper>
-        {equipmentData && equipmentData.map((singleWeapon) => {
+      <InventoryWrapper>
+        {equipmentData && equipmentArray.slice(1).map((singleWeapon) => {
           return (
             <Card
               key={singleWeapon._id}
               sx={{ width: '25vw',
                 maxWidth: 175,
                 minWidth: '145px',
-                height: '97%',
                 backgroundColor: '#edd99b',
                 borderStyle: 'solid',
                 borderColor: '#3b241c',
@@ -66,16 +64,10 @@ export const EquipmentCard = () => {
                   {singleWeapon.description}
                 </Typography>
               </CardContent>
-              <CardActions sx={{ justifyContent: 'space-between' }}>
-                <Typography sx={{ fontSize: '0.7rem', display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '55%' }}>
-                  {singleWeapon.cost}
-                  <img src={`${goldIconIMG}`} alt="gold display icon" />
-                </Typography>
-              </CardActions>
             </Card>
           )
         })}
-      </WaresWrapper>
+      </InventoryWrapper>
     </ThemeProvider>
   )
 }

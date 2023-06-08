@@ -34,8 +34,8 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#733214',
-      darker: '#5c270f'
+      main: '#3d4362',
+      darker: '#2e3242'
     },
     neutral: {
       main: '#64748B',
@@ -99,17 +99,18 @@ export const PlayerAvatar = () => {
               sx={{
                 height: 500,
                 width: 300,
-                maxHeight: { xs: 230, md: 500 },
-                maxWidth: { xs: 200, md: 300 },
+                maxHeight: { xs: 230 },
+                maxWidth: { xs: 200 },
                 backgroundImage: `url(${avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].img_src : playerAvatar})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                '@media (min-width: 600px)': {
+                transform: 'scale(1.8)'
+                /*                 '@media (min-width: 600px)': {
                   transform: 'scale(1.8)'
                 },
                 '@media (min-width: 900px)': {
-                  transform: 'scale(1.5)' // reduced it from 2.5 as it was covering the navbar links. Need to look into it.
-                }
+                  transform: 'scale(1.5)'
+                } */
               }} />
             <Typography
               sx={{ textAlign: 'center' }}>

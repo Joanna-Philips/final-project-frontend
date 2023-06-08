@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { API_URL } from 'utils/urls';
+import { loader } from 'reducers/loader';
 import user from 'reducers/user';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -46,6 +47,7 @@ export const HomeScreen = () => {
   /* const equipmentData = useSelector((state) => state.equipment.equipmentData); */
 
   useEffect(() => {
+    dispatch(loader.actions.setLoading(true));
     const options = {
       method: 'GET',
       headers: {
@@ -60,6 +62,7 @@ export const HomeScreen = () => {
         dispatch(user.actions.setUserCoins(data.response.userCoins));
         dispatch(user.actions.setUserWeapons(data.response.userWeapons));
         dispatch(user.actions.setUserAvatar(data.response.userAvatar));
+        dispatch(loader.actions.setLoading(false));
         // console.log('data:', data.response.userWeapons);
       })
       .catch((error) => console.log(error))
@@ -90,7 +93,8 @@ export const HomeScreen = () => {
                   sx={{
                     bgcolor: 'rgba(237, 217, 155, 0.7)',
                     pt: 2,
-                    pb: 2
+                    pb: 2,
+                    maxWidth: '320px'
                   }}>
                   <Typography
                     component="h1"
