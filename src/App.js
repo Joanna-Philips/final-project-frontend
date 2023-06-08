@@ -7,11 +7,11 @@ import user from 'reducers/user';
 import equipment from 'reducers/equipment';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/ui/Footer';
-import { HomeScreen } from 'screens/HomeScreen';
+import { HomeScreen } from 'components/home/HomeScreen';
 import { Layout } from 'components/ui/Layout';
-import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';
-import { ShopScreen } from './screens/ShopScreen';
-import { LoginScreen } from './screens/LoginScreen';
+import { AdventureBoardScreen } from 'components/adventureBoard/AdventureBoardScreen';
+import { ShopScreen } from './components/shop/ShopScreen';
+import { LoginScreen } from './components/login/LoginScreen';
 
 export const App = () => {
   const reducer = combineReducers({

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardActions, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/shop/ShopScreenCSS';
 import { EquipmentCard } from 'components/equipments/EquipmentCard';
-import user from '../reducers/user';
+import user from '../../reducers/user';
 import goldIconIMG from '../assets/images/UI/coin.png'
 /* import buttonbackgroundIMG from '../assets/images/UI/buttonsmall.png' */
 

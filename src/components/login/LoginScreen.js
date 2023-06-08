@@ -8,7 +8,7 @@ import { API_URL } from 'utils/urls';
 import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Checkbox, Grid, Box, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LoginWrapper } from 'components/login/LoginScreenCSS';
-import { generatePassword, generateRandomName } from '../components/login/GuestLoginUtils';
+import { generatePassword, generateRandomName } from './GuestLoginUtils';
 
 export const LoginScreen = () => {
   const [username, setUsername] = useState('');

@@ -14,7 +14,7 @@ import { fetchEquipmentData } from 'reducers/equipment';
 import { fetchUserProfile } from 'reducers/user';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
 import homeBackground from '../assets/images/homestead.jpg';
-import { LoadingScreen } from './LoadingScreen';
+import { LoadingScreen } from '../loading/LoadingScreen';
 
 const theme = createTheme({
   typography: {
