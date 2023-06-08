@@ -13,6 +13,7 @@ import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
 import { EquipmentCard } from 'components/EquipmentCard';
 import { HomeImg } from 'components/CSScomponents/HomeScreenCSS';
 import { fetchEquipmentData } from 'reducers/equipment';
+import { fetchUserProfile } from 'reducers/user';
 import homeBackground from '../assets/images/homestead.jpg';
 
 const theme = createTheme({
@@ -48,6 +49,10 @@ export const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(fetchEquipmentData(accessToken));
+  }, [accessToken, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchUserProfile(accessToken));
   }, [accessToken, dispatch]);
 
   if (isLoading) {

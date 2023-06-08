@@ -7,7 +7,6 @@ import user from 'reducers/user';
 import equipment from 'reducers/equipment';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
-
 import { HomeScreen } from 'screens/HomeScreen';
 import { Layout } from 'components/Layout';
 import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';

@@ -58,7 +58,7 @@ export const EquipmentCard = () => {
                   {singleWeapon.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
-                        Damage: {singleWeapon.damage}
+                  Damage: {singleWeapon.damage}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
                   {singleWeapon.description}

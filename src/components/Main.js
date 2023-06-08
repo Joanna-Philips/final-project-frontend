@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { API_URL } from 'utils/urls';
-// import equipment from 'reducers/equipment';
 
 const Main = () => {
-  // const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
 
