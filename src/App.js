@@ -4,6 +4,7 @@ import NotFound from 'components/NotFound';
 import Main from 'components/Main';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
+import equipment from 'reducers/equipment';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/Footer';
 
@@ -15,7 +16,8 @@ import { LoginScreen } from './screens/loginScreen';
 
 export const App = () => {
   const reducer = combineReducers({
-    user: user.reducer
+    user: user.reducer,
+    equipment: equipment.reducer
   });
   const store = configureStore({ reducer })
 

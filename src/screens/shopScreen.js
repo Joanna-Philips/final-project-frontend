@@ -53,6 +53,7 @@ export const ShopScreen = () => {
 
     fetch(API_URL('purchases/buy'), options)
       .then((response) => {
+        console.log(response.json)
         if (response.ok) {
           return response.json();
         } else {

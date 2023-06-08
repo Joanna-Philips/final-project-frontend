@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,7 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
+// import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
 import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
 import homeBackground from '../assets/images/homestead.jpg';
 
@@ -33,12 +34,15 @@ const theme = createTheme({
     }
   }
 });
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export const HomeScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
-  const username = useSelector((store) => store.user.username);
+  // const username = useSelector((store) => store.user.username);
+  // const userWeapons = useSelector((store) => store.user.UserWeapons);
+  // const userCoins = useSelector((store) => store.user.userCoins)
+  const currentUser = useSelector((store) => store.user)
+  /* const equipmentData = useSelector((state) => state.equipment.equipmentData); */
 
   useEffect(() => {
     const options = {
@@ -51,12 +55,14 @@ export const HomeScreen = () => {
     fetch(API_URL('users/profile'), options)
       .then((response) => response.json())
       .then((data) => {
+        // console.log(data.response.userWeapons);
         dispatch(user.actions.setUserCoins(data.response.userCoins));
-        dispatch(user.actions.setUserWeapons(data.response.UserWeapons));
+        dispatch(user.actions.setUserWeapons(data.response.userWeapons));
         dispatch(user.actions.setUserAvatar(data.response.userAvatar));
+        // console.log('data:', data.response.userWeapons);
       })
       .catch((error) => console.log(error))
-      .finally(() => { /* setLoading(false) */ })
+      // .finally(() => { console.log('finally', currentUser.userWeapons) })
   }, []);
 
   return (
@@ -93,7 +99,7 @@ export const HomeScreen = () => {
                     color="text.primary"
                     sx={{ margin: 0 }}
                     gutterBottom>
-                  Hi {username} 👾
+                  Hi {currentUser.username} 👾
                   </Typography>
                   {/* <Typography variant="h6" align="center" color="text.secondary" paragraph>
                   Customize your avatar here
@@ -111,11 +117,14 @@ export const HomeScreen = () => {
                 Inventory
               </Typography>
               <Grid container spacing={4}>
-                {cards.map((card) => (
-                  <Grid item key={card} xs={12} sm={6} md={4}>
-                    <PlayerEquipmentCard />
+                {/* {userInventory.map((inventory) => (
+                  <Grid item key={inventory} xs={12} sm={6} md={4}>
+                    <PlayerEquipmentCard
+                      id={inventory._id}
+                      img_src={inventory.img_src}
+                      name={inventory.name} />
                   </Grid>
-                ))}
+                ))} */}
               </Grid>
             </Container>
           </Grid>

@@ -7,33 +7,34 @@ const user = createSlice({
     userId: null,
     accessToken: null,
     userCoins: null,
-    userWeapons: null,
+    userWeapons: [],
     userAvatar: null,
     error: null
   },
   reducers: {
-    setUsername: (store, action) => {
-      store.username = action.payload
+    setUsername: (state, action) => {
+      state.username = action.payload;
     },
-    setUserId: (store, action) => {
-      store.userId = action.payload
+    setUserId: (state, action) => {
+      state.userId = action.payload;
     },
-    setAccessToken: (store, action) => {
-      store.accessToken = action.payload
+    setAccessToken: (state, action) => {
+      state.accessToken = action.payload;
     },
-    setUserCoins: (store, action) => {
-      store.userCoins = action.payload
+    setUserCoins: (state, action) => {
+      state.userCoins = action.payload;
     },
-    setUserWeapons: (store, action) => {
-      store.userWeapons = action.payload
+    setUserWeapons: (state, action) => {
+      // console.log(action.payload)
+      state.userWeapons = action.payload;
     },
-    setUserAvatar: (store, action) => {
-      store.userAvatar = action.payload
+    setUserAvatar: (state, action) => {
+      state.userAvatar = action.payload;
     },
-    setError: (store, action) => {
-      store.error = action.payload
+    setError: (state, action) => {
+      state.error = action.payload;
     }
   }
 });
 
-export default user
+export default user;
