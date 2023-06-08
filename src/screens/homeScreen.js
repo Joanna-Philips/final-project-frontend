@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { API_URL } from 'utils/urls';
+import { loader } from 'reducers/loader';
 import user from 'reducers/user';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -13,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
 import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
 import { EquipmentCard } from 'components/EquipmentCard';
+import { HomeImg } from 'components/CSScomponents/HomeScreenCSS';
 import homeBackground from '../assets/images/homestead.jpg';
 
 // const defaultTheme = createTheme();
@@ -46,6 +48,7 @@ export const HomeScreen = () => {
   /* const equipmentData = useSelector((state) => state.equipment.equipmentData); */
 
   useEffect(() => {
+    dispatch(loader.actions.setLoading(true));
     const options = {
       method: 'GET',
       headers: {
@@ -60,6 +63,7 @@ export const HomeScreen = () => {
         dispatch(user.actions.setUserCoins(data.response.userCoins));
         dispatch(user.actions.setUserWeapons(data.response.userWeapons));
         dispatch(user.actions.setUserAvatar(data.response.userAvatar));
+        dispatch(loader.actions.setLoading(false));
         // console.log('data:', data.response.userWeapons);
       })
       .catch((error) => console.log(error))
@@ -71,10 +75,7 @@ export const HomeScreen = () => {
       <CssBaseline />
       <main
         style={{
-          backgroundImage: `url(${homeBackground})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundColor: '#3b241c',
           minHeight: '90vh'
         }}>
         <Grid container spacing={2} marginTop={0}>
@@ -83,14 +84,16 @@ export const HomeScreen = () => {
               sx={{
                 bgcolor: 'transparent',
                 pt: 6,
-                pb: 6
+                pb: 6,
+                paddingTop: 0
               }}>
               <Container maxWidth="sm">
                 <Box
                   sx={{
                     bgcolor: 'rgba(237, 217, 155, 0.7)',
                     pt: 2,
-                    pb: 2
+                    pb: 2,
+                    maxWidth: '320px'
                   }}>
                   <Typography
                     component="h1"
@@ -106,14 +109,15 @@ export const HomeScreen = () => {
                   </Typography> */}
                   <PlayerAvatar />
                 </Box>
+                <HomeImg alt="home" src={homeBackground} />
               </Container>
             </Box>
           </Grid>
 
           <Grid item xs={5}>
 
-            <Container sx={{ py: 2 }} maxWidth="md">
-              <Typography variant="h6" align="center" color="text.secondary" paragraph>
+            <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
+              <Typography variant="h6" align="center" color="white" paragraph>
                 Inventory
               </Typography>
               <Grid container spacing={4}>
