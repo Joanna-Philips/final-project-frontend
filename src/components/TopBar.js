@@ -87,8 +87,8 @@ export const TopBar = () => {
         sx={{
           backgroundImage: `url(${barIMG})`,
           backgroundRepeat: 'no-repeat',
-          backgroundSize: '150% 78%',
-          backgroundPosition: '50% 7%'
+          backgroundSize: '150% 101%',
+          backgroundPosition: '50% 46%'
         }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
