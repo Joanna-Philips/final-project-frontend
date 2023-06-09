@@ -48,6 +48,5 @@ export const WaresWrapper = styled.div`
 export const SingleWareWrapper = styled.div`
 display: flex;
 flex-direction: column;
-height: 96%;
-
+height: 89%;
 `
