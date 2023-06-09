@@ -71,38 +71,35 @@ export const HomeScreen = () => {
         }}>
         <Grid container spacing={2} marginTop={0}>
           <Grid item xs={7}>
-            <Box
+            {/* <Box
               sx={{
                 bgcolor: 'transparent',
                 pt: 6,
                 pb: 6,
                 paddingTop: 0
-              }}>
-              <Container maxWidth="sm">
-                <Box
-                  sx={{
-                    bgcolor: 'rgba(237, 217, 155, 0.7)',
-                    pt: 2,
-                    pb: 2,
-                    maxWidth: '320px'
-                  }}>
-                  <Typography
-                    component="h1"
-                    variant="h5"
-                    align="center"
-                    color="text.primary"
-                    sx={{ margin: 0 }}
-                    gutterBottom>
+              }}> */}
+            <Container maxWidth="sm">
+              <Box
+                sx={{
+                  bgcolor: 'rgba(237, 217, 155, 0.7)',
+                  pt: 2,
+                  pb: 2,
+                  maxWidth: '320px'
+                }}>
+                <Typography
+                  component="h1"
+                  variant="h5"
+                  align="center"
+                  color="text.primary"
+                  sx={{ margin: 0 }}
+                  gutterBottom>
                   Hi {currentUser.username} 👾
-                  </Typography>
-                  {/* <Typography variant="h6" align="center" color="text.secondary" paragraph>
-                  Customize your avatar here
-                  </Typography> */}
-                  <PlayerAvatar />
-                </Box>
-                <HomeImg alt="home" src={homeBackground} />
-              </Container>
-            </Box>
+                </Typography>
+                <PlayerAvatar />
+              </Box>
+              <HomeImg alt="home" src={homeBackground} />
+            </Container>
+            {/* </Box> */}
           </Grid>
           <Grid item xs={5}>
             <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
