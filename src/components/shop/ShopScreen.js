@@ -1,19 +1,21 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
-import { API_URL } from 'utils/urls';
-import { useSelector, useDispatch } from 'react-redux';
-import { Card, CardActions, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
-import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper } from 'components/shop/ShopScreenCSS';
+/* import { API_URL } from 'utils/urls'; */
+import { useSelector/* , useDispatch */ } from 'react-redux';
+import { Card, CardActions, /* Typography, Button, */ createTheme, ThemeProvider } from '@mui/material';
+import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper, SingleWareWrapper } from 'components/shop/ShopScreenCSS';
 import { EquipmentCard } from 'components/equipments/EquipmentCard';
-import user from '../../reducers/user';
-import goldIconIMG from '../../assets/images/UI/coin.png'
+/* import user from '../../reducers/user'; */
+import { ShopButton } from './ShopButton';
+/* import goldIconIMG from '../../assets/images/UI/coin.png' */
 
 export const ShopScreen = () => {
-  const dispatch = useDispatch();
-  const accessToken = useSelector((store) => store.user.accessToken);
+/*   const dispatch = useDispatch();
+  const accessToken = useSelector((store) => store.user.accessToken); */
   const equipmentData = useSelector((store) => store.equipment.equipmentData)
 
-  const onBuyClick = (equipmentId) => {
+  /*   const onBuyClick = (equipmentId) => {
     console.log(equipmentId)
     const options = {
       method: 'POST',
@@ -41,13 +43,42 @@ export const ShopScreen = () => {
       .finally(() => { });
   }
 
+  const onSellClick = (equipmentId) => {
+    console.log(equipmentId)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      },
+      body: JSON.stringify({ equipmentId })
+    };
+
+    fetch(API_URL('purchases/sell'), options)
+      .then((response) => {
+        console.log(response.json)
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        dispatch(user.actions.setUserCoins(data.userCoins));
+      })
+      .catch((error) => console.log(error))
+      .finally(() => { });
+  } */
+
   const defaultTheme = createTheme({
     typography: {
       fontFamily: ['VT323', 'monospace'].join(',')
     },
     palette: {
       primary: {
-        main: '#3d4362'
+        main: '#3d4362',
+        darker: '#2e3242'
       }
     }
   });
@@ -61,7 +92,7 @@ export const ShopScreen = () => {
           <WaresWrapper>
             {equipmentData.slice(1).map((singleWeapon) => {
               return (
-                <>
+                <SingleWareWrapper>
                   <EquipmentCard singleWeapon={singleWeapon} />
                   <Card
                     key={singleWeapon._id}
@@ -69,41 +100,62 @@ export const ShopScreen = () => {
                       width: '25vw',
                       maxWidth: 175,
                       minWidth: '145px',
-                      height: '97%',
+                      height: '14%',
                       backgroundColor: '#edd99b',
                       borderStyle: 'solid',
                       borderColor: '#3b241c',
                       scrollSnapAlign: 'start',
                       display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between'
+                      flexDirection: 'column'
                     }}>
-                    <CardActions sx={{ justifyContent: 'space-between' }}>
-                      <Typography sx={{ fontSize: '0.7rem', display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '55%' }}>
-                        {singleWeapon.cost}
-                        <img src={`${goldIconIMG}`} alt="gold display icon" />
-                      </Typography>
-                      <Button
+                    <CardActions sx={{ justifyContent: 'space-between', padding: 0 }}>
+                      <ShopButton
+                        transactionID={singleWeapon._id}
+                        transactionGold={singleWeapon.cost}
+                        transactionType="Buy" />
+                      <ShopButton
+                        transactionID={singleWeapon._id}
+                        transactionGold={singleWeapon.sell}
+                        transactionType="Sell" />
+                      {/* <Button
                         sx={{
-                        /* backgroundImage: `url(${buttonbackgroundIMG})`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundSize: 'cover', */
                           color: 'white',
                           fontWeight: 700,
                           textDecoration: 'none',
-                          mt: 3,
-                          mb: 2,
-                          fontSize: '1.2rem',
+                          mt: 0,
+                          mb: 0,
+                          fontSize: '1rem',
                           backgroundColor: '#3d4362',
-                          borderRadius: '14%'
+                          borderRadius: '10%',
+                          width: '48%'
                         }}
                         size="small"
                         onClick={() => onBuyClick(singleWeapon._id)}>
+                        {singleWeapon.cost}
+                        <img src={`${goldIconIMG}`} alt="gold display icon" />
                       Buy
                       </Button>
+                      <Button
+                        sx={{
+                          color: 'white',
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          mt: 0,
+                          mb: 0,
+                          fontSize: '1rem',
+                          backgroundColor: '#3d4362',
+                          borderRadius: '10%',
+                          width: '48%'
+                        }}
+                        size="small"
+                        onClick={() => onSellClick(singleWeapon._id)}>
+                        {singleWeapon.sell}
+                        <img src={`${goldIconIMG}`} alt="gold display icon" />
+                      Sell
+                      </Button> */}
                     </CardActions>
                   </Card>
-                </>
+                </SingleWareWrapper>
               )
             })}
           </WaresWrapper>

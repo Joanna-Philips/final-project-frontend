@@ -44,3 +44,10 @@ export const WaresWrapper = styled.div`
     overflow: scroll;
     scroll-snap-type: y mandatory;
 `
+
+export const SingleWareWrapper = styled.div`
+display: flex;
+flex-direction: column;
+height: 96%;
+
+`
