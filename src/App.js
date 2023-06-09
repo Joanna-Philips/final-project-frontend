@@ -1,18 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NotFound from 'components/NotFound';
-import Main from 'components/Main';
+import NotFound from 'components/404/NotFound';
+import Main from 'components/login/LoginRedirect';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import equipment from 'reducers/equipment';
 import { Provider } from 'react-redux';
-import { Footer } from 'components/Footer';
-
-import { HomeScreen } from 'screens/homeScreen';
-import { Layout } from 'components/Layout';
-import { AdventureBoardScreen } from 'screens/AdventureBoardScreen';
-import { ShopScreen } from './screens/shopScreen';
-import { LoginScreen } from './screens/loginScreen';
+import { Footer } from 'components/ui/Footer';
+import { HomeScreen } from 'components/home/HomeScreen';
+import { Layout } from 'components/ui/Layout';
+import { AdventureBoardScreen } from 'components/board/AdventureBoardScreen';
+import { ShopScreen } from './components/shop/ShopScreen';
+import { LoginScreen } from './components/login/LoginScreen';
 
 export const App = () => {
   const reducer = combineReducers({

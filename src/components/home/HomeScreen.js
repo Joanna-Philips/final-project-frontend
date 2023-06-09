@@ -2,22 +2,21 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { API_URL } from 'utils/urls';
-import { loader } from 'reducers/loader';
-import user from 'reducers/user';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { PlayerEquipmentCard } from 'components/homeScreen/PlayerEquipmentCard';
-import { PlayerAvatar } from 'components/homeScreen/PlayerAvatar';
-import { EquipmentCard } from 'components/EquipmentCard';
-import { HomeImg } from 'components/CSScomponents/HomeScreenCSS';
-import homeBackground from '../assets/images/homestead.jpg';
+import { PlayerAvatar } from 'components/home/PlayerAvatar';
+import { HomeImg } from 'components/home/HomeScreenCSS';
+import { fetchEquipmentData } from 'reducers/equipment';
+import { fetchUserProfile } from 'reducers/user';
+// import { initLoader } from 'reducers/loader';
+import { PlayerInventory } from 'components/inventory/PlayerInventory';
+import homeBackground from '../../assets/images/homestead.jpg';
+// import { LoadingScreen } from '../loading/LoadingScreen';
 
-// const defaultTheme = createTheme();
 const theme = createTheme({
   typography: {
     fontFamily: ['VT323', 'monospace'].join(','),
@@ -41,34 +40,24 @@ const theme = createTheme({
 export const HomeScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
-  // const username = useSelector((store) => store.user.username);
-  // const userWeapons = useSelector((store) => store.user.UserWeapons);
-  // const userCoins = useSelector((store) => store.user.userCoins)
-  const currentUser = useSelector((store) => store.user)
-  /* const equipmentData = useSelector((state) => state.equipment.equipmentData); */
+  const currentUser = useSelector((store) => store.user);
+  // const isLoading = useSelector((store) => store.loader.isLoading);
+
+  // useEffect(() => {
+  //   dispatch(initLoader());
+  // }, [dispatch]);
 
   useEffect(() => {
-    dispatch(loader.actions.setLoading(true));
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: accessToken
-      }
-    }
-    fetch(API_URL('users/profile'), options)
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data.response.userWeapons);
-        dispatch(user.actions.setUserCoins(data.response.userCoins));
-        dispatch(user.actions.setUserWeapons(data.response.userWeapons));
-        dispatch(user.actions.setUserAvatar(data.response.userAvatar));
-        dispatch(loader.actions.setLoading(false));
-        // console.log('data:', data.response.userWeapons);
-      })
-      .catch((error) => console.log(error))
-      // .finally(() => { console.log('finally', currentUser.userWeapons) })
-  }, []);
+    dispatch(fetchEquipmentData(accessToken));
+  }, [accessToken, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchUserProfile(accessToken));
+  }, [accessToken, dispatch]);
+
+  // if (isLoading) {
+  //   return <LoadingScreen />;
+  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -113,15 +102,13 @@ export const HomeScreen = () => {
               </Container>
             </Box>
           </Grid>
-
           <Grid item xs={5}>
-
             <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
               <Typography variant="h6" align="center" color="white" paragraph>
                 Inventory
               </Typography>
               <Grid container spacing={4}>
-                <EquipmentCard />
+                <PlayerInventory />
               </Grid>
             </Container>
           </Grid>
