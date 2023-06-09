@@ -30,7 +30,7 @@ export const PlayerInventory = () => {
           && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
             .map((singleWeapon) => {
               return (
-                <EquipmentCard singleWeapon={singleWeapon} />
+                <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon._id} />
               )
             })}
       </InventoryWrapper>

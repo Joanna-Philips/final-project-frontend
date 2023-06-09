@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 /* eslint-disable max-len */
@@ -32,8 +33,12 @@ export const PlayerAvatar = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const avatarData = useSelector((store) => store.avatar.avatarData);
+  const currentUserAvatar = useSelector((store) => store.user.userAvatar);
+  console.log('currentUserAvatar', currentUserAvatar, 'avatar Data PI', avatarData);
+  const indexOfCurrentAvatar = avatarData.findIndex((avatar) => avatar._id === currentUserAvatar);
 
-  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0)
+  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(indexOfCurrentAvatar);
+  console.log('index of current', indexOfCurrentAvatar);
 
   const onAvatarConfirm = () => {
     const options = {
@@ -55,7 +60,7 @@ export const PlayerAvatar = () => {
       })
       .then((data) => {
         console.log('avatars update Data', data);
-        dispatch(user.actions.setUserAvatar(data.userAvatar._id));
+        dispatch(user.actions.setUserAvatar(data.userAvatar));
       })
       .catch((error) => console.log(error))
       .finally(() => { });
