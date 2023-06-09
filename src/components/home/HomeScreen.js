@@ -11,11 +11,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { HomeImg } from 'components/home/HomeScreenCSS';
 import { fetchEquipmentData } from 'reducers/equipment';
+import { fetchAvatarData } from 'reducers/avatar';
 import { fetchUserProfile } from 'reducers/user';
-// import { initLoader } from 'reducers/loader';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
+// import { LoadingScreen } from 'components/loading/LoadingScreen';
 import homeBackground from '../../assets/images/homestead.jpg';
-// import { LoadingScreen } from '../loading/LoadingScreen';
 
 const theme = createTheme({
   typography: {
@@ -41,23 +41,25 @@ export const HomeScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const currentUser = useSelector((store) => store.user);
-  // const isLoading = useSelector((store) => store.loader.isLoading);
-
-  // useEffect(() => {
-  //   dispatch(initLoader());
-  // }, [dispatch]);
+  const isLoading = useSelector((store) => store.loader.isLoading);
 
   useEffect(() => {
     dispatch(fetchEquipmentData(accessToken));
   }, [accessToken, dispatch]);
 
   useEffect(() => {
+    dispatch(fetchAvatarData(accessToken));
+  }, [accessToken, dispatch]);
+
+  useEffect(() => {
     dispatch(fetchUserProfile(accessToken));
   }, [accessToken, dispatch]);
 
-  // if (isLoading) {
-  //   return <LoadingScreen />;
-  // }
+  if (isLoading) {
+    return (
+      <div>Loading...</div>
+    )
+  }
 
   return (
     <ThemeProvider theme={theme}>

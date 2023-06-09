@@ -10,7 +10,6 @@ const equipment = createSlice({
   },
   reducers: {
     setEquipmentData: (state, action) => {
-      console.log('action payload here!', action.payload);
       state.equipmentData = action.payload;
     }
   }

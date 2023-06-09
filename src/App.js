@@ -5,18 +5,22 @@ import Main from 'components/login/LoginRedirect';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import equipment from 'reducers/equipment';
+import avatar from 'reducers/avatar';
 import { Provider } from 'react-redux';
 import { Footer } from 'components/ui/Footer';
 import { HomeScreen } from 'components/home/HomeScreen';
 import { Layout } from 'components/ui/Layout';
 import { AdventureBoardScreen } from 'components/board/AdventureBoardScreen';
+import loader from 'reducers/loader';
 import { ShopScreen } from './components/shop/ShopScreen';
 import { LoginScreen } from './components/login/LoginScreen';
 
 export const App = () => {
   const reducer = combineReducers({
     user: user.reducer,
-    equipment: equipment.reducer
+    equipment: equipment.reducer,
+    avatar: avatar.reducer,
+    loader: loader.reducer
   });
   const store = configureStore({ reducer })
 

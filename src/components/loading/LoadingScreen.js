@@ -16,6 +16,7 @@ const LoadingText = styled.h1`
 padding: 10%;
 font-family: 'Special Elite', cursive;
 font-size: 2.5rem;
-color: white;
+color: black;
 text-align: center;
+margin-top: 100px;
   `

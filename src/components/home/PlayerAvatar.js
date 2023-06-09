@@ -1,11 +1,13 @@
 /* eslint-disable max-len */
+/* eslint-disable max-len */
 import * as React from 'react';
 import { useState } from 'react';
-/* import { useSelector } from 'react-redux';
-import { API_URL } from 'utils/urls'; */
+import { useSelector } from 'react-redux';
+// import { API_URL } from 'utils/urls';
 import { Box, Button, Grid, Container, createTheme, ThemeProvider, Stack, Typography } from '@mui/material';
+// import { fetchAvatarData } from 'reducers/avatar';
 
-const playerAvatar = 'https://cdna.artstation.com/p/assets/images/images/051/793/398/original/guilherme-meireles-shyguy.gif?1658202660'
+// const playerAvatar = 'https://cdna.artstation.com/p/assets/images/images/051/793/398/original/guilherme-meireles-shyguy.gif?1658202660'
 
 // const AvatarStyles = [
 //   {
@@ -49,46 +51,39 @@ const theme = createTheme({
 });
 
 export const PlayerAvatar = () => {
-  /* const accessToken = useSelector((store) => store.user.accessToken);
-  const [avatarList, setAvatarList] = useState([]); */
-  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0);
+  // const dispatch = useDispatch();
+  // const accessToken = useSelector((store) => store.user.accessToken);
+  // const currentUser = useSelector((store) => store.user);
+  const avatarData = useSelector((store) => store.avatar.avatarData);
 
-  /* useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: accessToken
-      }
-    }
-    fetch(API_URL('avatars'), options)
-      .then((response) => response.json())
-      .then((data) => { setAvatarList(data.response) })
-      .catch((error) => console.log(error))
-      .finally(() => { })
-  }, []); */
+  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState()
 
-  const avatarChoices = AvatarStyles.map((singleAvatar) => ({
+  // useEffect(() => {
+  //   dispatch(fetchAvatarData(accessToken));
+  // }, [accessToken, dispatch]);
+
+  const avatarChoices = avatarData.map((singleAvatar) => ({
     style: singleAvatar.style,
+    name: singleAvatar.name,
     img_src: singleAvatar.img_src
   }));
 
   const handlePreviousAvatar = () => {
-    setSelectedAvatarIndex((prevIndex) => {
-      if (prevIndex === 0) {
+    setSelectedAvatarIndex((arrayIndex) => {
+      if (arrayIndex === 0) {
         return avatarChoices.length - 1;
       } else {
-        return prevIndex - 1;
+        return arrayIndex - 1;
       }
     });
   };
 
   const handleNextAvatar = () => {
-    setSelectedAvatarIndex((prevIndex) => {
-      if (prevIndex === avatarChoices.length - 1) {
+    setSelectedAvatarIndex((arrayIndex) => {
+      if (arrayIndex === avatarChoices.length - 1) {
         return 0;
       } else {
-        return prevIndex + 1;
+        return arrayIndex + 1;
       }
     });
   };
@@ -105,20 +100,14 @@ export const PlayerAvatar = () => {
                 width: 300,
                 maxHeight: { xs: 230 },
                 maxWidth: { xs: 200 },
-                backgroundImage: `url(${avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].img_src : playerAvatar})`,
+                // backgroundImage: `url(${avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].img_src : ''})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 transform: 'scale(1.8)'
-                /*                 '@media (min-width: 600px)': {
-                  transform: 'scale(1.8)'
-                },
-                '@media (min-width: 900px)': {
-                  transform: 'scale(1.5)'
-                } */
               }} />
             <Typography
               sx={{ textAlign: 'center' }}>
-              {avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].name : 'Avatar here'}
+              {/* {avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].name : 'Avatar here'} */}
             </Typography>
             <Stack direction="row" spacing={2} justifyContent="center">
               <Button size="small" variant="contained" onClick={handlePreviousAvatar}> ◄ </Button>

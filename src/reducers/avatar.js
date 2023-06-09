@@ -31,6 +31,7 @@ export const fetchAvatarData = (accessToken) => async (dispatch) => {
   try {
     const response = await fetch(API_URL('avatars/all'), options);
     const data = await response.json();
+    console.log(data)
     dispatch(avatar.actions.setAvatarData(data.response));
     dispatch(loader.actions.setLoading(false));
     console.log('avatar data', data.response);
