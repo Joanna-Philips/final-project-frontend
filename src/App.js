@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { Footer } from 'components/ui/Footer';
 import { HomeScreen } from 'components/home/HomeScreen';
 import { Layout } from 'components/ui/Layout';
-import { AdventureBoardScreen } from 'components/adventureBoard/AdventureBoardScreen';
+import { AdventureBoardScreen } from 'components/board/AdventureBoardScreen';
 import { ShopScreen } from './components/shop/ShopScreen';
 import { LoginScreen } from './components/login/LoginScreen';
 

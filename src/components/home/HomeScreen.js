@@ -12,9 +12,10 @@ import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { HomeImg } from 'components/home/HomeScreenCSS';
 import { fetchEquipmentData } from 'reducers/equipment';
 import { fetchUserProfile } from 'reducers/user';
+// import { initLoader } from 'reducers/loader';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
 import homeBackground from '../../assets/images/homestead.jpg';
-import { LoadingScreen } from '../loading/LoadingScreen';
+// import { LoadingScreen } from '../loading/LoadingScreen';
 
 const theme = createTheme({
   typography: {
@@ -39,8 +40,12 @@ const theme = createTheme({
 export const HomeScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
-  const currentUser = useSelector((store) => store.user)
-  const isLoading = useSelector((store) => store.loader.isLoading);
+  const currentUser = useSelector((store) => store.user);
+  // const isLoading = useSelector((store) => store.loader.isLoading);
+
+  // useEffect(() => {
+  //   dispatch(initLoader());
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchEquipmentData(accessToken));
@@ -50,9 +55,9 @@ export const HomeScreen = () => {
     dispatch(fetchUserProfile(accessToken));
   }, [accessToken, dispatch]);
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
+  // if (isLoading) {
+  //   return <LoadingScreen />;
+  // }
 
   return (
     <ThemeProvider theme={theme}>

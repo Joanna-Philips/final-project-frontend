@@ -4,7 +4,7 @@ const initialState = {
   isLoading: false
 }
 
-export const loader = createSlice({
+const loader = createSlice({
   name: 'loader',
   initialState,
   reducers: {
@@ -13,6 +13,12 @@ export const loader = createSlice({
     }
   }
 });
+
+export default loader;
+
+// export const initLoader = (dispatch) => {
+//   dispatch(loader.actions.setLoading(true));
+// };
 
 /*  return (dispatch, getState) => {
     dispatch(labyrinth.actions.setLoading(true));

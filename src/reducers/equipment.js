@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { createSlice } from '@reduxjs/toolkit';
 import { API_URL } from 'utils/urls';
-import { loader } from './loader';
+import loader from './loader';
 
 const equipment = createSlice({
   name: 'equipment',

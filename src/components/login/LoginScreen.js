@@ -8,6 +8,7 @@ import { API_URL } from 'utils/urls';
 import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Checkbox, Grid, Box, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LoginWrapper } from 'components/login/LoginScreenCSS';
+import loader from 'reducers/loader';
 import { generatePassword, generateRandomName } from './GuestLoginUtils';
 
 export const LoginScreen = () => {
@@ -38,6 +39,7 @@ export const LoginScreen = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          dispatch(loader.actions.setLoading(true));
           dispatch(user.actions.setAccessToken(data.response.accessToken));
           dispatch(user.actions.setUsername(data.response.username));
           dispatch(user.actions.setUserId(data.response.id));

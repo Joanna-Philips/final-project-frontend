@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API_URL } from 'utils/urls';
-import { loader } from './loader';
+import loader from './loader';
 
 const user = createSlice({
   name: 'user',
@@ -57,7 +57,6 @@ export const fetchUserProfile = (accessToken) => async (dispatch) => {
     dispatch(user.actions.setUserWeapons(data.response.userWeapons));
     dispatch(user.actions.setUserAvatar(data.response.userAvatar));
     dispatch(loader.actions.setLoading(false));
-    console.log('equipment data', data.response);
   } catch (error) {
     console.log(error);
   }
