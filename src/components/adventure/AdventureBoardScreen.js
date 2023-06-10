@@ -59,6 +59,31 @@ export const AdventureBoardScreen = () => {
       .finally(() => { });
   }, [accessToken]);
 
+  const onAdventureComplete = () => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
+      },
+      body: JSON.stringify({ adventureId: adventureData._id })
+    };
+
+    fetch(API_URL('adventures/complete'), options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log('adventure update data', data);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => { });
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -66,10 +91,6 @@ export const AdventureBoardScreen = () => {
           width: '100vw',
           height: '94lvh',
           backgroundColor: 'primary.dark',
-          '&:hover': {
-            backgroundColor: 'primary.main',
-            opacity: [0.9, 0.8, 0.7]
-          },
           display: 'flex',
           flexDirection: 'row'
         }}>
@@ -80,6 +101,7 @@ export const AdventureBoardScreen = () => {
           {adventureData.map((singleAdventure) => {
             return (
               <Card
+                key={singleAdventure._id}
                 sx={{ width: '50vw',
                   maxWidth: '50vw',
                   minWidth: 145,
@@ -91,10 +113,6 @@ export const AdventureBoardScreen = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between' }}>
-                {/* <CardMedia
-                  sx={{ height: 85, backgroundSize: '55px' }}
-                  image={singleAdventure.img_src}
-                  title="weapon name" /> */}
                 <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row' }}>
                   <Container>
                     <Typography
@@ -110,7 +128,7 @@ export const AdventureBoardScreen = () => {
                       Difficulty: {singleAdventure.difficulty}
                     </Typography>
                   </Container>
-                  <Button size="small" variant="contained" sx={{ height: '45px', width: '75px' }}>Complete</Button>
+                  <Button size="small" variant="contained" onClick={onAdventureComplete} sx={{ height: '45px', width: '75px' }}>Complete</Button>
                 </CardContent>
               </Card>
             )
