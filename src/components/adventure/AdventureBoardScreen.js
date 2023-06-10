@@ -1,62 +1,64 @@
-
+/* eslint-disable no-underscore-dangle */
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 /* npm install @mui/x-data-grid done */
-import { createTheme, ThemeProvider, Box } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { API_URL } from 'utils/urls';
+// import user from 'reducers/user';
+import { createTheme, ThemeProvider, Box, Card, CardContent, CardMedia, Button, Typography } from '@mui/material';
 
-const columns = [
-  { field: 'dificulty', headerName: 'Difficulty', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90
+const theme = createTheme({
+  typography: {
+    fontFamily: ['VT323', 'monospace'].join(','),
+    fontSize: 20,
+    color: 'white'
   },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) => `${params.row.firstName || ''} ${params.row.lastName || ''}`
+  status: {
+    danger: '#e53e3e'
+  },
+  palette: {
+    primary: {
+      main: '#733214',
+      darker: '#5c270f'
+    },
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff'
+    }
   }
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
-];
+});
 
 export const AdventureBoardScreen = () => {
-  const theme = createTheme({
-    typography: {
-      fontFamily: ['VT323', 'monospace'].join(','),
-      fontSize: 20,
-      color: 'white'
-    },
-    status: {
-      danger: '#e53e3e'
-    },
-    palette: {
-      primary: {
-        main: '#733214',
-        darker: '#5c270f'
-      },
-      neutral: {
-        main: '#64748B',
-        contrastText: '#fff'
+  const accessToken = useSelector((store) => store.user.accessToken);
+  // const currentUser = useSelector((store) => store.user);
+
+  const [adventureData, setAdventureData] = useState([]);
+
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: accessToken
       }
-    }
-  });
+    };
+
+    fetch(API_URL('adventures/all'), options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log('adventure data', data);
+        setAdventureData(data.response);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => { });
+  }, [accessToken]);
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -74,20 +76,43 @@ export const AdventureBoardScreen = () => {
         <div>
           <img alt="questgiver" src="https://i.pinimg.com/originals/f4/bd/35/f4bd35b9b301a9934c559cc19a8766c2.gif" style={{ borderStyle: 'outset', width: '100%' }} />
         </div>
-        <div style={{ height: 400, width: '100%' }}>
-          <DataGrid
-            sx={{
-              backgroundColor: '#edd99b'
-            }}
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 5 }
-              }
-            }}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection />
+        <div style={{ height: '100vh', width: '100%' }}>
+          {adventureData.map((singleAdventure) => {
+            return (
+              <Card
+                sx={{ width: '25vw',
+                  maxWidth: 175,
+                  minWidth: 145,
+                  height: 210,
+                  backgroundColor: 'rgba(237, 217, 155, 0.7)',
+                  borderStyle: 'solid',
+                  borderColor: '#3b241c',
+                  scrollSnapAlign: 'start',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between' }}>
+                <CardMedia
+                  sx={{ height: 85, backgroundSize: '55px' }}
+                  image={singleAdventure.img_src}
+                  title="weapon name" />
+                <CardContent sx={{ padding: 1 }}>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ fontWeight: 900,
+                      fontSize: '1.2rem',
+                      lineHeight: 1 }}>
+                    {singleAdventure.description}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
+                      Difficulty: {singleAdventure.difficulty}
+                  </Typography>
+                  <Button size="small" variant="contained">Complete</Button>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </Box>
     </ThemeProvider>
