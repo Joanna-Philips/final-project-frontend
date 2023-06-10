@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 /* eslint-disable max-len */
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { API_URL } from 'utils/urls';
 import { Box, Button, Grid, Container, createTheme, ThemeProvider, Stack, Typography } from '@mui/material';
@@ -33,12 +33,14 @@ export const PlayerAvatar = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const avatarData = useSelector((store) => store.avatar.avatarData);
-  const currentUserAvatar = useSelector((store) => store.user.userAvatar);
-  console.log('currentUserAvatar', currentUserAvatar, 'avatar Data PI', avatarData);
-  const indexOfCurrentAvatar = avatarData.findIndex((avatar) => avatar._id === currentUserAvatar);
+  const currentUser = useSelector((store) => store.user);
+  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0);
 
-  const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(indexOfCurrentAvatar);
-  console.log('index of current', indexOfCurrentAvatar);
+  useEffect(() => {
+    // console.log('currentUserAvatar', currentUser, 'avatar Data PI', avatarData);
+    const indexOfCurrentAvatar = avatarData.findIndex((avatar) => avatar._id === currentUser.userAvatar);
+    setSelectedAvatarIndex(indexOfCurrentAvatar);
+  }, [avatarData, currentUser])
 
   const onAvatarConfirm = () => {
     const options = {
@@ -60,7 +62,7 @@ export const PlayerAvatar = () => {
       })
       .then((data) => {
         console.log('avatars update Data', data);
-        dispatch(user.actions.setUserAvatar(data.userAvatar));
+        dispatch(user.actions.setUserAvatar(data.response));
       })
       .catch((error) => console.log(error))
       .finally(() => { });
@@ -91,6 +93,7 @@ export const PlayerAvatar = () => {
       <Container sx={{ padding: 0 }}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item>
+
             <Box
               component="div"
               sx={{

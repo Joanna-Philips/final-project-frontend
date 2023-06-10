@@ -10,7 +10,7 @@ const avatar = createSlice({
   },
   reducers: {
     setAvatarData: (state, action) => {
-      console.log('avatar action payload here!', action.payload);
+      // console.log('avatar action payload here!', action.payload);
       state.avatarData = action.payload;
     }
   }
