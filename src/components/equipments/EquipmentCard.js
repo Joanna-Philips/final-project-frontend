@@ -24,7 +24,6 @@ export const EquipmentCard = ({ singleWeapon }) => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Card
-        key={singleWeapon._id}
         sx={{ width: '25vw',
           maxWidth: 175,
           minWidth: '145px',

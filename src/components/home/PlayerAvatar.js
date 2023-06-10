@@ -1,28 +1,13 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable max-len */
 /* eslint-disable max-len */
 import * as React from 'react';
-import { useState } from 'react';
-/* import { useSelector } from 'react-redux';
-import { API_URL } from 'utils/urls'; */
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { API_URL } from 'utils/urls';
 import { Box, Button, Grid, Container, createTheme, ThemeProvider, Stack, Typography } from '@mui/material';
-
-const playerAvatar = 'https://cdna.artstation.com/p/assets/images/images/051/793/398/original/guilherme-meireles-shyguy.gif?1658202660'
-
-const AvatarStyles = [
-  {
-    style: 1,
-    img_src: 'https://cdna.artstation.com/p/assets/images/images/009/882/016/original/molly-heady-carroll-schveretpteacherdancetransparent.gif?1521396516'
-  },
-  {
-    style: 2,
-    img_src: 'https://cdna.artstation.com/p/assets/images/images/009/881/990/original/molly-heady-carroll-fero-feona-dance-xl.gif?1521396433'
-  },
-  {
-    style: 3,
-    img_src: 'https://cdna.artstation.com/p/assets/images/images/009/881/992/original/molly-heady-carroll-frenchbulldog-run-postable-8colours.gif?1521396443'
-  },
-  { style: 4,
-    img_src: 'https://cdnb.artstation.com/p/assets/images/images/009/881/985/original/molly-heady-carroll-doctorspecialmove.gif?1521396421' }
-]
+import user from 'reducers/user';
 
 const theme = createTheme({
   typography: {
@@ -45,46 +30,60 @@ const theme = createTheme({
 });
 
 export const PlayerAvatar = () => {
-  /* const accessToken = useSelector((store) => store.user.accessToken);
-  const [avatarList, setAvatarList] = useState([]); */
+  const dispatch = useDispatch();
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const avatarData = useSelector((store) => store.avatar.avatarData);
+  const currentUser = useSelector((store) => store.user);
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0);
 
-  /* useEffect(() => {
+  useEffect(() => {
+    // console.log('currentUserAvatar', currentUser, 'avatar Data PI', avatarData);
+    const indexOfCurrentAvatar = avatarData.findIndex((avatar) => avatar._id === currentUser.userAvatar);
+    setSelectedAvatarIndex(indexOfCurrentAvatar);
+  }, [avatarData, currentUser])
+
+  const onAvatarConfirm = () => {
     const options = {
-      method: 'GET',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         Authorization: accessToken
-      }
-    }
-    fetch(API_URL('avatars'), options)
-      .then((response) => response.json())
-      .then((data) => { setAvatarList(data.response) })
-      .catch((error) => console.log(error))
-      .finally(() => { })
-  }, []); */
+      },
+      body: JSON.stringify({ avatarId: avatarData[selectedAvatarIndex]._id })
+    };
 
-  const avatarChoices = AvatarStyles.map((singleAvatar) => ({
-    style: singleAvatar.style,
-    img_src: singleAvatar.img_src
-  }));
+    fetch(API_URL('avatars/update'), options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+      })
+      .then((data) => {
+        console.log('avatars update Data', data);
+        dispatch(user.actions.setUserAvatar(data.response));
+      })
+      .catch((error) => console.log(error))
+      .finally(() => { });
+  }
 
   const handlePreviousAvatar = () => {
-    setSelectedAvatarIndex((prevIndex) => {
-      if (prevIndex === 0) {
-        return avatarChoices.length - 1;
+    setSelectedAvatarIndex((arrayIndex) => {
+      if (arrayIndex === 0) {
+        return avatarData.length - 1;
       } else {
-        return prevIndex - 1;
+        return arrayIndex - 1;
       }
     });
   };
 
   const handleNextAvatar = () => {
-    setSelectedAvatarIndex((prevIndex) => {
-      if (prevIndex === avatarChoices.length - 1) {
+    setSelectedAvatarIndex((arrayIndex) => {
+      if (arrayIndex === avatarData.length - 1) {
         return 0;
       } else {
-        return prevIndex + 1;
+        return arrayIndex + 1;
       }
     });
   };
@@ -94,6 +93,7 @@ export const PlayerAvatar = () => {
       <Container sx={{ padding: 0 }}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item>
+
             <Box
               component="div"
               sx={{
@@ -101,25 +101,22 @@ export const PlayerAvatar = () => {
                 width: 300,
                 maxHeight: { xs: 230 },
                 maxWidth: { xs: 200 },
-                backgroundImage: `url(${avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].img_src : playerAvatar})`,
+                backgroundImage: `url(${avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 transform: 'scale(1.8)'
-                /*                 '@media (min-width: 600px)': {
-                  transform: 'scale(1.8)'
-                },
-                '@media (min-width: 900px)': {
-                  transform: 'scale(1.5)'
-                } */
               }} />
-            <Typography
-              sx={{ textAlign: 'center' }}>
-              {avatarChoices[selectedAvatarIndex] ? avatarChoices[selectedAvatarIndex].name : 'Avatar here'}
-            </Typography>
-            <Stack direction="row" spacing={2} justifyContent="center">
-              <Button size="small" variant="contained" onClick={handlePreviousAvatar}> ◄ </Button>
-              <Button size="small" variant="contained" onClick={handleNextAvatar}> ► </Button>
-            </Stack>
+            <Container>
+              <Typography
+                sx={{ textAlign: 'center' }}>
+                {avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].name : 'Avatar'}
+              </Typography>
+              <Stack direction="row" spacing={2} justifyContent="center">
+                <Button size="small" variant="contained" onClick={handlePreviousAvatar}> ◄ </Button>
+                <Button size="small" variant="contained" onClick={handleNextAvatar}> ► </Button>
+                <Button size="small" variant="contained" onClick={onAvatarConfirm}>Confirm</Button>
+              </Stack>
+            </Container>
           </Grid>
         </Grid>
       </Container>

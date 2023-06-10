@@ -3,21 +3,22 @@ import { createSlice } from '@reduxjs/toolkit';
 import { API_URL } from 'utils/urls';
 import loader from './loader';
 
-const equipment = createSlice({
-  name: 'equipment',
+const avatar = createSlice({
+  name: 'avatar',
   initialState: {
-    equipmentData: []
+    avatarData: []
   },
   reducers: {
-    setEquipmentData: (state, action) => {
-      state.equipmentData = action.payload;
+    setAvatarData: (state, action) => {
+      // console.log('avatar action payload here!', action.payload);
+      state.avatarData = action.payload;
     }
   }
 });
 
-export default equipment;
+export default avatar;
 
-export const fetchEquipmentData = (accessToken) => async (dispatch) => {
+export const fetchAvatarData = (accessToken) => async (dispatch) => {
   dispatch(loader.actions.setLoading(true));
   const options = {
     method: 'GET',
@@ -28,11 +29,11 @@ export const fetchEquipmentData = (accessToken) => async (dispatch) => {
   };
 
   try {
-    const response = await fetch(API_URL('equipments/all'), options);
+    const response = await fetch(API_URL('avatars/all'), options);
     const data = await response.json();
-    dispatch(equipment.actions.setEquipmentData(data.response));
+    dispatch(avatar.actions.setAvatarData(data.response));
     dispatch(loader.actions.setLoading(false));
-    // console.log('equipment data', data.response);
+    console.log('avatar data', data.response);
   } catch (error) {
     console.log(error);
   }

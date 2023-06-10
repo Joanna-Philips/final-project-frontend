@@ -15,12 +15,15 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import equipment from 'reducers/equipment';
+import avatar from 'reducers/avatar';
+import loader from 'reducers/loader';
 import shopIMG from '../../assets/images/UI/shopIMG.png';
 import homeIMG from '../../assets/images/UI/home.png';
 import questIMG from '../../assets/images/UI/questmap.png';
 import barIMG from '../../assets/images/UI/GUI.png';
-import coinIMG from '../../assets/images/UI/coin.png'
+import coinIMG from '../../assets/images/UI/coin.png';
 
 const pages = [
   { name: 'Shop', image: shopIMG, navLink: '/shop' },
@@ -52,6 +55,7 @@ export const TopBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const currentUser = useSelector((store) => store.user);
 
@@ -78,6 +82,10 @@ export const TopBar = () => {
     dispatch(user.actions.setUserCoins(null));
     dispatch(user.actions.setUserAvatar(null));
     dispatch(user.actions.setError(null));
+    dispatch(equipment.actions.setEquipmentData([]));
+    dispatch(avatar.actions.setAvatarData([]));
+    dispatch(loader.actions.setLoading(false));
+    navigate('/login');
   };
 
   return (

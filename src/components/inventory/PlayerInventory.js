@@ -20,19 +20,19 @@ const defaultTheme = createTheme({
 export const PlayerInventory = () => {
   const equipmentData = useSelector((store) => store.equipment.equipmentData);
   const currentUser = useSelector((store) => store.user);
-  console.log('equipData from player inventory', equipmentData);
-  console.log('current user from player inventory', currentUser);
+  // console.log('equipData from player inventory', equipmentData);
+  // console.log('current user from player inventory', currentUser);
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <InventoryWrapper>
         {equipmentData && currentUser
-                    && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
-                      .map((singleWeapon) => {
-                        return (
-                          <EquipmentCard singleWeapon={singleWeapon} />
-                        )
-                      })}
+          && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
+            .map((singleWeapon) => {
+              return (
+                <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon._id} />
+              )
+            })}
       </InventoryWrapper>
     </ThemeProvider>
   )

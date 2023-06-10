@@ -11,11 +11,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { HomeImg } from 'components/home/HomeScreenCSS';
 import { fetchEquipmentData } from 'reducers/equipment';
+import { fetchAvatarData } from 'reducers/avatar';
 import { fetchUserProfile } from 'reducers/user';
-// import { initLoader } from 'reducers/loader';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
+// import { LoadingScreen } from 'components/loading/LoadingScreen';
 import homeBackground from '../../assets/images/homestead.jpg';
-// import { LoadingScreen } from '../loading/LoadingScreen';
 
 const theme = createTheme({
   typography: {
@@ -41,23 +41,25 @@ export const HomeScreen = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const currentUser = useSelector((store) => store.user);
-  // const isLoading = useSelector((store) => store.loader.isLoading);
-
-  // useEffect(() => {
-  //   dispatch(initLoader());
-  // }, [dispatch]);
+  const isLoading = useSelector((store) => store.loader.isLoading);
 
   useEffect(() => {
     dispatch(fetchEquipmentData(accessToken));
   }, [accessToken, dispatch]);
 
   useEffect(() => {
+    dispatch(fetchAvatarData(accessToken));
+  }, [accessToken, dispatch]);
+
+  useEffect(() => {
     dispatch(fetchUserProfile(accessToken));
   }, [accessToken, dispatch]);
 
-  // if (isLoading) {
-  //   return <LoadingScreen />;
-  // }
+  if (isLoading) {
+    return (
+      <div>Loading...</div>
+    )
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -69,38 +71,35 @@ export const HomeScreen = () => {
         }}>
         <Grid container spacing={2} marginTop={0}>
           <Grid item xs={7}>
-            <Box
+            {/* <Box
               sx={{
                 bgcolor: 'transparent',
                 pt: 6,
                 pb: 6,
                 paddingTop: 0
-              }}>
-              <Container maxWidth="sm">
-                <Box
-                  sx={{
-                    bgcolor: 'rgba(237, 217, 155, 0.7)',
-                    pt: 2,
-                    pb: 2,
-                    maxWidth: '320px'
-                  }}>
-                  <Typography
-                    component="h1"
-                    variant="h5"
-                    align="center"
-                    color="text.primary"
-                    sx={{ margin: 0 }}
-                    gutterBottom>
+              }}> */}
+            <Container maxWidth="sm">
+              <Box
+                sx={{
+                  bgcolor: 'rgba(237, 217, 155, 0.7)',
+                  pt: 2,
+                  pb: 2,
+                  maxWidth: '320px'
+                }}>
+                <Typography
+                  component="h1"
+                  variant="h5"
+                  align="center"
+                  color="text.primary"
+                  sx={{ margin: 0 }}
+                  gutterBottom>
                   Hi {currentUser.username} 👾
-                  </Typography>
-                  {/* <Typography variant="h6" align="center" color="text.secondary" paragraph>
-                  Customize your avatar here
-                  </Typography> */}
-                  <PlayerAvatar />
-                </Box>
-                <HomeImg alt="home" src={homeBackground} />
-              </Container>
-            </Box>
+                </Typography>
+                <PlayerAvatar />
+              </Box>
+              <HomeImg alt="home" src={homeBackground} />
+            </Container>
+            {/* </Box> */}
           </Grid>
           <Grid item xs={5}>
             <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
