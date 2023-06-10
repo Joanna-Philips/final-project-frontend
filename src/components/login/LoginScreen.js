@@ -45,6 +45,7 @@ export const LoginScreen = () => {
           dispatch(user.actions.setUserId(data.response.id));
           dispatch(user.actions.setError(null));
           setLoginError(false);
+          localStorage.setItem('user', JSON.stringify(data.response));
         } else {
           dispatch(user.actions.setAccessToken(null));
           dispatch(user.actions.setUsername(null));

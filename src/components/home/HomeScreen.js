@@ -15,6 +15,7 @@ import { fetchAvatarData } from 'reducers/avatar';
 import { fetchUserProfile } from 'reducers/user';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
 // import { LoadingScreen } from 'components/loading/LoadingScreen';
+import { useNavigate } from 'react-router-dom';
 import homeBackground from '../../assets/images/homestead.jpg';
 
 const theme = createTheme({
@@ -39,9 +40,16 @@ const theme = createTheme({
 
 export const HomeScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
   const currentUser = useSelector((store) => store.user);
   const isLoading = useSelector((store) => store.loader.isLoading);
+
+  useEffect(() => {
+    if (!accessToken) {
+      navigate('/login');
+    }
+  }, [accessToken, navigate]);
 
   useEffect(() => {
     dispatch(fetchEquipmentData(accessToken));

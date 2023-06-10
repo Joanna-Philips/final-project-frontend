@@ -1,13 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 import { createSlice } from '@reduxjs/toolkit';
 import { API_URL } from 'utils/urls';
 import loader from './loader';
 
+const localStorageUser = localStorage.getItem('user');
+const localUser = JSON.parse(localStorageUser);
+
 const user = createSlice({
   name: 'user',
   initialState: {
-    username: null,
-    userId: null,
-    accessToken: null,
+    username: localUser !== null ? localUser.username : null,
+    userId: localUser !== null ? localUser._id : null,
+    accessToken: localUser !== null ? localUser.accessToken : null,
     userCoins: null,
     userWeapons: [],
     userAvatar: null,

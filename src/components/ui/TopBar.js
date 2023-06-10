@@ -85,6 +85,7 @@ export const TopBar = () => {
     dispatch(equipment.actions.setEquipmentData([]));
     dispatch(avatar.actions.setAvatarData([]));
     dispatch(loader.actions.setLoading(false));
+    localStorage.setItem('user', null);
     navigate('/login');
   };
 
