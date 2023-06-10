@@ -168,25 +168,6 @@ export const TopBar = () => {
                 ))}
               </Menu>
             </Box>
-            <Typography
-              variant="h7"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-                flexDirection: 'row-reverse'
-              }}>
-              <img src={coinIMG} alt="user coins" />
-              {currentUser.userCoins}
-            </Typography>
-
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
@@ -202,9 +183,11 @@ export const TopBar = () => {
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
+              <img src={coinIMG} alt="user coins" />
+              {currentUser.userCoins}
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginLeft: 3 }}>
                   <Avatar sx={{ backgroundColor: 'transparent' }}>
                     <SettingsOutlinedIcon />
                   </Avatar>

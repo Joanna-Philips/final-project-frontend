@@ -97,7 +97,13 @@ export const LoginScreen = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <LoginWrapper>
-        <Container component="main" maxWidth="xs" sx={{ backgroundColor: 'rgba(237, 217, 155, 0.8)', height: '68%' }}>
+        <Container
+          component="main"
+          maxWidth="xs"
+          sx={{ backgroundColor: 'rgba(237, 217, 155, 0.8)',
+            height: '68%',
+            borderStyle: 'outset',
+            borderColor: '#3b241c' }}>
           <CssBaseline />
           <Box
             sx={{

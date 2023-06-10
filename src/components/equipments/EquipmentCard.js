@@ -26,7 +26,8 @@ export const EquipmentCard = ({ singleWeapon }) => {
       <Card
         sx={{ width: '25vw',
           maxWidth: 175,
-          minWidth: '145px',
+          minWidth: 145,
+          height: 210,
           backgroundColor: 'rgba(237, 217, 155, 0.7)',
           borderStyle: 'solid',
           borderColor: '#3b241c',

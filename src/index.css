@@ -10,11 +10,15 @@ code {
     monospace;
 }
 
-
+a {
+  text-decoration: none;
+  color: inherit;
+}
 /* Color setup */
 /* BACKGROUND/BORDER
   darkred/brown: #3b241c;
   light yellow/beige: #edd99b */
 /* FONT: white & black */
 /* BUTTON COLOR
-    grayish blue: #3d4362*/
+    grayish blue: #3d4362
+    slightly lighter: #2e3242*/
