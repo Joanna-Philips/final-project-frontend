@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import user from 'reducers/user';
+import equipment from 'reducers/equipment';
+import avatar from 'reducers/avatar';
+import loader from 'reducers/loader';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,10 +19,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { NavLink, useNavigate } from 'react-router-dom';
-import equipment from 'reducers/equipment';
-import avatar from 'reducers/avatar';
-import loader from 'reducers/loader';
 import shopIMG from '../../assets/images/UI/shopIMG.png';
 import homeIMG from '../../assets/images/UI/home.png';
 import questIMG from '../../assets/images/UI/questmap.png';
@@ -26,9 +26,9 @@ import barIMG from '../../assets/images/UI/GUI.png';
 import coinIMG from '../../assets/images/UI/coin.png';
 
 const pages = [
-  { name: 'Shop', image: shopIMG, navLink: '/shop' },
   { name: 'Homestead', image: homeIMG, navLink: '/home' },
-  { name: 'Quests', image: questIMG, navLink: '/quests' }
+  { name: 'Quests', image: questIMG, navLink: '/quests' },
+  { name: 'Shop', image: shopIMG, navLink: '/shop' }
 ];
 
 const theme = createTheme({
