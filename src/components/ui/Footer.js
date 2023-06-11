@@ -1,6 +1,5 @@
 import React from 'react';
 import { BottomNavigation, Typography, Link, Paper } from '@mui/material';
-/* import footerIMG from '../assets/images/UI/footerbkgrnd.png' */
 
 export const Footer = () => {
   return (
@@ -12,9 +11,6 @@ export const Footer = () => {
         right: 0,
         color: 'black',
         height: 0.05,
-        /* backgroundImage: `url(${footerIMG})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover' */
         backgroundColor: '#edd99b',
         borderStyle: 'outset',
         borderColor: '#3b241c'

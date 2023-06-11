@@ -12,6 +12,7 @@ import { ShopButton } from './ShopButton';
 export const ShopScreen = () => {
   AuthorizeAndLoad(useNavigate(), useDispatch());
   const equipmentData = useSelector((store) => store.equipment.equipmentData);
+  const currentUser = useSelector((store) => store.user);
 
   const defaultTheme = createTheme({
     typography: {
@@ -50,14 +51,17 @@ export const ShopScreen = () => {
                       flexDirection: 'column'
                     }}>
                     <CardActions sx={{ justifyContent: 'space-between', padding: 0 }}>
-                      <ShopButton
-                        transactionID={singleWeapon._id}
-                        transactionGold={singleWeapon.cost}
-                        transactionType="Buy" />
-                      <ShopButton
-                        transactionID={singleWeapon._id}
-                        transactionGold={singleWeapon.sell}
-                        transactionType="Sell" />
+                      {currentUser.userWeapons.includes(singleWeapon._id) ? (
+                        <ShopButton
+                          transactionID={singleWeapon._id}
+                          transactionGold={singleWeapon.sell}
+                          transactionType="Sell" />
+                      ) : (
+                        <ShopButton
+                          transactionID={singleWeapon._id}
+                          transactionGold={singleWeapon.cost}
+                          transactionType="Buy" />
+                      )}
                     </CardActions>
                   </Card>
                 </SingleWareWrapper>
