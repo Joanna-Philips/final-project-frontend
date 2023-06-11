@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import user from 'reducers/user';
 import { API_URL } from 'utils/urls';
 import { Button } from '@mui/material';
-import goldIconIMG from '../../assets/images/UI/coin.png'
+import goldIconIMG from '../../assets/images/UI/coin.png';
 
 export const ShopButton = ({ transactionID, transactionGold, transactionType }) => {
   const dispatch = useDispatch();

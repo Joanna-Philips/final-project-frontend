@@ -4,8 +4,10 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/urls';
+import user from 'reducers/user';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
 import { createTheme, ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
+import goldIconIMG from '../../assets/images/UI/coin.png';
 
 const theme = createTheme({
   typography: {
@@ -30,6 +32,7 @@ const theme = createTheme({
 
 export const AdventureBoardScreen = () => {
   AuthorizeAndLoad(useNavigate(), useDispatch());
+  const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.user.accessToken);
   const adventureData = useSelector((store) => store.adventure.adventureData);
   // const currentUser = useSelector((store) => store.user);
@@ -54,6 +57,7 @@ export const AdventureBoardScreen = () => {
       })
       .then((data) => {
         console.log('adventure update data', data);
+        dispatch(user.actions.setUserCoins(data.response));
       })
       .catch((error) => console.log(error))
       .finally(() => { });
@@ -74,14 +78,13 @@ export const AdventureBoardScreen = () => {
         </div>
         <div style={{ height: '100vh', width: '100%' }}>
           {adventureData.map((singleAdventure) => {
-            console.log(singleAdventure._id)
             return (
               <Card
                 key={singleAdventure._id}
                 sx={{ width: '50vw',
                   maxWidth: '50vw',
                   minWidth: 145,
-                  height: 100,
+                  height: '6em',
                   backgroundColor: 'rgba(237, 217, 155, 0.7)',
                   borderStyle: 'solid',
                   borderColor: '#3b241c',
@@ -104,6 +107,10 @@ export const AdventureBoardScreen = () => {
                       Difficulty: {singleAdventure.difficulty}
                     </Typography>
                   </Container>
+                  <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: '5px', marginRight: '1rem' }}>
+                    <img src={goldIconIMG} alt="user coins" />
+                    {singleAdventure.rewardCoins}
+                  </Box>
                   <Button size="small" variant="contained" onClick={() => onAdventureComplete(singleAdventure._id)} sx={{ height: '45px', width: '75px' }}>Complete</Button>
                 </CardContent>
               </Card>
