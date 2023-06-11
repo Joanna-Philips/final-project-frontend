@@ -59,14 +59,14 @@ export const AdventureBoardScreen = () => {
       .finally(() => { });
   }, [accessToken]);
 
-  const onAdventureComplete = () => {
+  const onAdventureComplete = (adventureId) => {
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: accessToken
       },
-      body: JSON.stringify({ adventureId: adventureData._id })
+      body: JSON.stringify({ adventureId })
     };
 
     fetch(API_URL('adventures/complete'), options)
@@ -99,6 +99,7 @@ export const AdventureBoardScreen = () => {
         </div>
         <div style={{ height: '100vh', width: '100%' }}>
           {adventureData.map((singleAdventure) => {
+            console.log(singleAdventure._id)
             return (
               <Card
                 key={singleAdventure._id}
@@ -128,7 +129,7 @@ export const AdventureBoardScreen = () => {
                       Difficulty: {singleAdventure.difficulty}
                     </Typography>
                   </Container>
-                  <Button size="small" variant="contained" onClick={onAdventureComplete} sx={{ height: '45px', width: '75px' }}>Complete</Button>
+                  <Button size="small" variant="contained" onClick={() => onAdventureComplete(singleAdventure._id)} sx={{ height: '45px', width: '75px' }}>Complete</Button>
                 </CardContent>
               </Card>
             )

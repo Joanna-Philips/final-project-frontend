@@ -92,10 +92,9 @@ export const ShopScreen = () => {
           <WaresWrapper>
             {equipmentData.slice(1).map((singleWeapon) => {
               return (
-                <SingleWareWrapper>
+                <SingleWareWrapper key={singleWeapon._id}>
                   <EquipmentCard singleWeapon={singleWeapon} />
                   <Card
-                    key={singleWeapon._id}
                     sx={{
                       width: '25vw',
                       maxWidth: 175,
