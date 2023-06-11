@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import user from 'reducers/user';
+import user, { fetchUserProfile } from 'reducers/user';
 import { API_URL } from 'utils/urls';
 import { Button } from '@mui/material';
 import goldIconIMG from '../../assets/images/UI/coin.png';
@@ -32,6 +32,7 @@ export const ShopButton = ({ transactionID, transactionGold, transactionType }) 
       })
       .then((data) => {
         console.log(data);
+        dispatch(user.actions.setUserCoins(data.response));
         dispatch(user.actions.setUserWeapons(data.purchasedEquipment._id));
       })
       .catch((error) => console.log(error))
@@ -60,7 +61,8 @@ export const ShopButton = ({ transactionID, transactionGold, transactionType }) 
       })
       .then((data) => {
         console.log(data);
-        dispatch(user.actions.setUserCoins(data.userCoins));
+        dispatch(user.actions.setUserCoins(data.response));
+        dispatch(fetchUserProfile(accessToken));
       })
       .catch((error) => console.log(error))
       .finally(() => { });

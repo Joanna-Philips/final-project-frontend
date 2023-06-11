@@ -22,7 +22,6 @@ export const App = () => {
     equipment: equipment.reducer,
     adventure: adventure.reducer,
     avatar: avatar.reducer,
-
     loader: loader.reducer
   });
   const store = configureStore({ reducer })
