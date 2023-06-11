@@ -65,26 +65,3 @@ export const fetchUserProfile = (accessToken) => async (dispatch) => {
     console.log(error);
   }
 };
-
-// useEffect(() => {
-//   dispatch(loader.actions.setLoading(true));
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: accessToken
-//     }
-//   }
-//   fetch(API_URL('users/profile'), options)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       // console.log(data.response.userWeapons);
-//       dispatch(user.actions.setUserCoins(data.response.userCoins));
-//       dispatch(user.actions.setUserWeapons(data.response.userWeapons));
-//       dispatch(user.actions.setUserAvatar(data.response.userAvatar));
-//       dispatch(loader.actions.setLoading(false));
-//       // console.log('data:', data.response.userWeapons);
-//     })
-//     .catch((error) => console.log(error))
-//     // .finally(() => { console.log('finally', currentUser.userWeapons) })
-// }, []);

@@ -1,12 +1,13 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import NotFound from 'components/404/NotFound';
 import Main from 'components/login/LoginRedirect';
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import user from 'reducers/user';
 import equipment from 'reducers/equipment';
 import avatar from 'reducers/avatar';
-import { Provider } from 'react-redux';
+import adventure from 'reducers/adventure';
 import { Footer } from 'components/ui/Footer';
 import { HomeScreen } from 'components/home/HomeScreen';
 import { Layout } from 'components/ui/Layout';
@@ -19,7 +20,9 @@ export const App = () => {
   const reducer = combineReducers({
     user: user.reducer,
     equipment: equipment.reducer,
+    adventure: adventure.reducer,
     avatar: avatar.reducer,
+
     loader: loader.reducer
   });
   const store = configureStore({ reducer })
