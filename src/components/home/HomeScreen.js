@@ -56,13 +56,6 @@ export const HomeScreen = () => {
         }}>
         <Grid container spacing={2} marginTop={0}>
           <Grid item xs={7}>
-            {/* <Box
-              sx={{
-                bgcolor: 'transparent',
-                pt: 6,
-                pb: 6,
-                paddingTop: 0
-              }}> */}
             <Container maxWidth="sm">
               <Box
                 sx={{
