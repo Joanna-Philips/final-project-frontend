@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-import * as React from 'react';
-import { useEffect } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -10,12 +10,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { HomeImg } from 'components/home/HomeScreenCSS';
-import { fetchEquipmentData } from 'reducers/equipment';
-import { fetchAvatarData } from 'reducers/avatar';
-import { fetchUserProfile } from 'reducers/user';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
 // import { LoadingScreen } from 'components/loading/LoadingScreen';
-import { useNavigate } from 'react-router-dom';
+import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
 import homeBackground from '../../assets/images/homestead.jpg';
 
 const theme = createTheme({
@@ -39,29 +36,9 @@ const theme = createTheme({
 });
 
 export const HomeScreen = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const accessToken = useSelector((store) => store.user.accessToken);
+  AuthorizeAndLoad(useNavigate(), useDispatch());
   const currentUser = useSelector((store) => store.user);
   const isLoading = useSelector((store) => store.loader.isLoading);
-
-  useEffect(() => {
-    if (!accessToken) {
-      navigate('/login');
-    }
-  }, [accessToken, navigate]);
-
-  useEffect(() => {
-    dispatch(fetchEquipmentData(accessToken));
-  }, [accessToken, dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchAvatarData(accessToken));
-  }, [accessToken, dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchUserProfile(accessToken));
-  }, [accessToken, dispatch]);
 
   if (isLoading) {
     return (

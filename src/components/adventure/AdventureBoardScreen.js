@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-import * as React from 'react';
 /* npm install @mui/x-data-grid done */
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/urls';
-// import user from 'reducers/user';
-import { createTheme, ThemeProvider, Box, Card, CardContent, CardMedia, Button, Typography } from '@mui/material';
+import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
+import { createTheme, ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
 
 const theme = createTheme({
   typography: {
@@ -29,21 +29,22 @@ const theme = createTheme({
 });
 
 export const AdventureBoardScreen = () => {
+  AuthorizeAndLoad(useNavigate(), useDispatch());
   const accessToken = useSelector((store) => store.user.accessToken);
+  const adventureData = useSelector((store) => store.adventure.adventureData);
   // const currentUser = useSelector((store) => store.user);
 
-  const [adventureData, setAdventureData] = useState([]);
-
-  useEffect(() => {
+  const onAdventureComplete = () => {
     const options = {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: accessToken
-      }
+      },
+      body: JSON.stringify({ adventureId: adventureData._id })
     };
 
-    fetch(API_URL('adventures/all'), options)
+    fetch(API_URL('adventures/complete'), options)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -52,12 +53,11 @@ export const AdventureBoardScreen = () => {
         }
       })
       .then((data) => {
-        console.log('adventure data', data);
-        setAdventureData(data.response);
+        console.log('adventure update data', data);
       })
       .catch((error) => console.log(error))
       .finally(() => { });
-  }, [accessToken]);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -66,10 +66,6 @@ export const AdventureBoardScreen = () => {
           width: '100vw',
           height: '94lvh',
           backgroundColor: 'primary.dark',
-          '&:hover': {
-            backgroundColor: 'primary.main',
-            opacity: [0.9, 0.8, 0.7]
-          },
           display: 'flex',
           flexDirection: 'row'
         }}>
@@ -80,10 +76,11 @@ export const AdventureBoardScreen = () => {
           {adventureData.map((singleAdventure) => {
             return (
               <Card
-                sx={{ width: '25vw',
-                  maxWidth: 175,
+                key={singleAdventure._id}
+                sx={{ width: '50vw',
+                  maxWidth: '50vw',
                   minWidth: 145,
-                  height: 210,
+                  height: 100,
                   backgroundColor: 'rgba(237, 217, 155, 0.7)',
                   borderStyle: 'solid',
                   borderColor: '#3b241c',
@@ -91,24 +88,22 @@ export const AdventureBoardScreen = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between' }}>
-                <CardMedia
-                  sx={{ height: 85, backgroundSize: '55px' }}
-                  image={singleAdventure.img_src}
-                  title="weapon name" />
-                <CardContent sx={{ padding: 1 }}>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                    sx={{ fontWeight: 900,
-                      fontSize: '1.2rem',
-                      lineHeight: 1 }}>
-                    {singleAdventure.description}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
+                <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row' }}>
+                  <Container>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      sx={{ fontWeight: 900,
+                        fontSize: '1.2rem',
+                        lineHeight: 1 }}>
+                      {singleAdventure.description}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
                       Difficulty: {singleAdventure.difficulty}
-                  </Typography>
-                  <Button size="small" variant="contained">Complete</Button>
+                    </Typography>
+                  </Container>
+                  <Button size="small" variant="contained" onClick={onAdventureComplete} sx={{ height: '45px', width: '75px' }}>Complete</Button>
                 </CardContent>
               </Card>
             )
