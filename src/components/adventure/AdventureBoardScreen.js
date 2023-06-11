@@ -35,7 +35,6 @@ export const AdventureBoardScreen = () => {
   // const currentUser = useSelector((store) => store.user);
 
   const onAdventureComplete = (adventureId) => {
-
     const options = {
       method: 'POST',
       headers: {
