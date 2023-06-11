@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import * as React from 'react';
 /* npm install @mui/x-data-grid done */
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/urls';
-// import user from 'reducers/user';
+import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
 import { createTheme, ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
 
 const theme = createTheme({
@@ -29,37 +29,13 @@ const theme = createTheme({
 });
 
 export const AdventureBoardScreen = () => {
+  AuthorizeAndLoad(useNavigate(), useDispatch());
   const accessToken = useSelector((store) => store.user.accessToken);
+  const adventureData = useSelector((store) => store.adventure.adventureData);
   // const currentUser = useSelector((store) => store.user);
 
-  const [adventureData, setAdventureData] = useState([]);
-
-  useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: accessToken
-      }
-    };
-
-    fetch(API_URL('adventures/all'), options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error(`Request failed with status ${response.status}`);
-        }
-      })
-      .then((data) => {
-        console.log('adventure data', data);
-        setAdventureData(data.response);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => { });
-  }, [accessToken]);
-
   const onAdventureComplete = (adventureId) => {
+
     const options = {
       method: 'POST',
       headers: {
