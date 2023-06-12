@@ -10,7 +10,7 @@ export const Footer = () => {
         left: 0,
         right: 0,
         color: 'black',
-        height: 0.05,
+        height: '50px',
         backgroundColor: '#edd99b',
         borderStyle: 'outset',
         borderColor: '#3b241c'

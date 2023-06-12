@@ -8,20 +8,20 @@ import user from 'reducers/user';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
 import { createTheme, ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
 import goldIconIMG from '../../assets/images/UI/coin.png';
+import { QuestDisplayWrapper, QuestIMG } from './AdventureBoardScreenCSS';
 
 const theme = createTheme({
   typography: {
     fontFamily: ['VT323', 'monospace'].join(','),
-    fontSize: 20,
-    color: 'white'
+    fontSize: 20
   },
   status: {
     danger: '#e53e3e'
   },
   palette: {
     primary: {
-      main: '#733214',
-      darker: '#5c270f'
+      main: '#3d4362',
+      darker: '#2e3242'
     },
     neutral: {
       main: '#64748B',
@@ -68,21 +68,20 @@ export const AdventureBoardScreen = () => {
       <Box
         sx={{
           width: '100vw',
-          height: '94lvh',
-          backgroundColor: 'primary.dark',
+          height: '91lvh',
+          backgroundImage: 'url(https://i.redd.it/usyvrjkyi3g41.gif)',
+          backgroundSize: 'cover',
           display: 'flex',
-          flexDirection: 'row'
+          flexDirection: 'row',
+          backgroundPosition: 'center',
+          justifyContent: 'center'
         }}>
-        <div>
-          <img alt="questgiver" src="https://i.pinimg.com/originals/f4/bd/35/f4bd35b9b301a9934c559cc19a8766c2.gif" style={{ borderStyle: 'outset', width: '100%' }} />
-        </div>
-        <div style={{ height: '100vh', width: '100%' }}>
+        <QuestDisplayWrapper>
           {adventureData.map((singleAdventure) => {
             return (
               <Card
                 key={singleAdventure._id}
-                sx={{ width: '50vw',
-                  maxWidth: '50vw',
+                sx={{ width: '48vw',
                   minWidth: 145,
                   height: '6em',
                   backgroundColor: 'rgba(237, 217, 155, 0.7)',
@@ -91,7 +90,11 @@ export const AdventureBoardScreen = () => {
                   scrollSnapAlign: 'start',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between' }}>
+                  justifyContent: 'space-between',
+                  opacity: [0.6],
+                  '&:hover': {
+                    opacity: [1]
+                  } }}>
                 <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row' }}>
                   <Container>
                     <Typography
@@ -111,12 +114,23 @@ export const AdventureBoardScreen = () => {
                     <img src={goldIconIMG} alt="user coins" />
                     {singleAdventure.rewardCoins}
                   </Box>
-                  <Button size="small" variant="contained" onClick={() => onAdventureComplete(singleAdventure._id)} sx={{ height: '45px', width: '75px' }}>Complete</Button>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    onClick={() => onAdventureComplete(singleAdventure._id)}
+                    sx={{ height: '45px',
+                      width: '75px',
+                      borderStyle: 'outset',
+                      borderColor: '#2e3242',
+                      borderWidth: 'medium',
+                      borderRadius: '12%' }}>
+                    <QuestIMG src="https://i.postimg.cc/XqWr4hMc/questswords.png" />
+                  </Button>
                 </CardContent>
               </Card>
             )
           })}
-        </div>
+        </QuestDisplayWrapper>
       </Box>
     </ThemeProvider>
   );

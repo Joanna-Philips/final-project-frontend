@@ -102,13 +102,13 @@ export const LoginScreen = () => {
           component="main"
           maxWidth="xs"
           sx={{ backgroundColor: 'rgba(237, 217, 155, 0.8)',
-            height: '68%',
             borderStyle: 'outset',
             borderColor: '#3b241c' }}>
           <CssBaseline />
           <Box
             sx={{
               marginTop: 4,
+              marginBottom: 4,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center'
@@ -184,7 +184,7 @@ export const LoginScreen = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, fontSize: '1.2rem' }}>
+                sx={{ mt: 3, mb: 2, fontSize: '1.2rem', borderStyle: 'outset', borderWidth: 'medium', borderColor: '#2e3242' }}>
                 {mode === 'login' ? 'Login' : 'Register'}
               </Button>
               <Button

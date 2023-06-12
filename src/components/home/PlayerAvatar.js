@@ -96,7 +96,7 @@ export const PlayerAvatar = () => {
             <Box
               component="div"
               sx={{
-                height: 500,
+                height: 330,
                 width: 300,
                 maxHeight: { xs: 230 },
                 maxWidth: { xs: 200 },
@@ -105,15 +105,49 @@ export const PlayerAvatar = () => {
                 backgroundRepeat: 'no-repeat',
                 transform: 'scale(1.8)'
               }} />
-            <Container>
+            <Container sx={{ padding: '0 20px 20px' }}>
               <Typography
                 sx={{ textAlign: 'center' }}>
                 {avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].name : 'Avatar'}
               </Typography>
-              <Stack direction="row" spacing={2} justifyContent="center">
-                <Button size="small" variant="contained" onClick={handlePreviousAvatar}> ◄ </Button>
-                <Button size="small" variant="contained" onClick={handleNextAvatar}> ► </Button>
-                <Button size="small" variant="contained" onClick={onAvatarConfirm}>Confirm</Button>
+              <Stack direction="row" spacing={2} alignItems="center">
+                <Button
+                  sx={{
+                    borderStyle: 'outset',
+                    borderColor: '#2e3242',
+                    borderWidth: 'medium',
+                    borderRadius: '12%'
+                  }}
+                  size="small"
+                  variant="contained"
+                  onClick={handlePreviousAvatar}> ◄
+                </Button>
+                <Button
+                  sx={{
+                    borderStyle: 'outset',
+                    borderColor: '#2e3242',
+                    borderWidth: 'medium',
+                    borderRadius: '12%'
+                  }}
+                  size="small"
+                  variant="contained"
+                  onClick={handleNextAvatar}> ►
+                </Button>
+                <Button
+                  sx={{
+                    borderStyle: 'outset',
+                    borderColor: '#2e3242',
+                    borderWidth: 'medium',
+                    borderRadius: '12%',
+                    width: 30,
+                    height: 30,
+                    minWidth: 30
+                  }}
+                  size="small"
+                  variant="contained"
+                  onClick={onAvatarConfirm}>
+                  √
+                </Button>
               </Stack>
             </Container>
           </Grid>

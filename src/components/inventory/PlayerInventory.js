@@ -4,7 +4,8 @@ import * as React from 'react';
 import { EquipmentCard } from 'components/equipments/EquipmentCard';
 import { useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { InventoryWrapper } from 'components/home/HomeScreenCSS';
+import { InventoryWrapper, InventoryTitle, InventoryChildWrapper } from 'components/home/HomeScreenCSS';
+import { EquipButton } from 'components/home/EquipButton';
 
 const defaultTheme = createTheme({
   typography: {
@@ -26,13 +27,19 @@ export const PlayerInventory = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <InventoryWrapper>
-        {equipmentData && currentUser
+        <InventoryTitle>Inventory</InventoryTitle>
+        <InventoryChildWrapper>
+          {equipmentData && currentUser
           && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
             .map((singleWeapon) => {
               return (
-                <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon._id} />
+                <>
+                  <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon._id} />
+                  <EquipButton key={singleWeapon._idid} id={singleWeapon._id} />
+                </>
               )
             })}
+        </InventoryChildWrapper>
       </InventoryWrapper>
     </ThemeProvider>
   )
