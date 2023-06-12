@@ -102,13 +102,13 @@ export const LoginScreen = () => {
           component="main"
           maxWidth="xs"
           sx={{ backgroundColor: 'rgba(237, 217, 155, 0.8)',
-            height: '68%',
             borderStyle: 'outset',
             borderColor: '#3b241c' }}>
           <CssBaseline />
           <Box
             sx={{
               marginTop: 4,
+              marginBottom: 4,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center'

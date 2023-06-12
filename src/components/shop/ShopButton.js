@@ -85,6 +85,7 @@ export const ShopButton = ({ transactionID, transactionGold, transactionType }) 
         pt: 0.25,
         borderStyle: 'outset',
         borderWidth: 'medium',
+        borderRadius: '12%',
         borderColor: '#2e3242'
       }}
       size="small"
