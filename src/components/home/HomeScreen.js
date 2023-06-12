@@ -49,59 +49,70 @@ export const HomeScreen = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <UserWrapper>
-        <Grid
-          marginTop={0}
-          sx={{ display: 'flex',
-            flexDirection: 'column',
-            '@media screen and (min-width: 700px)': {
-              display: 'flex',
-              flexDirection: 'row'
-            } }}>
-          <Grid item xs={7}>
-            <Container
-              sx={{
+        <Container
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            width: '70vw',
+            height: '60vh',
+            backgroundColor: 'rgba(237, 217, 155, 0.7)',
+            borderStyle: 'outset',
+            borderColor: '#3b241c'
+          }}>
+          <Grid
+            marginTop={0}
+            sx={{ display: 'flex',
+              flexDirection: 'column',
+              '@media screen and (min-width: 700px)': {
                 display: 'flex',
-                justifyContent: 'center',
-                width: '40vw'
-              }}>
-              <Box
+                flexDirection: 'row'
+              } }}>
+            <Grid item xs={7}>
+              <Container
                 sx={{
-                  bgcolor: 'rgba(237, 217, 155, 0.7)',
-                  maxWidth: '320px',
-                  borderStyle: 'outset',
-                  borderColor: '#3b241c',
-                  borderRadius: '3%'
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '40vw'
                 }}>
-                <Typography
-                  component="h1"
-                  variant="h5"
-                  align="center"
-                  color="text.primary"
-                  sx={{ margin: 0,
-                    backgroundColor: '#3d4362',
-                    color: 'white',
-                    padding: '0 5px',
+                <Box
+                  sx={{
+                    bgcolor: 'rgba(237, 217, 155, 0.7)',
+                    maxWidth: '320px',
                     borderStyle: 'outset',
-                    fontSize: '1rem',
-                    borderRadius: '13%',
-                    width: 'fit-content',
-                    marginTop: '-3px',
-                    marginLeft: '-3px' }}
-                  gutterBottom>
-                  {currentUser.username} 👾
-                </Typography>
-                <PlayerAvatar />
-              </Box>
-            </Container>
+                    borderColor: '#3b241c',
+                    borderRadius: '3%'
+                  }}>
+                  <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    color="text.primary"
+                    sx={{ margin: 0,
+                      backgroundColor: '#3d4362',
+                      color: 'white',
+                      padding: '0 5px',
+                      borderStyle: 'outset',
+                      fontSize: '1rem',
+                      borderRadius: '13%',
+                      width: 'fit-content',
+                      marginTop: '-3px',
+                      marginLeft: '-3px' }}
+                    gutterBottom>
+                    {currentUser.username} 👾
+                  </Typography>
+                  <PlayerAvatar />
+                </Box>
+              </Container>
+            </Grid>
+            <Grid item xs={5}>
+              <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
+                <Grid container spacing={4}>
+                  <PlayerInventory />
+                </Grid>
+              </Container>
+            </Grid>
           </Grid>
-          <Grid item xs={5}>
-            <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
-              <Grid container spacing={4}>
-                <PlayerInventory />
-              </Grid>
-            </Container>
-          </Grid>
-        </Grid>
+        </Container>
       </UserWrapper>
     </ThemeProvider>
   );

@@ -90,6 +90,8 @@ export const PlayerAvatar = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ padding: 0, border: 2, borderColor: 'blue' }}>
+        {/* <Grid container justifyContent="center" alignItems="center" sx={{ border: 2, borderColor: 'green' }}> */}
+        {/* <Grid item> */}
         <Box
           component="div"
           sx={{
@@ -149,6 +151,8 @@ export const PlayerAvatar = () => {
             </Button>
           </Stack>
         </Container>
+        {/* </Grid> */}
+        {/* </Grid> */}
       </Container>
     </ThemeProvider>
   );

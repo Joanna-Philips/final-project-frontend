@@ -45,7 +45,7 @@ export const EquipButton = ({ weaponId }) => {
         mb: 0,
         fontSize: '1rem',
         backgroundColor: '#3d4362',
-        width: '50%',
+        width: '30%',
         height: '110%',
         padding: 0,
         pt: 0.25,

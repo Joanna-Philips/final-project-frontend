@@ -16,6 +16,7 @@ export const InventoryWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 30px;
+    border: solid red;
 `
 
 export const InventoryTitle = styled.p`
@@ -34,5 +35,6 @@ export const InventoryChildWrapper = styled.div`
     position: absolute;
     flex-wrap: wrap;
     display: flex;
+    flex-direction: column;
     width: 55%;
     max-width: 312px;`
