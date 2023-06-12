@@ -184,7 +184,7 @@ export const LoginScreen = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, fontSize: '1.2rem' }}>
+                sx={{ mt: 3, mb: 2, fontSize: '1.2rem', borderStyle: 'outset', borderWidth: 'medium', borderColor: '#2e3242' }}>
                 {mode === 'login' ? 'Login' : 'Register'}
               </Button>
               <Button
