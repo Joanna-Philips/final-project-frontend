@@ -31,10 +31,12 @@ export const PlayerInventory = () => {
           && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
             .map((singleWeapon) => {
               return (
+                // <Grid item xs={12} sm={6} md={4}>
                 <>
                   <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon.name} />
                   <EquipButton weaponId={singleWeapon._id} key={singleWeapon._id} />
                 </>
+                // </Grid>
               )
             })}
         </InventoryChildWrapper>

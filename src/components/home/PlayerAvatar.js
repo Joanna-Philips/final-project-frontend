@@ -100,9 +100,9 @@ export const PlayerAvatar = () => {
             backgroundImage: `url(${avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            transform: 'scale(1.8)',
-            border: 1,
-            borderColor: 'red'
+            transform: 'scale(1.8)'
+            // border: 1,
+            // borderColor: 'red'
           }} />
         <Container sx={{ padding: '0 20px 20px' }}>
           <Typography

@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-/* npm install @mui/x-data-grid done */
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/urls';
@@ -9,6 +8,7 @@ import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
 import { createTheme, ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
 import goldIconIMG from '../../assets/images/UI/coin.png';
 import { QuestDisplayWrapper, QuestIMG } from './AdventureBoardScreenCSS';
+import { AdventureDialog } from './AdventureDialog';
 
 const theme = createTheme({
   typography: {
@@ -33,16 +33,19 @@ const theme = createTheme({
 export const AdventureBoardScreen = () => {
   AuthorizeAndLoad(useNavigate(), useDispatch());
   const dispatch = useDispatch();
-  const accessToken = useSelector((store) => store.user.accessToken);
   const adventureData = useSelector((store) => store.adventure.adventureData);
-  // const currentUser = useSelector((store) => store.user);
+  const currentUser = useSelector((store) => store.user);
+
+  const [showAdventureAlert, setShowAdventureAlert] = useState(false);
+  const [questWon, setQuestWon] = useState(false);
+  const [completedAdventure, setCompletedAdventure] = useState({});
 
   const onAdventureComplete = (adventureId) => {
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: accessToken
+        Authorization: currentUser.accessToken
       },
       body: JSON.stringify({ adventureId })
     };
@@ -57,7 +60,11 @@ export const AdventureBoardScreen = () => {
       })
       .then((data) => {
         console.log('adventure update data', data);
-        dispatch(user.actions.setUserCoins(data.response));
+        // const rewardCoins = Math.abs(data.response.userCoins - currentUser.userCoins);
+        setCompletedAdventure(adventureData.find((a) => a._id === adventureId));
+        setShowAdventureAlert(true);
+        setQuestWon(data.response.questWon);
+        dispatch(user.actions.setUserCoins(data.response.userCoins));
       })
       .catch((error) => console.log(error))
       .finally(() => { });
@@ -81,7 +88,8 @@ export const AdventureBoardScreen = () => {
             return (
               <Card
                 key={singleAdventure._id}
-                sx={{ width: '48vw',
+                sx={{
+                  width: '48vw',
                   minWidth: 145,
                   height: '6em',
                   backgroundColor: 'rgba(237, 217, 155, 0.7)',
@@ -94,16 +102,19 @@ export const AdventureBoardScreen = () => {
                   opacity: [0.6],
                   '&:hover': {
                     opacity: [1]
-                  } }}>
+                  }
+                }}>
                 <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row' }}>
                   <Container>
                     <Typography
                       gutterBottom
                       variant="h5"
                       component="div"
-                      sx={{ fontWeight: 900,
+                      sx={{
+                        fontWeight: 900,
                         fontSize: '1.2rem',
-                        lineHeight: 1 }}>
+                        lineHeight: 1
+                      }}>
                       {singleAdventure.description}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
@@ -118,18 +129,31 @@ export const AdventureBoardScreen = () => {
                     size="small"
                     variant="contained"
                     onClick={() => onAdventureComplete(singleAdventure._id)}
-                    sx={{ height: '45px',
+                    sx={{
+                      height: '45px',
                       width: '75px',
                       borderStyle: 'outset',
                       borderColor: '#2e3242',
                       borderWidth: 'medium',
-                      borderRadius: '12%' }}>
+                      borderRadius: '12%'
+                    }}>
                     <QuestIMG src="https://i.postimg.cc/XqWr4hMc/questswords.png" />
                   </Button>
                 </CardContent>
               </Card>
             )
           })}
+          <Card>
+            {showAdventureAlert && (
+              <AdventureDialog
+                message={questWon
+                  ? `Quest Won. You won ${completedAdventure.rewardCoins} gold coins`
+                  : `Quest Failed. You lost ${completedAdventure.rewardCoins} gold coins`}
+                onClose={() => setShowAdventureAlert(false)}
+                adventure={completedAdventure} />
+            )}
+          </Card>
+
         </QuestDisplayWrapper>
       </Box>
     </ThemeProvider>
