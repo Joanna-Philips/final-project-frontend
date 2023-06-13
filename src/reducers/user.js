@@ -14,6 +14,7 @@ const user = createSlice({
     accessToken: localUser !== null ? localUser.accessToken : null,
     userCoins: null,
     userWeapons: [],
+    equippedWeapon: null,
     userAvatar: null,
     error: null
   },
@@ -32,6 +33,9 @@ const user = createSlice({
     },
     setUserWeapons: (state, action) => {
       state.userWeapons = action.payload;
+    },
+    setEquippedWeapon: (state, action) => {
+      state.equippedWeapon = action.payload;
     },
     setUserAvatar: (state, action) => {
       state.userAvatar = action.payload;

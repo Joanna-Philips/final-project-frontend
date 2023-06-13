@@ -21,8 +21,6 @@ const defaultTheme = createTheme({
 export const PlayerInventory = () => {
   const equipmentData = useSelector((store) => store.equipment.equipmentData);
   const currentUser = useSelector((store) => store.user);
-  // console.log('equipData from player inventory', equipmentData);
-  // console.log('current user from player inventory', currentUser);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -33,10 +31,12 @@ export const PlayerInventory = () => {
           && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
             .map((singleWeapon) => {
               return (
+                // <Grid item xs={12} sm={6} md={4}>
                 <>
-                  <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon._id} />
-                  <EquipButton key={singleWeapon._idid} id={singleWeapon._id} />
+                  <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon.name} />
+                  <EquipButton weaponId={singleWeapon._id} key={singleWeapon._id} />
                 </>
+                // </Grid>
               )
             })}
         </InventoryChildWrapper>
