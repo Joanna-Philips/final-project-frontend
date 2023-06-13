@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-closing-bracket-location */
 import * as React from 'react';
 import { Button, Box } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
@@ -8,50 +7,51 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Image from 'mui-image';
 
-export const AdventureDialog = ({ message, onClose, adventure }) => {
+export const AdventureDialog = ({ message, title, onClose, adventure }) => {
   return (
     <Dialog
       open
       onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      maxWidth="sm"
-    >
+      maxWidth="sm">
       <Box
-        // component="div"
         sx={{
-          // height: '50vh',
-          // width: 'auto',
           backgroundColor: 'rgba(237, 217, 155, 0.7)',
           borderStyle: 'outset',
           borderColor: '#3b241c'
-          // maxHeight: { xs: 230 },
-          // maxWidth: { xs: 200 },
-          // backgroundImage: `url(${adventure.img_src})`,
-          // backgroundPosition: 'center',
-          // backgroundRepeat: 'no-repeat'
-          // transform: 'scale(1)'
-          // border: 1,
-          // borderColor: 'red'
         }}>
         <DialogTitle id="alert-dialog-title">
-          Quest
+          {title}
         </DialogTitle>
         <DialogContent style={{ overflow: 'hidden' }}>
-
-          {/* <Container sx={{ height: '10rem' }}>
-          <img
-            style={{ width: '100%' }}
-            src={adventure.img_src}
-            alt="adventure" />
-        </Container> */}
           <Image src={adventure.img_src} sx={{ display: 'flex', height: '100px' }} />
           <DialogContentText id="alert-dialog-description">
             {message}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} autoFocus>
+          <Button
+            sx={{
+              color: 'white',
+              fontWeight: 700,
+              textDecoration: 'none',
+              mt: 0,
+              mb: 0,
+              fontSize: '1rem',
+              backgroundColor: '#3d4362',
+              width: '20%',
+              height: '110%',
+              padding: 0,
+              pt: 0.25,
+              borderStyle: 'outset',
+              borderWidth: 'medium',
+              borderRadius: '12%',
+              borderColor: '#2e3242'
+            }}
+            size="small"
+            onClick={onClose}
+            autoFocus>
             OK
           </Button>
         </DialogActions>

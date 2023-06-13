@@ -146,9 +146,12 @@ export const AdventureBoardScreen = () => {
           <Card>
             {showAdventureAlert && (
               <AdventureDialog
+                title={questWon
+                  ? 'Quest Won!'
+                  : 'Quest Failed!'}
                 message={questWon
-                  ? `Quest Won. You won ${completedAdventure.rewardCoins} gold coins`
-                  : `Quest Failed. You lost ${completedAdventure.rewardCoins} gold coins`}
+                  ? `You got ${completedAdventure.rewardCoins} gold`
+                  : `You lost ${completedAdventure.rewardCoins} gold`}
                 onClose={() => setShowAdventureAlert(false)}
                 adventure={completedAdventure} />
             )}
