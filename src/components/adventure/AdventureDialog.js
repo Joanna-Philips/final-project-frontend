@@ -22,7 +22,9 @@ export const AdventureDialog = ({ message, onClose, adventure }) => {
         sx={{
           // height: '50vh',
           // width: 'auto',
-          backgroundColor: 'red'
+          backgroundColor: 'rgba(237, 217, 155, 0.7)',
+          borderStyle: 'outset',
+          borderColor: '#3b241c'
           // maxHeight: { xs: 230 },
           // maxWidth: { xs: 200 },
           // backgroundImage: `url(${adventure.img_src})`,
