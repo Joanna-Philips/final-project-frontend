@@ -3,10 +3,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { Container, Typography } from '@mui/material'
+/* import Grid from '@mui/material/Grid'; */
+/* import Box from '@mui/material/Box'; */
+/* import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container'; */
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
@@ -49,69 +50,33 @@ export const HomeScreen = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <UserWrapper>
-        <Container
-          sx={{
+        <Container sx={{
+          width: '95%',
+          height: '82vh',
+          backgroundColor: 'rgba(237, 217, 155, 0.7)',
+          borderStyle: 'outset',
+          borderColor: '#3B241C',
+          borderRadius: '2%',
+          marginTop: '10px'
+        }}>
+          <Container sx={{
             display: 'flex',
-            justifyContent: 'center',
-            width: '70vw',
-            height: '60vh',
-            backgroundColor: 'rgba(237, 217, 155, 0.7)',
-            borderStyle: 'outset',
-            borderColor: '#3b241c'
+            alignItems: 'center',
+            flexDirection: 'column',
+            border: 2,
+            borderColor: 'red'
           }}>
-          <Grid
-            marginTop={0}
-            sx={{ display: 'flex',
-              flexDirection: 'column',
-              '@media screen and (min-width: 700px)': {
-                display: 'flex',
-                flexDirection: 'row'
-              } }}>
-            <Grid item xs={7}>
-              <Container
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '40vw'
-                }}>
-                <Box
-                  sx={{
-                    bgcolor: 'rgba(237, 217, 155, 0.7)',
-                    maxWidth: '320px',
-                    borderStyle: 'outset',
-                    borderColor: '#3b241c',
-                    borderRadius: '3%'
-                  }}>
-                  <Typography
-                    component="h1"
-                    variant="h5"
-                    align="center"
-                    color="text.primary"
-                    sx={{ margin: 0,
-                      backgroundColor: '#3d4362',
-                      color: 'white',
-                      padding: '0 5px',
-                      borderStyle: 'outset',
-                      fontSize: '1rem',
-                      borderRadius: '13%',
-                      width: 'fit-content',
-                      marginTop: '-3px',
-                      marginLeft: '-3px' }}
-                    gutterBottom>
-                    {currentUser.username} 👾
-                  </Typography>
-                  <PlayerAvatar />
-                </Box>
-              </Container>
-            </Grid>
-            <Grid item xs={5}>
-              <Container sx={{ py: 2, paddingTop: 0 }} maxWidth="md">
-                {/* <Grid container spacing={2}> */}
-                <PlayerInventory />
-                {/* </Grid> */}
-              </Container>
-            </Grid>
-          </Grid>
+            <Typography textAlign="center">
+              {currentUser.username}
+            </Typography>
+            <PlayerAvatar />
+          </Container>
+          <Container sx={{
+            border: 2,
+            borderColor: 'green'
+          }}>
+            <PlayerInventory />
+          </Container>
         </Container>
       </UserWrapper>
     </ThemeProvider>

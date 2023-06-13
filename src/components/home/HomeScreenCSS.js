@@ -7,7 +7,6 @@ export const UserWrapper = styled.main`
     background-size: cover;
     min-height: 90vh;
     background-position: 0 50%;
-    padding-top: 5%;
     position: relative;
     `
 
@@ -16,10 +15,9 @@ export const InventoryWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 30px;
-    /* border: solid red; */
 `
 
-export const InventoryTitle = styled.p`
+/* export const InventoryTitle = styled.p`
     background-color: #3d4362;
     color: white;
     padding: 0 5px;
@@ -29,13 +27,16 @@ export const InventoryTitle = styled.p`
     height: fit-content;
     margin: 0;
     z-index: 1;
-`
+` */
 export const InventoryChildWrapper = styled.div`
-    position: absolute;
     flex-wrap: wrap;
     display: flex;
     flex-direction: column;
     /* width: 55%; */
     max-width: 312px;
-    /* border: solid red; */
+    align-items: center;
     `
+
+export const AvatarIMG = styled.img`
+    position: absolute;
+    top: -50%;`

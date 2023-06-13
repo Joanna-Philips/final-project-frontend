@@ -5,8 +5,9 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { API_URL } from 'utils/urls';
-import { Box, Button, Container, createTheme, ThemeProvider, Stack, Typography } from '@mui/material';
+import { Button, Container, createTheme, ThemeProvider, Stack, Typography } from '@mui/material';
 import user from 'reducers/user';
+import { AvatarIMG } from './HomeScreenCSS'
 
 const theme = createTheme({
   typography: {
@@ -89,27 +90,40 @@ export const PlayerAvatar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container sx={{ padding: 0, border: 2, borderColor: 'blue' }}>
-        <Box
+      <Container sx={{ padding: 0,
+        border: 2,
+        borderColor: 'blue',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        alignContent: 'center',
+        height: '28vh',
+        position: 'relative' }}>
+        <AvatarIMG
+          alt="avatar"
+          src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
+
+        {/* <Box
           component="div"
           sx={{
             height: 330,
             width: 300,
-            maxHeight: { xs: 230 },
+            maxHeight: { xs: 200 },
             maxWidth: { xs: 200 },
             backgroundImage: `url(${avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            transform: 'scale(1.8)'
-            // border: 1,
-            // borderColor: 'red'
-          }} />
+            transform: 'scale(1.8)',
+            border: 2,
+            borderColor: 'green'
+          }} /> */}
         <Container sx={{ padding: '0 20px 20px' }}>
           <Typography
             sx={{ textAlign: 'center' }}>
             {avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].name : 'Avatar'}
           </Typography>
-          <Stack direction="row" spacing={2} alignItems="center">
+          <Stack direction="row" spacing={2} alignItems="center" justifyContent="center" marginTop="120px">
             <Button
               sx={{
                 borderStyle: 'outset',
