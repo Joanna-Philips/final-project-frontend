@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Container, Typography } from '@mui/material'
+import { Container/* , Typography */ } from '@mui/material'
 /* import Grid from '@mui/material/Grid'; */
 /* import Box from '@mui/material/Box'; */
 /* import Typography from '@mui/material/Typography';
@@ -37,7 +37,7 @@ const theme = createTheme({
 
 export const HomeScreen = () => {
   AuthorizeAndLoad(useNavigate(), useDispatch());
-  const currentUser = useSelector((store) => store.user);
+  /* const currentUser = useSelector((store) => store.user); */
   const isLoading = useSelector((store) => store.loader.isLoading);
 
   if (isLoading) {
@@ -64,16 +64,19 @@ export const HomeScreen = () => {
             alignItems: 'center',
             flexDirection: 'column',
             border: 2,
-            borderColor: 'red'
+            borderColor: 'red',
+            height: '200px'
           }}>
-            <Typography textAlign="center">
+            {/* <Typography textAlign="center">
               {currentUser.username}
-            </Typography>
+            </Typography> */}
             <PlayerAvatar />
           </Container>
           <Container sx={{
             border: 2,
-            borderColor: 'green'
+            borderColor: 'green',
+            maxHeight: '46vh',
+            padding: 0
           }}>
             <PlayerInventory />
           </Container>
