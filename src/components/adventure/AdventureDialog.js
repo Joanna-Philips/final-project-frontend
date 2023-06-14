@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import * as React from 'react';
 import { Button, Box } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
@@ -7,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Image from 'mui-image';
 
-export const AdventureDialog = ({ message, title, onClose, adventure }) => {
+export const AdventureDialog = ({ message, lossMessage, title, onClose, adventure }) => {
   return (
     <Dialog
       open
@@ -24,9 +25,11 @@ export const AdventureDialog = ({ message, title, onClose, adventure }) => {
         <DialogTitle id="alert-dialog-title">
           {title}
         </DialogTitle>
-        <DialogContent style={{ overflow: 'hidden' }}>
-          <Image src={adventure.img_src} sx={{ display: 'flex', height: '100px' }} />
+        <DialogContent sx={{ overflow: 'hidden', height: '50%' }}>
+          {/* <img src={adventure.img_src} alt="adventure" /> */}
+          <Image src={adventure.img_src} sx={{ width: '50px', border: 2, borderColor: 'blue' }} />
           <DialogContentText id="alert-dialog-description">
+            {lossMessage}
             {message}
           </DialogContentText>
         </DialogContent>
