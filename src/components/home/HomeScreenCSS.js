@@ -17,7 +17,17 @@ export const InventoryWrapper = styled.div`
     justify-items:center;
     max-height: 50vh;
     overflow-y: scroll;
-    border: solid pink;
+/*     border: solid pink; */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(136, 136, 136, 0.3);
+}
 
     @media screen and (min-width: 500px){
         display: flex;

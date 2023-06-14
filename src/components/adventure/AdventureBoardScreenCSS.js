@@ -5,10 +5,11 @@ export const QuestDisplayWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
     align-items: center;
     flex-wrap: wrap;
-    align-content: center;
+    align-content: flex-start;
+    flex-direction: row;
+    overflow: scroll;
     `
 
 export const QuestIMG = styled.img`
