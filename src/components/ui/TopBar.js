@@ -115,7 +115,7 @@ export const TopBar = () => {
                 color: 'inherit',
                 textDecoration: 'none'
               }}>
-              Forest Faffing
+              Into The Woods
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

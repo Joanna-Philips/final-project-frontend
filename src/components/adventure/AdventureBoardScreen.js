@@ -70,6 +70,14 @@ export const AdventureBoardScreen = () => {
       .finally(() => { });
   }
 
+  const generateMessage = (rewardCoins) => {
+    const word = rewardCoins === 1 ? 'coin' : 'coins';
+    const message = questWon
+      ? `Congratulations, you won ${rewardCoins} gold ${word}`
+      : `${completedAdventure.fail} You failed and lost ${rewardCoins} gold ${word}`;
+    return message;
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -147,9 +155,7 @@ export const AdventureBoardScreen = () => {
           <Card>
             {showAdventureAlert && (
               <AdventureDialog
-                message={questWon
-                  ? `Congratulations, you won ${completedAdventure.rewardCoins} gold coins`
-                  : `${completedAdventure.fail} You failed and lost ${completedAdventure.rewardCoins} gold coins`}
+                message={generateMessage(completedAdventure.rewardCoins)}
                 onClose={() => setShowAdventureAlert(false)}
                 adventure={completedAdventure} />
             )}

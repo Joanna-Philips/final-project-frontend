@@ -141,8 +141,8 @@ export const PlayerAvatar = () => {
                 borderRadius: '12%',
                 width: 30,
                 height: 30,
-                minWidth: 30,
-                backgroundColor: currentUser.userAvatar === avatarData[selectedAvatarIndex]._id ? '#097969' : ''
+                minWidth: 30
+                // backgroundColor: currentUser.userAvatar === avatarData[selectedAvatarIndex]._id ? '#097969' : ''
               }}
               size="small"
               variant="contained"

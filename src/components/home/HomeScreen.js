@@ -1,19 +1,16 @@
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Container/* , Typography */ } from '@mui/material'
-/* import Grid from '@mui/material/Grid'; */
-/* import Box from '@mui/material/Box'; */
-/* import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container'; */
+import { Container } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
 // import { LoadingScreen } from 'components/loading/LoadingScreen';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
 import { UserWrapper } from './HomeScreenCSS';
+import { IntroDialog } from './IntroDialog';
 
 const theme = createTheme({
   typography: {
@@ -37,8 +34,17 @@ const theme = createTheme({
 
 export const HomeScreen = () => {
   AuthorizeAndLoad(useNavigate(), useDispatch());
-  /* const currentUser = useSelector((store) => store.user); */
   const isLoading = useSelector((store) => store.loader.isLoading);
+  const [showIntroDialog, setShowIntroDialog] = useState(true);
+
+  useEffect(() => {
+    const hasShownIntroDialog = sessionStorage.getItem('hasShownIntroDialog');
+    if (hasShownIntroDialog) {
+      setShowIntroDialog(false);
+    } else {
+      sessionStorage.setItem('hasShownIntroDialog', true);
+    }
+  }, []);
 
   if (isLoading) {
     return (
@@ -50,6 +56,9 @@ export const HomeScreen = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <UserWrapper>
+        {showIntroDialog && (
+          <IntroDialog onClose={() => setShowIntroDialog(false)} />
+        )}
         <Container sx={{
           width: '95%',
           height: '82vh',
@@ -63,18 +72,11 @@ export const HomeScreen = () => {
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column',
-            /* border: 2,
-            borderColor: 'red', */
             height: '200px'
           }}>
-            {/* <Typography textAlign="center">
-              {currentUser.username}
-            </Typography> */}
             <PlayerAvatar />
           </Container>
           <Container sx={{
-            /* border: 2,
-            borderColor: 'green', */
             maxHeight: '46vh',
             padding: 0
           }}>
