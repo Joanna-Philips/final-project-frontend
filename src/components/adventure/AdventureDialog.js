@@ -27,7 +27,7 @@ export const AdventureDialog = ({ message, lossMessage, title, onClose, adventur
         </DialogTitle>
         <DialogContent sx={{ overflow: 'hidden', height: '50%' }}>
           {/* <img src={adventure.img_src} alt="adventure" /> */}
-          <Image src={adventure.img_src} sx={{ width: '50px', border: 2, borderColor: 'blue' }} />
+          <Image src={adventure.img_src} sx={{ width: '50px' }} />
           <DialogContentText id="alert-dialog-description">
             {lossMessage}
             {message}
