@@ -57,8 +57,7 @@ export const EquipButton = ({ weaponId }) => {
       }}
       size="small"
       onClick={() => onEquipItemClick(weaponId)}>
-      {user.setEquippedWeapon.includes()}
-        Equip
+      {user.equippedWeapon ? 'Equipped' : 'Equip '}
     </Button>
   )
 }

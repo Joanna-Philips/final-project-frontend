@@ -63,8 +63,8 @@ export const HomeScreen = () => {
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column',
-            border: 2,
-            borderColor: 'red',
+            /* border: 2,
+            borderColor: 'red', */
             height: '200px'
           }}>
             {/* <Typography textAlign="center">
@@ -73,8 +73,8 @@ export const HomeScreen = () => {
             <PlayerAvatar />
           </Container>
           <Container sx={{
-            border: 2,
-            borderColor: 'green',
+            /* border: 2,
+            borderColor: 'green', */
             maxHeight: '46vh',
             padding: 0
           }}>

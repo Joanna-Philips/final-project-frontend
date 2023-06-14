@@ -90,8 +90,6 @@ export const PlayerAvatar = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container sx={{ padding: 0,
-        border: 2,
-        borderColor: 'blue',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',

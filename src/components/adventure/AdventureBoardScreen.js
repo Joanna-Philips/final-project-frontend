@@ -90,8 +90,8 @@ export const AdventureBoardScreen = () => {
                 key={singleAdventure._id}
                 sx={{
                   width: '48vw',
-                  minWidth: 145,
-                  height: '6em',
+                  minWidth: 320,
+                  height: '90px',
                   backgroundColor: 'rgba(237, 217, 155, 0.7)',
                   borderStyle: 'solid',
                   borderColor: '#3b241c',
@@ -99,6 +99,7 @@ export const AdventureBoardScreen = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
+                  padding: '10px 0 10px 0',
                   opacity: [0.6],
                   '&:hover': {
                     opacity: [1]
@@ -147,8 +148,8 @@ export const AdventureBoardScreen = () => {
             {showAdventureAlert && (
               <AdventureDialog
                 message={questWon
-                  ? `Quest Won. You won ${completedAdventure.rewardCoins} gold coins`
-                  : `Quest Failed. You lost ${completedAdventure.rewardCoins} gold coins`}
+                  ? `Congratulations, you won ${completedAdventure.rewardCoins} gold coins`
+                  : `${completedAdventure.fail} You failed and lost ${completedAdventure.rewardCoins} gold coins`}
                 onClose={() => setShowAdventureAlert(false)}
                 adventure={completedAdventure} />
             )}
