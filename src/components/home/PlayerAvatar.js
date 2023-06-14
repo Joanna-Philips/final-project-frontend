@@ -103,6 +103,9 @@ export const PlayerAvatar = () => {
             {avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].name : 'Avatar'}
           </Typography>
           <Stack direction="row" spacing={2} alignItems="center" justifyContent="center" marginTop="120px">
+            <AvatarIMG
+              alt="avatar"
+              src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
             <Button
               sx={{
                 borderStyle: 'outset',
@@ -116,9 +119,7 @@ export const PlayerAvatar = () => {
               variant="contained"
               onClick={handlePreviousAvatar}> ◄
             </Button>
-            <AvatarIMG
-              alt="avatar"
-              src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
+
             <Button
               sx={{
                 borderStyle: 'outset',
@@ -141,7 +142,7 @@ export const PlayerAvatar = () => {
                 width: 30,
                 height: 30,
                 minWidth: 30,
-                color: currentUser.userAvatar === avatarData[selectedAvatarIndex]._id ? '#097969' : ''
+                backgroundColor: currentUser.userAvatar === avatarData[selectedAvatarIndex]._id ? '#097969' : ''
               }}
               size="small"
               variant="contained"
