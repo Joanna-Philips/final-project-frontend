@@ -14,3 +14,4 @@ Shikashi : https://cheekyinkling.itch.io/shikashis-fantasy-icons-pack
 Questgiver/ Mage by bonfire by Artyom Brullov : https://twitter.com/brullov_art?lang=en
 Shop img: https://www.pinterest.se/pin/361625045074205314/
 Login jungle img by Karina Formanova: https://www.artstation.com/karinaformanova
+Intro Dialog Trees Gif: Thanks to the team behind Furwind https://boomfire-games.itch.io/furwind
