@@ -218,7 +218,7 @@ export const TopBar = () => {
                 onClose={handleCloseUserMenu}>
                 <MenuItem>
                   <Button sx={{ fontSize: '1.5rem', fontWeight: '700', color: 'black' }}>
-                    Account
+                    {currentUser.username}
                   </Button>
                 </MenuItem>
                 <MenuItem>
