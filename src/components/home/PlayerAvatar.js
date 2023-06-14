@@ -97,9 +97,6 @@ export const PlayerAvatar = () => {
         alignContent: 'center',
         height: '30vh',
         position: 'relative' }}>
-        <AvatarIMG
-          alt="avatar"
-          src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
         <Container sx={{ padding: '0 20px 20px' }}>
           <Typography
             sx={{ textAlign: 'center' }}>
@@ -119,6 +116,9 @@ export const PlayerAvatar = () => {
               variant="contained"
               onClick={handlePreviousAvatar}> ◄
             </Button>
+            <AvatarIMG
+              alt="avatar"
+              src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
             <Button
               sx={{
                 borderStyle: 'outset',
@@ -140,12 +140,13 @@ export const PlayerAvatar = () => {
                 borderRadius: '12%',
                 width: 30,
                 height: 30,
-                minWidth: 30
+                minWidth: 30,
+                color: currentUser.userAvatar === avatarData[selectedAvatarIndex]._id ? '#097969' : ''
               }}
               size="small"
               variant="contained"
               onClick={onAvatarConfirm}>
-                  √
+              √
             </Button>
           </Stack>
         </Container>
