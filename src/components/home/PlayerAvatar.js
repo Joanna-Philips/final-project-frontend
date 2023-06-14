@@ -37,7 +37,6 @@ export const PlayerAvatar = () => {
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0);
 
   useEffect(() => {
-    // console.log('currentUserAvatar', currentUser, 'avatar Data PI', avatarData);
     const indexOfCurrentAvatar = avatarData.findIndex((avatar) => avatar._id === currentUser.userAvatar);
     setSelectedAvatarIndex(indexOfCurrentAvatar);
   }, [avatarData, currentUser])
@@ -98,26 +97,11 @@ export const PlayerAvatar = () => {
         flexDirection: 'column',
         alignItems: 'center',
         alignContent: 'center',
-        height: '28vh',
+        height: '30vh',
         position: 'relative' }}>
         <AvatarIMG
           alt="avatar"
           src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
-
-        {/* <Box
-          component="div"
-          sx={{
-            height: 330,
-            width: 300,
-            maxHeight: { xs: 200 },
-            maxWidth: { xs: 200 },
-            backgroundImage: `url(${avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''})`,
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            transform: 'scale(1.8)',
-            border: 2,
-            borderColor: 'green'
-          }} /> */}
         <Container sx={{ padding: '0 20px 20px' }}>
           <Typography
             sx={{ textAlign: 'center' }}>
@@ -129,7 +113,9 @@ export const PlayerAvatar = () => {
                 borderStyle: 'outset',
                 borderColor: '#2e3242',
                 borderWidth: 'medium',
-                borderRadius: '12%'
+                borderRadius: '12%',
+                widht: '35px',
+                height: '30px'
               }}
               size="small"
               variant="contained"
@@ -140,7 +126,9 @@ export const PlayerAvatar = () => {
                 borderStyle: 'outset',
                 borderColor: '#2e3242',
                 borderWidth: 'medium',
-                borderRadius: '12%'
+                borderRadius: '12%',
+                widht: '35px',
+                height: '30px'
               }}
               size="small"
               variant="contained"

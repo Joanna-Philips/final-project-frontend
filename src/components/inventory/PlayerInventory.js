@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
 // import equipment from 'reducers/equipment';
@@ -25,18 +26,18 @@ export const PlayerInventory = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <InventoryWrapper>
-        <InventoryChildWrapper>
-          {equipmentData && currentUser
+        {/* <InventoryChildWrapper> */}
+        {equipmentData && currentUser
           && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
             .map((singleWeapon) => {
               return (
-                <>
+                <InventoryChildWrapper>
                   <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon.name} />
                   <EquipButton weaponId={singleWeapon._id} key={singleWeapon._id} />
-                </>
+                </InventoryChildWrapper>
               )
             })}
-        </InventoryChildWrapper>
+        {/* </InventoryChildWrapper> */}
       </InventoryWrapper>
     </ThemeProvider>
   )

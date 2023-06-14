@@ -21,7 +21,7 @@ const defaultTheme = createTheme({
   }
 });
 
-export const EquipmentCard = ({ singleWeapon }) => {
+export const EquipmentCard = ({ singleWeapon, specificButton }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -36,7 +36,7 @@ export const EquipmentCard = ({ singleWeapon }) => {
       <Card
         sx={{ width: '25vw',
           maxWidth: 175,
-          minWidth: 145,
+          minWidth: 135,
           height: 210,
           backgroundColor: 'rgba(237, 217, 155, 0.7)',
           borderStyle: 'outset',
@@ -49,11 +49,11 @@ export const EquipmentCard = ({ singleWeapon }) => {
         onMouseLeave={handleMouseLeave}>
         {!isHovered && (
           <CardMedia
-            sx={{ height: 85, backgroundSize: '55px' }}
+            sx={{ height: 85, backgroundSize: '65px', backgroundPosition: '50% 15%' }}
             image={singleWeapon.img_src}
             title="weapon name" />
         )}
-        <CardContent sx={{ paddingBottom: '10px' }}>
+        <CardContent sx={{ paddingBottom: '10px', paddingTop: 0 }}>
           <Typography
             gutterBottom
             variant="h5"
@@ -71,6 +71,7 @@ export const EquipmentCard = ({ singleWeapon }) => {
               {singleWeapon.description}
             </Typography>
           )}
+          {specificButton}
         </CardContent>
       </Card>
     </ThemeProvider>

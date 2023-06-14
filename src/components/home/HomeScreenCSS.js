@@ -11,32 +11,30 @@ export const UserWrapper = styled.main`
     `
 
 export const InventoryWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    justify-items:center;
+    max-height: 50vh;
+    overflow-y: scroll;
+    border: solid pink;
+
+    @media screen and (min-width: 500px){
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 `
 
-/* export const InventoryTitle = styled.p`
-    background-color: #3d4362;
-    color: white;
-    padding: 0 5px;
-    border-style: outset;
-    font-size: 1rem;
-    border-radius: 13%;
-    height: fit-content;
-    margin: 0;
-    z-index: 1;
-` */
 export const InventoryChildWrapper = styled.div`
-    flex-wrap: wrap;
     display: flex;
     flex-direction: column;
-    /* width: 55%; */
     max-width: 312px;
     align-items: center;
     `
 
 export const AvatarIMG = styled.img`
     position: absolute;
-    top: -50%;`
+    top: -105px;
+    scale: 1.2`

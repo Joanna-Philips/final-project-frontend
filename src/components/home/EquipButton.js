@@ -45,7 +45,7 @@ export const EquipButton = ({ weaponId }) => {
         mb: 0,
         fontSize: '1rem',
         backgroundColor: '#3d4362',
-        width: '30%',
+        width: '60px',
         height: '40px',
         padding: 0,
         pt: 0.25,
@@ -57,6 +57,7 @@ export const EquipButton = ({ weaponId }) => {
       }}
       size="small"
       onClick={() => onEquipItemClick(weaponId)}>
+      {user.setEquippedWeapon.includes()}
         Equip
     </Button>
   )
