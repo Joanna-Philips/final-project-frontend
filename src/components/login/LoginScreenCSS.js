@@ -5,9 +5,17 @@ export const LoginWrapper = styled.div`
     background-size: cover;
     height: 97lvh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     `
 // alt background-image: https://wallpapercave.com/wp/wp1934001.png
 
 export const ErrorMessage = styled.p`
   font-size: 2.2rem;`
+
+export const LogoIMG = styled.img`
+height: 20vh;
+scale: 2;
+position: relative;
+top:5%;
+`

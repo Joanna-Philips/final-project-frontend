@@ -52,7 +52,7 @@ export const IntroDialog = ({ onClose }) => {
             backgroundColor: '#3d4362' }}
           onClick={onClose}
           autoFocus>
-            OK
+            X
         </Button>
       </DialogActions>
     </Dialog>

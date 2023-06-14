@@ -7,8 +7,9 @@ import user from 'reducers/user';
 import { API_URL } from 'utils/urls';
 import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Checkbox, Grid, Box, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { LoginWrapper } from 'components/login/LoginScreenCSS';
+import { LoginWrapper, LogoIMG } from 'components/login/LoginScreenCSS';
 import loader from 'reducers/loader';
+import lost from 'assets/images/UI/lost.png';
 import { generatePassword, generateRandomName } from './GuestLoginUtils';
 
 export const LoginScreen = () => {
@@ -98,6 +99,8 @@ export const LoginScreen = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <LoginWrapper>
+        <LogoIMG src={lost} alt="lost logo" />
+
         <Container
           component="main"
           maxWidth="xs"
