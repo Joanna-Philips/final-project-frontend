@@ -6,14 +6,14 @@ import { Button } from '@mui/material';
 
 export const EquipButton = ({ weaponId }) => {
   const dispatch = useDispatch();
-  const accessToken = useSelector((store) => store.user.accessToken);
+  const currentUser = useSelector((store) => store.user);
 
   const onEquipItemClick = (equipmentId) => {
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: accessToken
+        Authorization: currentUser.accessToken
       },
       body: JSON.stringify({ equipmentId })
     };
@@ -57,7 +57,7 @@ export const EquipButton = ({ weaponId }) => {
       }}
       size="small"
       onClick={() => onEquipItemClick(weaponId)}>
-      {user.equippedWeapon ? 'Equipped' : 'Equip '}
+      {currentUser.equippedWeapon.includes(weaponId) ? 'Equipped' : 'Equip '}
     </Button>
   )
 }
