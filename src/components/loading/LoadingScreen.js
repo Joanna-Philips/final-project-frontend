@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Player } from '@lottiefiles/react-lottie-player';
+import lodingAnimation from './loading.json'
 
 export const LoadingScreen = () => {
   const isLoading = useSelector((store) => store.loader.isLoading);
@@ -15,7 +16,7 @@ export const LoadingScreen = () => {
       && <Player
         height="40vh"
         width="40vw"
-        src="https://assets5.lottiefiles.com/private_files/lf30_dz8ymnuq.json"
+        src={lodingAnimation}
         loop
         autoplay
         speed={1} />}
@@ -23,18 +24,10 @@ export const LoadingScreen = () => {
   )
 }
 
-// const LoadingText = styled.h1`
-// padding: 10%;
-// font-family: 'Special Elite', cursive;
-// font-size: 2.5rem;
-// color: black;
-// text-align: center;
-// margin-top: 100px;
-//   `
-
 const LottieWrapper = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
     margin-top: 20vh;
+    scale: 2;
     `
