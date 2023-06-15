@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Player } from '@lottiefiles/react-lottie-player';
-import lodingAnimation from './loading.json'
+import loadingAnimation from './loading.json'
 
 export const LoadingScreen = () => {
   const isLoading = useSelector((store) => store.loader.isLoading);
@@ -16,7 +16,7 @@ export const LoadingScreen = () => {
       && <Player
         height="40vh"
         width="40vw"
-        src={lodingAnimation}
+        src={loadingAnimation}
         loop
         autoplay
         speed={1} />}

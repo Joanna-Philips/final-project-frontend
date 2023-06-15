@@ -115,7 +115,7 @@ export const TopBar = () => {
                 color: 'inherit',
                 textDecoration: 'none'
               }}>
-              COIN QUEST
+              WAYWARD WILDS
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
