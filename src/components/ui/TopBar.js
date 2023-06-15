@@ -113,15 +113,17 @@ export const TopBar = () => {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit">
-                <MenuIcon />
-              </IconButton>
+              <Tooltip title="Travel menu">
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit">
+                  <MenuIcon />
+                </IconButton>
+              </Tooltip>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -186,7 +188,7 @@ export const TopBar = () => {
             <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
               <img src={coinIMG} alt="user coins" />
               {currentUser.userCoins}
-              <Tooltip title="Open settings">
+              <Tooltip title="Option menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginLeft: 3 }}>
                   <Avatar sx={{ backgroundColor: 'transparent' }}>
                     {/* <SettingsOutlinedIcon /> */}
