@@ -7,8 +7,8 @@ import { Container } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
-// import { LoadingScreen } from 'components/loading/LoadingScreen';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
+import { LoadingScreen } from 'components/loading/LoadingScreen';
 import { UserWrapper } from './HomeScreenCSS';
 import { IntroDialog } from './IntroDialog';
 
@@ -48,7 +48,7 @@ export const HomeScreen = () => {
 
   if (isLoading) {
     return (
-      <div>Loading...</div>
+      <LoadingScreen />
     )
   }
 
