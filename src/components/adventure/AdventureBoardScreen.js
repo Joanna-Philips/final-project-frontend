@@ -103,7 +103,6 @@ export const AdventureBoardScreen = () => {
                   backgroundColor: 'rgba(237, 217, 155, 0.7)',
                   borderStyle: 'solid',
                   borderColor: '#3b241c',
-                  scrollSnapAlign: 'start',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -160,7 +159,6 @@ export const AdventureBoardScreen = () => {
                 adventure={completedAdventure} />
             )}
           </Card>
-
         </QuestDisplayWrapper>
       </Box>
     </ThemeProvider>
