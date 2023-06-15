@@ -11,6 +11,7 @@ export const QuestDisplayWrapper = styled.div`
     flex-direction: row;
     overflow: scroll;
     margin-left: 1.5%;
+    align-content: stretch;
     @media screen and (min-width: 860px){
         overflow: hidden;
     }

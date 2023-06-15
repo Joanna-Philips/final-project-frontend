@@ -8,6 +8,7 @@ export const UserWrapper = styled.main`
     min-height: 90vh;
     background-position: 0 50%;
     position: relative;
+    align-items: center;
     `
 
 export const InventoryWrapper = styled.div`
