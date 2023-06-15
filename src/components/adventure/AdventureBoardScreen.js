@@ -7,7 +7,8 @@ import user from 'reducers/user';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
 import { createTheme, ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
 import goldIconIMG from '../../assets/images/UI/coin.png';
-import { QuestDisplayWrapper, QuestIMG } from './AdventureBoardScreenCSS';
+import skullIconIMG from '../../assets/images/UI/equipment/skull.png';
+import { QuestDisplayWrapper, QuestIMG, QuestIconDiv } from './AdventureBoardScreenCSS';
 import { AdventureDialog } from './AdventureDialog';
 
 const theme = createTheme({
@@ -107,31 +108,40 @@ export const AdventureBoardScreen = () => {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   padding: '10px 0 10px 0',
+                  color: 'white',
                   opacity: [0.85],
                   '&:hover': {
                     opacity: [1]
-                  }
+                  },
+                  textShadow: '2px 2px 3px black'
                 }}>
                 <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row' }}>
-                  <Container>
+                  <Container sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography
                       gutterBottom
                       variant="h5"
                       component="div"
                       sx={{
                         fontWeight: 900,
-                        fontSize: '1.2rem',
-                        lineHeight: 1
+                        fontSize: '1rem',
+                        lineHeight: 1,
+                        '@media screen and (min-width: 1000px)': {
+                          overflow: 'hidden',
+                          fontSize: '1.2rem'
+                        }
                       }}>
                       {singleAdventure.description}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem', fontWeight: '700' }}>
-                      Difficulty: {singleAdventure.difficulty}
-                    </Typography>
                   </Container>
-                  <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: '5px', marginRight: '1rem' }}>
-                    <img src={goldIconIMG} alt="user coins" />
-                    {singleAdventure.rewardCoins}
+                  <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: '5px', marginRight: '1rem', flexDirection: 'column' }}>
+                    <QuestIconDiv>
+                      <img src={skullIconIMG} alt="quest difficulty" />
+                      {singleAdventure.difficulty}
+                    </QuestIconDiv>
+                    <QuestIconDiv>
+                      <img src={goldIconIMG} alt="user coins" />
+                      {singleAdventure.rewardCoins}
+                    </QuestIconDiv>
                   </Box>
                   <Button
                     size="small"

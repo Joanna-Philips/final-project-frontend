@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { Button } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
@@ -28,13 +29,16 @@ export const IntroDialog = ({ onClose }) => {
             marginTop: '5%',
             fontSize: '2.3rem',
             padding: '1.5rem' }}>
-            Lost in the woods, you find yourself facing a desperate plight.
-            Your life hangs in the balance, entangled with the enigmatic
+            Lost in the woods, you find yourself in a desperate plight,
+            with your life hanging in the balance, entangled in the enigmatic
             secrets of this enchanted realm.
-            To escape, you must embark on perilous quests, testing your skills, wit and courage.
-            Each challenge you conquer brings you closer to freedom.
-            The forest whispers its mysteries, and you listen, determined to survive.
-            The forest calls...will you answer?
+            To escape, you must embark on perilous quests, putting your skills, wit, and courage to the test.
+            Each challenge you conquer brings you closer to freedom,
+            as the forest whispers its mysterious secrets, and you listen intently, determined to survive.
+            Amidst the whispers, a glimmer of hope emerges—an oasis appears,
+            in the form of an uninhabited house nestled by a serene lake.
+            Here, you can find respite and gather strength to continue your journey.
+            The forest calls...will you answer its beckoning?
         </DialogContentText>
       </DialogContent>
       <DialogActions>

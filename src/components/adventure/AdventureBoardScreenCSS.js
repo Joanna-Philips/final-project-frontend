@@ -10,7 +10,17 @@ export const QuestDisplayWrapper = styled.div`
     align-content: flex-start;
     flex-direction: row;
     overflow: scroll;
+    margin-left: 1.5%;
+    @media screen and (min-width: 860px){
+        overflow: hidden;
+    }
     `
 
 export const QuestIMG = styled.img`
+`
+
+export const QuestIconDiv = styled.div`
+display: flex;
+gap: 0.25rem;
+align-items: center;
 `

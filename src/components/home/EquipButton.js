@@ -46,8 +46,6 @@ export const EquipButton = ({ weaponId }) => {
         color: 'white',
         fontWeight: 700,
         textDecoration: 'none',
-        mt: 0,
-        mb: 0,
         fontSize: '1rem',
         backgroundColor: '#3d4362',
         width: '60px',
@@ -58,7 +56,8 @@ export const EquipButton = ({ weaponId }) => {
         borderWidth: 'medium',
         borderRadius: '12%',
         borderColor: '#2e3242',
-        marginTop: '-40px'
+        marginTop: '-50px',
+        marginBottom: '11px'
       }}
       size="small"
       onClick={() => onEquipItemClick(weaponId)}>
