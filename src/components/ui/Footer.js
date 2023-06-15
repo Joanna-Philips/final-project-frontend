@@ -9,9 +9,9 @@ export const Footer = () => {
         bottom: 0,
         left: 0,
         right: 0,
-        color: 'black',
+        color: 'white',
         height: '50px',
-        backgroundColor: '#edd99b',
+        backgroundColor: '#3b241c',
         borderStyle: 'outset',
         borderColor: '#3b241c'
       }}
@@ -22,10 +22,10 @@ export const Footer = () => {
         }}>
         <Typography
           variant="body1"
-          color="text.secondary"
+          color="white"
           fontFamily="VT323, monospace"
           fontSize="1.2rem"
-          fontWeight="700"
+          fontWeight="500"
           paddingTop={1}
           textAlign="center">
           {'Made by '}

@@ -7,14 +7,15 @@ import avatar from 'reducers/avatar';
 import loader from 'reducers/loader';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, createTheme, ThemeProvider, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { LogoIcon } from 'components/home/HomeScreenCSS';
+// import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import { LogoIcon, OptionsIconImg } from 'components/home/HomeScreenCSS';
 import shopIMG from '../../assets/images/UI/shopIMG.png';
 import homeIMG from '../../assets/images/UI/home.png';
 import questIMG from '../../assets/images/UI/questmap.png';
 import barIMG from '../../assets/images/UI/GUI.png';
 import coinIMG from '../../assets/images/UI/coin.png';
 import LogoIconIMG from '../../assets/images/UI/runestone.png';
+import optionsIcon from '../../assets/images/UI/cog.png'
 
 const pages = [
   { name: 'Homestead', image: homeIMG, navLink: '/home' },
@@ -188,7 +189,8 @@ export const TopBar = () => {
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginLeft: 3 }}>
                   <Avatar sx={{ backgroundColor: 'transparent' }}>
-                    <SettingsOutlinedIcon />
+                    {/* <SettingsOutlinedIcon /> */}
+                    <OptionsIconImg src={optionsIcon} alt="options icon" />
                   </Avatar>
                 </IconButton>
               </Tooltip>

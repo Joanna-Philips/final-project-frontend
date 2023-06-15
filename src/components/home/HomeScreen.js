@@ -44,12 +44,13 @@ export const HomeScreen = () => {
         )}
         <Container sx={{
           width: '95%',
-          height: '82vh',
+          height: 'fit-content',
           backgroundColor: 'rgba(237, 217, 155, 0.7)',
           borderStyle: 'outset',
           borderColor: '#3B241C',
           borderRadius: '2%',
-          marginTop: '10px'
+          marginTop: '10px',
+          paddingBottom: '45px'
         }}>
           <Container sx={{
             display: 'flex',

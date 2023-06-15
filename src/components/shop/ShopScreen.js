@@ -34,15 +34,12 @@ export const ShopScreen = () => {
                       width: '25vw',
                       maxWidth: 175,
                       minWidth: '145px',
-                      height: '14%',
-                      backgroundColor: '#edd99b',
-                      borderStyle: 'solid',
-                      borderColor: '#3b241c',
-                      scrollSnapAlign: 'start',
-                      display: 'flex',
-                      flexDirection: 'column'
+                      height: '20%',
+                      backgroundColor: 'transparent',
+                      marginTop: '-48px',
+                      boxShadow: 'none'
                     }}>
-                    <CardActions sx={{ justifyContent: 'space-between', padding: 0 }}>
+                    <CardActions sx={{ justifyContent: 'center', padding: 0 }}>
                       {currentUser.userWeapons.includes(singleWeapon._id) ? (
                         <ShopButton
                           transactionID={singleWeapon._id}

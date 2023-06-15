@@ -40,10 +40,28 @@ export const WaresWrapper = styled.div`
     scroll-behavior: smooth;
     overflow: scroll;
     scroll-snap-type: y mandatory;
+    @media screen and (min-width: 1500px){
+        overflow: hidden;
+    }
+    ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: rgba(61, 67, 98, 0.6);
+    border-style: inset;
+    border-width: 3px;
+    border-color: rgba(237, 217, 155, 0.7);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(46, 50, 66);
+    border-style: outset;
+    border-color: #2e3242;
+}
 `
 
 export const SingleWareWrapper = styled.div`
 display: flex;
 flex-direction: column;
-height: 89%;
+height: 75%;
 `
