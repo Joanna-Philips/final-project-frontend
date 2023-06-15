@@ -64,6 +64,7 @@ export const fetchUserProfile = (accessToken) => async (dispatch) => {
     dispatch(user.actions.setUserCoins(data.response.userCoins));
     dispatch(user.actions.setUserWeapons(data.response.userWeapons));
     dispatch(user.actions.setUserAvatar(data.response.userAvatar));
+    dispatch(user.actions.setEquippedWeapon(data.response.equippedWeapon));
     dispatch(loader.actions.setLoading(false));
   } catch (error) {
     console.log(error);

@@ -26,18 +26,16 @@ export const PlayerInventory = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <InventoryWrapper>
-        {/* <InventoryChildWrapper> */}
         {equipmentData && currentUser
           && equipmentData.filter((e) => currentUser.userWeapons.includes(e._id))
             .map((singleWeapon) => {
               return (
-                <InventoryChildWrapper>
-                  <EquipmentCard singleWeapon={singleWeapon} key={singleWeapon.name} />
-                  <EquipButton weaponId={singleWeapon._id} key={singleWeapon._id} />
+                <InventoryChildWrapper key={singleWeapon._id}>
+                  <EquipmentCard singleWeapon={singleWeapon} />
+                  <EquipButton weaponId={singleWeapon._id} />
                 </InventoryChildWrapper>
               )
             })}
-        {/* </InventoryChildWrapper> */}
       </InventoryWrapper>
     </ThemeProvider>
   )

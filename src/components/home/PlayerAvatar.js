@@ -37,8 +37,7 @@ export const PlayerAvatar = () => {
   const [selectedAvatarIndex, setSelectedAvatarIndex] = useState(0);
 
   useEffect(() => {
-    const indexOfCurrentAvatar = avatarData.findIndex((avatar) => avatar._id === currentUser.userAvatar);
-    setSelectedAvatarIndex(indexOfCurrentAvatar);
+    setSelectedAvatarIndex(avatarData.findIndex((avatar) => avatar._id === currentUser.userAvatar));
   }, [avatarData, currentUser])
 
   const onAvatarConfirm = () => {
@@ -62,6 +61,7 @@ export const PlayerAvatar = () => {
       .then((data) => {
         console.log('avatars update Data', data);
         dispatch(user.actions.setUserAvatar(data.response));
+        setSelectedAvatarIndex(avatarData.findIndex((avatar) => avatar._id === data.response));
       })
       .catch((error) => console.log(error))
       .finally(() => { });
@@ -89,69 +89,71 @@ export const PlayerAvatar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container sx={{ padding: 0,
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        alignContent: 'center',
-        height: '30vh',
-        position: 'relative' }}>
-        <Container sx={{ padding: '0 20px 20px' }}>
-          <Typography
-            sx={{ textAlign: 'center' }}>
-            {avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].name : 'Avatar'}
-          </Typography>
-          <Stack direction="row" spacing={2} alignItems="center" justifyContent="center" marginTop="120px">
-            <AvatarIMG
-              alt="avatar"
-              src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
-            <Button
-              sx={{
-                borderStyle: 'outset',
-                borderColor: '#2e3242',
-                borderWidth: 'medium',
-                borderRadius: '12%',
-                widht: '35px',
-                height: '30px'
-              }}
-              size="small"
-              variant="contained"
-              onClick={handlePreviousAvatar}> ◄
-            </Button>
+      {(avatarData && avatarData.length > 0) && (
+        <Container sx={{ padding: 0,
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          alignContent: 'center',
+          height: '30vh',
+          position: 'relative' }}>
+          <Container sx={{ padding: '0 20px 20px' }}>
+            <Typography
+              sx={{ textAlign: 'center' }}>
+              {avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].name : 'Avatar'}
+            </Typography>
+            <Stack direction="row" spacing={2} alignItems="center" justifyContent="center" marginTop="120px">
+              <AvatarIMG
+                alt="avatar"
+                src={avatarData[selectedAvatarIndex] ? avatarData[selectedAvatarIndex].img_src : ''} />
+              <Button
+                sx={{
+                  borderStyle: 'outset',
+                  borderColor: '#2e3242',
+                  borderWidth: 'medium',
+                  borderRadius: '12%',
+                  widht: '35px',
+                  height: '30px'
+                }}
+                size="small"
+                variant="contained"
+                onClick={handlePreviousAvatar}> ◄
+              </Button>
 
-            <Button
-              sx={{
-                borderStyle: 'outset',
-                borderColor: '#2e3242',
-                borderWidth: 'medium',
-                borderRadius: '12%',
-                widht: '35px',
-                height: '30px'
-              }}
-              size="small"
-              variant="contained"
-              onClick={handleNextAvatar}> ►
-            </Button>
-            <Button
-              sx={{
-                borderStyle: 'outset',
-                borderColor: '#2e3242',
-                borderWidth: 'medium',
-                borderRadius: '12%',
-                width: 30,
-                height: 30,
-                minWidth: 30
-                // backgroundColor: currentUser.userAvatar === avatarData[selectedAvatarIndex]._id ? '#097969' : ''
-              }}
-              size="small"
-              variant="contained"
-              onClick={onAvatarConfirm}>
-              √
-            </Button>
-          </Stack>
+              <Button
+                sx={{
+                  borderStyle: 'outset',
+                  borderColor: '#2e3242',
+                  borderWidth: 'medium',
+                  borderRadius: '12%',
+                  widht: '35px',
+                  height: '30px'
+                }}
+                size="small"
+                variant="contained"
+                onClick={handleNextAvatar}> ►
+              </Button>
+              <Button
+                sx={{
+                  borderStyle: 'outset',
+                  borderColor: '#2e3242',
+                  borderWidth: 'medium',
+                  borderRadius: '12%',
+                  width: 30,
+                  height: 30,
+                  minWidth: 30,
+                  backgroundColor: avatarData && avatarData[selectedAvatarIndex] != null && currentUser.userAvatar === avatarData[selectedAvatarIndex]._id ? '#097969' : ''
+                }}
+                size="small"
+                variant="contained"
+                onClick={onAvatarConfirm}>
+                √
+              </Button>
+            </Stack>
+          </Container>
         </Container>
-      </Container>
+      )}
     </ThemeProvider>
   );
 };

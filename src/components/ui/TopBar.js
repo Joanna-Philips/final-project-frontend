@@ -154,14 +154,16 @@ export const TopBar = () => {
                   <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Typography textAlign="center">
-                        <img
-                          src={page.image}
-                          alt={page.name}
-                          style={{
-                            marginRight: '8px',
-                            height: '20px',
-                            width: '20px'
-                          }} />
+                        <NavLink to={page.navLink}>
+                          <img
+                            src={page.image}
+                            alt={page.name}
+                            style={{
+                              marginRight: '8px',
+                              height: '20px',
+                              width: '20px'
+                            }} />
+                        </NavLink>
                         <NavLink to={page.navLink}>{page.name}</NavLink>
                       </Typography>
                     </Box>
@@ -175,10 +177,12 @@ export const TopBar = () => {
                   key={page.name}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'flex' }}>
-                  <img
-                    src={page.image}
-                    alt={page.name}
-                    style={{ marginRight: '0.8em', width: '35px' }} />
+                  <NavLink to={page.navLink}>
+                    <img
+                      src={page.image}
+                      alt={page.name}
+                      style={{ marginRight: '0.8em', width: '35px' }} />
+                  </NavLink>
                   <NavLink to={page.navLink}>{page.name}</NavLink>
                 </Button>
               ))}
