@@ -108,7 +108,7 @@ export const AdventureBoardScreen = () => {
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   padding: '10px 0 10px 0',
-                  opacity: [0.6],
+                  opacity: [0.85],
                   '&:hover': {
                     opacity: [1]
                   }
