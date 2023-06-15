@@ -64,4 +64,5 @@ export const SingleWareWrapper = styled.div`
 display: flex;
 flex-direction: column;
 height: 75%;
+margin-top: 6px;
 `

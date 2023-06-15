@@ -108,7 +108,7 @@ export const AdventureBoardScreen = () => {
                   },
                   textShadow: '2px 1px 1px black'
                 }}>
-                <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row' }}>
+                <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                   <Container sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography
                       gutterBottom
