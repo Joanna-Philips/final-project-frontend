@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const QuestDisplayWrapper = styled.div`
     height: 82vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;

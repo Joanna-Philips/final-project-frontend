@@ -42,9 +42,3 @@ export const App = () => {
     </Provider>
   );
 }
-
-/// npm i react-redux
-/// npm i @reduxjs/toolkit
-/// npm i react-router-dom
-/// npm install @mui/material @emotion/react @emotion/styled
-/// npm install @mui/icons-material @mui/material @emotion/styled @emotion/react

@@ -61,7 +61,6 @@ export const AdventureBoardScreen = () => {
       })
       .then((data) => {
         console.log('adventure update data', data);
-        // const rewardCoins = Math.abs(data.response.userCoins - currentUser.userCoins);
         setCompletedAdventure(adventureData.find((a) => a._id === adventureId));
         setShowAdventureAlert(true);
         setQuestWon(data.response.questWon);
@@ -90,7 +89,8 @@ export const AdventureBoardScreen = () => {
           display: 'flex',
           flexDirection: 'row',
           backgroundPosition: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          overflow: 'hidden'
         }}>
         <QuestDisplayWrapper>
           {adventureData.map((singleAdventure) => {

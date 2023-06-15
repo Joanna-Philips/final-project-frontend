@@ -8,7 +8,6 @@ export const LoginWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     `
-// alt background-image: https://wallpapercave.com/wp/wp1934001.png
 
 export const ErrorMessage = styled.p`
   font-size: 2.2rem;`

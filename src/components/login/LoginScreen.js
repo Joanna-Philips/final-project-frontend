@@ -9,7 +9,7 @@ import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Ch
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LoginWrapper, LogoIMG } from 'components/login/LoginScreenCSS';
 import loader from 'reducers/loader';
-import lost from 'assets/images/UI/lost.png';
+import logo from 'assets/images/UI/logo.png';
 import { generatePassword, generateRandomName } from './GuestLoginUtils';
 
 export const LoginScreen = () => {
@@ -99,7 +99,7 @@ export const LoginScreen = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <LoginWrapper>
-        <LogoIMG src={lost} alt="lost logo" />
+        <LogoIMG src={logo} alt="lost logo" />
 
         <Container
           component="main"

@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable max-len */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import user from 'reducers/user';
@@ -9,9 +8,6 @@ import { Button } from '@mui/material';
 export const EquipButton = ({ weaponId }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.user);
-
-  // const isEquipped = currentUser.userWeapons.indexOf()._id === (currentUser.equippedWeapon);
-  // const buttonText = isEquipped ? 'Equipped' : 'Equip';
 
   const onEquipItemClick = (equipmentId) => {
     const options = {

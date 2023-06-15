@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, CardActions, /* Typography, Button, */ createTheme, ThemeProvider } from '@mui/material';
+import { Card, CardActions, createTheme, ThemeProvider } from '@mui/material';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper, SingleWareWrapper } from 'components/shop/ShopScreenCSS';
 import { EquipmentCard } from 'components/equipments/EquipmentCard';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';

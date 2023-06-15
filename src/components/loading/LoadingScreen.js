@@ -8,9 +8,6 @@ export const LoadingScreen = () => {
   const isLoading = useSelector((store) => store.loader.isLoading);
 
   return (
-    // <div>
-    //   {isLoading && <LoadingText>Loading...</LoadingText>}
-    // </div>
     <LottieWrapper>
       {isLoading
       && <Player

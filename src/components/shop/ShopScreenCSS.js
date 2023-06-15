@@ -1,9 +1,6 @@
 import styled from 'styled-components/macro';
 
 export const ShopTopDiv = styled.div`
-   /*  background-image: url('https://art.pixilart.com/df73a414bd80889.png');
-    background-size: cover;
-    background-repeat: no-repeat; */
     background-color: rgb(34 33 33);
     display: flex;
     justify-content: center;

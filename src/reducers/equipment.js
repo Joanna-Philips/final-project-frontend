@@ -31,7 +31,6 @@ export const fetchEquipmentData = (accessToken) => async (dispatch) => {
     const data = await response.json();
     dispatch(equipment.actions.setEquipmentData(data.response));
     dispatch(loader.actions.setLoading(false));
-    // console.log('equipment data', data.response);
   } catch (error) {
     console.log(error);
   }

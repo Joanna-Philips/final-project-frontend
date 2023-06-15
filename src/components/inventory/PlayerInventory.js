@@ -1,7 +1,5 @@
-/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
-// import equipment from 'reducers/equipment';
 import { EquipmentCard } from 'components/equipments/EquipmentCard';
 import { useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material';
@@ -18,7 +16,6 @@ const defaultTheme = createTheme({
     }
   }
 });
-
 export const PlayerInventory = () => {
   const equipmentData = useSelector((store) => store.equipment.equipmentData);
   const currentUser = useSelector((store) => store.user);

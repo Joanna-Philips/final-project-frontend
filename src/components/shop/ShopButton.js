@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import * as React from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import user, { fetchUserProfile } from 'reducers/user';
 import { API_URL } from 'utils/urls';
