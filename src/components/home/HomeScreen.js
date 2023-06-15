@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/material'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { WWTheme } from 'utils/MuiTheme';
 import { PlayerAvatar } from 'components/home/PlayerAvatar';
 import { PlayerInventory } from 'components/inventory/PlayerInventory';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
@@ -12,25 +13,7 @@ import { LoadingScreen } from 'components/loading/LoadingScreen';
 import { UserWrapper } from './HomeScreenCSS';
 import { IntroDialog } from './IntroDialog';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: ['VT323', 'monospace'].join(','),
-    fontSize: 20
-  },
-  status: {
-    danger: '#e53e3e'
-  },
-  palette: {
-    primary: {
-      main: '#733214',
-      darker: '#5c270f'
-    },
-    neutral: {
-      main: '#64748B',
-      contrastText: '#fff'
-    }
-  }
-});
+const theme = WWTheme
 
 export const HomeScreen = () => {
   AuthorizeAndLoad(useNavigate(), useDispatch());

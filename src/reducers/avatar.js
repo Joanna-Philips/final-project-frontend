@@ -33,7 +33,6 @@ export const fetchAvatarData = (accessToken) => async (dispatch) => {
     const data = await response.json();
     dispatch(avatar.actions.setAvatarData(data.response));
     dispatch(loader.actions.setLoading(false));
-    console.log('avatar data', data.response);
   } catch (error) {
     console.log(error);
   }

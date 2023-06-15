@@ -54,4 +54,11 @@ export const InventoryChildWrapper = styled.div`
 export const AvatarIMG = styled.img`
     position: absolute;
     top: -105px;
-    scale: 1.2`
+    scale: 1.2
+`
+
+export const LogoIcon = styled.img`
+height: 35px;
+width: 35px;
+margin-right: 10px;
+`

@@ -5,25 +5,16 @@ import user from 'reducers/user';
 import equipment from 'reducers/equipment';
 import avatar from 'reducers/avatar';
 import loader from 'reducers/loader';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, createTheme, ThemeProvider, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { LogoIcon } from 'components/home/HomeScreenCSS';
 import shopIMG from '../../assets/images/UI/shopIMG.png';
 import homeIMG from '../../assets/images/UI/home.png';
 import questIMG from '../../assets/images/UI/questmap.png';
 import barIMG from '../../assets/images/UI/GUI.png';
 import coinIMG from '../../assets/images/UI/coin.png';
+import LogoIconIMG from '../../assets/images/UI/runestone.png';
 
 const pages = [
   { name: 'Homestead', image: homeIMG, navLink: '/home' },
@@ -102,6 +93,7 @@ export const TopBar = () => {
         }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+            <LogoIcon src={LogoIconIMG} alt="logo icon" />
             <Typography
               variant="h6"
               noWrap
@@ -162,7 +154,8 @@ export const TopBar = () => {
                             style={{
                               marginRight: '8px',
                               height: '20px',
-                              width: '20px'
+                              width: '20px',
+                              marginTop: '5px'
                             }} />
                         </NavLink>
                         <NavLink to={page.navLink}>{page.name}</NavLink>
@@ -182,7 +175,7 @@ export const TopBar = () => {
                     <img
                       src={page.image}
                       alt={page.name}
-                      style={{ marginRight: '0.8em', width: '35px' }} />
+                      style={{ marginRight: '0.8em', width: '35px', display: 'flex' }} />
                   </NavLink>
                   <NavLink to={page.navLink}>{page.name}</NavLink>
                 </Button>

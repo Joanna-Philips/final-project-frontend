@@ -5,35 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import { API_URL } from 'utils/urls';
 import user from 'reducers/user';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
-import { createTheme, ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
+import { ThemeProvider, Box, Card, CardContent, Button, Typography, Container } from '@mui/material';
+import loader from 'reducers/loader';
+import { WWTheme } from 'utils/MuiTheme';
+import { LoadingScreen } from 'components/loading/LoadingScreen';
 import goldIconIMG from '../../assets/images/UI/coin.png';
 import skullIconIMG from '../../assets/images/UI/equipment/skull.png';
 import { QuestDisplayWrapper, QuestIMG, QuestIconDiv } from './AdventureBoardScreenCSS';
 import { AdventureDialog } from './AdventureDialog';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: ['VT323', 'monospace'].join(','),
-    fontSize: 20
-  },
-  status: {
-    danger: '#e53e3e'
-  },
-  palette: {
-    primary: {
-      main: '#3d4362',
-      darker: '#2e3242'
-    },
-    neutral: {
-      main: '#64748B',
-      contrastText: '#fff'
-    }
-  }
-});
+const theme = WWTheme
 
 export const AdventureBoardScreen = () => {
   AuthorizeAndLoad(useNavigate(), useDispatch());
   const dispatch = useDispatch();
+  const isLoading = useSelector((store) => store.loader.isLoading);
   const adventureData = useSelector((store) => store.adventure.adventureData);
   const currentUser = useSelector((store) => store.user);
 
@@ -42,6 +28,7 @@ export const AdventureBoardScreen = () => {
   const [completedAdventure, setCompletedAdventure] = useState({});
 
   const onAdventureComplete = (adventureId) => {
+    dispatch(loader.actions.setLoading(true));
     const options = {
       method: 'POST',
       headers: {
@@ -67,7 +54,13 @@ export const AdventureBoardScreen = () => {
         dispatch(user.actions.setUserCoins(data.response.userCoins));
       })
       .catch((error) => console.log(error))
-      .finally(() => { });
+    dispatch(loader.actions.setLoading(false));
+  }
+
+  if (isLoading) {
+    return (
+      <LoadingScreen />
+    )
   }
 
   const generateMessage = (rewardCoins) => {
@@ -113,7 +106,7 @@ export const AdventureBoardScreen = () => {
                   '&:hover': {
                     opacity: [1]
                   },
-                  textShadow: '2px 2px 3px black'
+                  textShadow: '2px 1px 1px black'
                 }}>
                 <CardContent sx={{ padding: 2, display: 'flex', flexDirection: 'row' }}>
                   <Container sx={{ display: 'flex', alignItems: 'center' }}>

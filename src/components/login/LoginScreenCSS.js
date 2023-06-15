@@ -14,7 +14,7 @@ export const ErrorMessage = styled.p`
 
 export const LogoIMG = styled.img`
 height: 20vh;
-scale: 2.5;
+scale: 2.8;
 position: relative;
-top:5%;
+top:4%;
 `

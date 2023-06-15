@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, CardActions, createTheme, ThemeProvider } from '@mui/material';
+import { Card, CardActions, ThemeProvider } from '@mui/material';
+import { WWTheme } from 'utils/MuiTheme';
 import { ShopWrapper, ShopTopDiv, ShopBotDiv, ShopImage, WaresWrapper, SingleWareWrapper } from 'components/shop/ShopScreenCSS';
 import { EquipmentCard } from 'components/equipments/EquipmentCard';
 import { AuthorizeAndLoad } from 'utils/AuthorizeAndLoad';
@@ -14,17 +15,8 @@ export const ShopScreen = () => {
   const equipmentData = useSelector((store) => store.equipment.equipmentData);
   const currentUser = useSelector((store) => store.user);
 
-  const defaultTheme = createTheme({
-    typography: {
-      fontFamily: ['VT323', 'monospace'].join(',')
-    },
-    palette: {
-      primary: {
-        main: '#3d4362',
-        darker: '#2e3242'
-      }
-    }
-  });
+  const defaultTheme = WWTheme
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <ShopWrapper>
