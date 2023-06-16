@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import user from 'reducers/user';
 import { API_URL } from 'utils/urls';
-import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Checkbox, Grid, Box, Typography, Container } from '@mui/material';
+import { Button, FormControlLabel, FormGroup, CssBaseline, TextField, Switch, Grid, Box, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LoginWrapper, LogoIMG } from 'components/login/LoginScreenCSS';
 import loader from 'reducers/loader';
@@ -180,9 +180,6 @@ export const LoginScreen = () => {
                       : ''
                     : ''
                 } />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me" />
               <Button
                 type="submit"
                 fullWidth
