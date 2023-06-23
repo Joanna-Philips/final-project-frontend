@@ -94,7 +94,6 @@ export const PlayerAvatar = () => {
           flexDirection: 'column',
           alignItems: 'center',
           alignContent: 'center',
-          height: '30vh',
           position: 'relative' }}>
           <Container sx={{ padding: '0 20px 20px' }}>
             <Typography
