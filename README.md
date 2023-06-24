@@ -1,22 +1,90 @@
-# Technigo React Starter App
+Wayward Wilds Adventure Game
 
-This app has been generated using `create-react-app`, then cleaned up a little so we have a project with just the elements we need to get started.
+By Leo Thunell & Joanna Philips
+============================
 
-Add components in the `src` folder and use them in `src/app.js` to get started.
+* * *
 
-## Usage
+In this game players can choose an avatar, equip themselves with a weapon of choice and embark on completing quests in order to earn rewards. These rewards can in turn be used to purchase better weapons in order to tackle more difficult challenges.
 
-1. On GitHub, click the 'use this template' button to create a new repo on your account
-1. Clone the new repo to your computer
-1. Install required dependencies with npm: `npm install`
-1. Start the project: `npm start`
+General Information
+-------------------
 
-Alternatively, if you don't want a new git repo on your account;
+* * *
 
-1. Download & extract the [latest release](https://github.com/Technigo/react-starter/releases/latest) from GitHub
-1. Open the directory in the terminal: `cd /path/to/react-starter`
-1. Install required dependencies with npm: `npm install`
-1. Start the project: `npm start`
+*   The game is built using NodeJS and express for the backend with MongoDB Atlas to store the data. In the frontend, it uses React, Redux to manage states and MaterialUI components.
 
-## Image/animation credits
-Credits due for avatars: https://www.artstation.com/artwork/4noel
+*   The purpose of this project is to showcase learning and combine technologies to create a fullstack project.
+
+Technologies Used
+-----------------
+
+* * *
+
+*   JavaScript
+
+*   React
+
+*   Redux
+
+*   NodeJS
+
+*   Express
+
+*   MaterialUI
+
+
+Features
+--------
+
+* * *
+
+*   In-game shop to buy weapons
+
+*   Player can select an avatar
+
+*   Complete quests to earn rewards
+
+View
+-----
+
+* * *
+
+*   Deployed site: https://wayward-wilds.netlify.app/ 
+*   Link to backend repo: https://github.com/Joanna-Philips/final-project-backend
+
+Setup
+-----
+
+* * *
+
+*   npm install 
+*   npm run start to run it locally
+
+Project Status
+--------------
+
+* * *
+
+This is the MVP of the game. More features are to be added in the future to make it more engaging.
+
+Improvements
+------------
+
+* * *
+
+*   Display error messages when coins are not enough to buy a weapon.
+
+Features that can be added
+--------------------------
+
+* * *
+
+*   Player will be able to choose the difficulty of the quests.
+
+Acknowledgement
+---------------
+
+* * *
+
+*   This project was made in collaboration with Leo Thunell as part of the final project for Technigo's Web Development Bootcamp.
