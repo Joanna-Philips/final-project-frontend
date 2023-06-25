@@ -1,7 +1,7 @@
 Wayward Wilds Adventure Game
+============================
 
 By Leo Thunell & Joanna Philips
-============================
 
 * * *
 
