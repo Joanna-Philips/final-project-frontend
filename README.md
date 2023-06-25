@@ -16,24 +16,6 @@ General Information
 
 *   The purpose of this project is to showcase learning and combine technologies to create a fullstack project.
 
-Technologies Used
------------------
-
-* * *
-
-*   JavaScript
-
-*   React
-
-*   Redux
-
-*   NodeJS
-
-*   Express
-
-*   MaterialUI
-
-
 Features
 --------
 
@@ -52,6 +34,21 @@ View
 
 *   Deployed site: https://wayward-wilds.netlify.app/ 
 *   Link to backend repo: https://github.com/Joanna-Philips/final-project-backend
+
+Technologies Used
+-----------------
+
+* * *
+
+*   JavaScript
+
+*   React
+
+*   Redux
+
+*   MaterialUI
+
+*   StyledComponents
 
 Setup
 -----
